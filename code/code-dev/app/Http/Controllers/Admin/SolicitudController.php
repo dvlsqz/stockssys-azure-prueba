@@ -1535,13 +1535,13 @@ class SolicitudController extends Controller
             $detalle=new BodegaEgresoDetalle();
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
-            
+            $detalle->pl = 0;  
             $detalle->no_unidades =  number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
             $detalle->save();
             $cont=$cont+1;
         }
 
-        $detalles_actuales = BodegaEgresoDetalle::where('pl', NULL)->where('id_egreso',$be->id)->get();
+        $detalles_actuales = BodegaEgresoDetalle::where('pl', 0)->where('id_egreso',$be->id)->get();
 
         foreach($detalles_actuales as $det):
             foreach($pls as $pl):
@@ -1731,7 +1731,7 @@ class SolicitudController extends Controller
             $cont=$cont+1;
         }
 
-        $detalles_actuales = BodegaEgresoDetalle::where('pl', NULL)->where('id_egreso',$be->id)->get();
+        $detalles_actuales = BodegaEgresoDetalle::where('pl', 0)->where('id_egreso',$be->id)->get();
 
         foreach($detalles_actuales as $det):
             foreach($pls as $pl):
@@ -1740,6 +1740,18 @@ class SolicitudController extends Controller
                 endif;
             endforeach;
             $det->save();
+        endforeach;
+
+        $detalles_recientes = BodegaEgresoDetalle::select('id_insumo','pl','no_unidades')->where('id_egreso',$be->id)->get();
+        $detalles_alimentos_saldos = BodegaIngresoDetalle::select('id_insumo','pl','no_unidades_usadas')->get();
+
+        foreach($detalles_alimentos_saldos as $det_alimento_pl):
+            foreach($detalles_recientes as $det_rec):
+                if($det_rec->id_insumo == $det_alimento_pl and $det_rec->pl == $det_alimento_pl->pl):
+                    $det_alimento_pl->no_unidades_usadas = $det_alimento_pl+$det_rec->no_unidades
+                endif;
+            endforeach;
+            $det_alimento_pl->save();
         endforeach;
         
 
