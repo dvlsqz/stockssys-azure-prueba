@@ -1750,7 +1750,7 @@ class SolicitudController extends Controller
         foreach($detalles_alimentos_saldos as $det_alimento_pl):
             foreach($detalles_recientes as $det_rec):
                 if($det_rec->id_insumo == $det_alimento_pl->id_insumo && $det_rec->pl == $det_alimento_pl->pl):
-                    return $det_alimento_pl->no_unidades_usadas += +$det_rec->no_unidades;
+                    $det_alimento_pl->no_unidades_usadas += +$det_rec->no_unidades;
                 endif;
             endforeach;
             $det_alimento_pl->save();
