@@ -1751,6 +1751,9 @@ class SolicitudController extends Controller
                     ->where('id_insumo', $det_rec->id_insumo)
                     ->where('pl', $det_rec->pl)
                     ->increment('no_unidades_usadas', $det_rec->no_unidades);
+                DB::table('bodegas')
+                    ->where('id', $det_rec->id_insumo)
+                    ->decrement('saldo', $det_rec->no_unidades);
         endforeach;
         
 
