@@ -1552,6 +1552,18 @@ class SolicitudController extends Controller
             $det->save();
         endforeach;
 
+        $detalles_recientes = BodegaEgresoDetalle::select('id_insumo','pl','no_unidades')->where('id_egreso',$be->id)->get();
+
+       foreach($detalles_recientes as $det_rec):
+                DB::table('bodegas_ingresos_detalles')
+                    ->where('id_insumo', $det_rec->id_insumo)
+                    ->where('pl', $det_rec->pl)
+                    ->increment('no_unidades_usadas', $det_rec->no_unidades);
+                DB::table('bodegas')
+                    ->where('id', $det_rec->id_insumo)
+                    ->decrement('saldo', $det_rec->no_unidades);
+        endforeach;
+
         
 
         $b = new Bitacora;
@@ -1646,6 +1658,18 @@ class SolicitudController extends Controller
                 endif;
             endforeach;
             $det->save();
+        endforeach;
+
+        $detalles_recientes = BodegaEgresoDetalle::select('id_insumo','pl','no_unidades')->where('id_egreso',$be->id)->get();
+
+       foreach($detalles_recientes as $det_rec):
+                DB::table('bodegas_ingresos_detalles')
+                    ->where('id_insumo', $det_rec->id_insumo)
+                    ->where('pl', $det_rec->pl)
+                    ->increment('no_unidades_usadas', $det_rec->no_unidades);
+                DB::table('bodegas')
+                    ->where('id', $det_rec->id_insumo)
+                    ->decrement('saldo', $det_rec->no_unidades);
         endforeach;
 
         $b = new Bitacora;
@@ -1743,9 +1767,7 @@ class SolicitudController extends Controller
         endforeach;
 
         $detalles_recientes = BodegaEgresoDetalle::select('id_insumo','pl','no_unidades')->where('id_egreso',$be->id)->get();
-        $detalles_alimentos_saldos = BodegaIngresoDetalle::select('id_insumo','pl','no_unidades_usadas')->get();
 
-       //return $detalles_recientes.' - '.$detalles_alimentos_saldos;
        foreach($detalles_recientes as $det_rec):
                 DB::table('bodegas_ingresos_detalles')
                     ->where('id_insumo', $det_rec->id_insumo)
