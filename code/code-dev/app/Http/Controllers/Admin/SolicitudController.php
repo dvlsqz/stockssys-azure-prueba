@@ -1745,11 +1745,11 @@ class SolicitudController extends Controller
         $detalles_recientes = BodegaEgresoDetalle::select('id_insumo','pl','no_unidades')->where('id_egreso',$be->id)->get();
         $detalles_alimentos_saldos = BodegaIngresoDetalle::select('id_insumo','pl','no_unidades_usadas')->get();
 
-        return $detalles_recientes.' - '.$detalles_alimentos_saldos;
+        //return $detalles_recientes.' - '.$detalles_alimentos_saldos;
 
         foreach($detalles_alimentos_saldos as $det_alimento_pl):
             foreach($detalles_recientes as $det_rec):
-                if($det_rec->id_insumo == $det_alimento_pl && $det_rec->pl == $det_alimento_pl->pl):
+                if($det_rec->id_insumo == $det_alimento_pl->id_insumo && $det_rec->pl == $det_alimento_pl->pl):
                     $det_alimento_pl->no_unidades_usadas = $det_alimento_pl->no_unidades_usadas+$det_rec->no_unidades;
                 endif;
             endforeach;
