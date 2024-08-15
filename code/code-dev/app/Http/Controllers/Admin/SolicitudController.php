@@ -1495,7 +1495,7 @@ class SolicitudController extends Controller
         foreach($racion2  as $r2):
             $alimentos1 = $r2->alimentos;
         endforeach;
-        //return $saldos;
+        return $alimentos1;
         //return $request->all();
 
         $descarga_pre =  DB::table('solicitud_detalles')
