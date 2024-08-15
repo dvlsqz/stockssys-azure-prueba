@@ -1490,10 +1490,16 @@ class SolicitudController extends Controller
             $actividad = $r->id;
             $alimentos = $r->alimentos;
         endforeach;
+
+        $racion2 = Racion::with('alimentos')->where('nombre', 'like', '%escolar2')->where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($racion2  as $r2):
+            $actividad1 = $r2->id;
+            $alimentos1 = $r2->alimentos;
+        endforeach;
         //return $saldos;
         //return $request->all();
 
-        $descarga =  DB::table('solicitud_detalles')
+        $descarga_pre =  DB::table('solicitud_detalles')
             ->select(
                 DB::raw('solicitud_detalles.id_escuela as escuela_id'),
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
@@ -1507,11 +1513,31 @@ class SolicitudController extends Controller
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
             ->get();
+
+        $descarga_pri =  DB::table('solicitud_detalles')
+            ->select(
+                DB::raw('solicitud_detalles.id_escuela as escuela_id'),
+                DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
+                DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_beneficiarios'),
+                DB::raw('raciones.nombre as racion'),
+            )
+            ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+            ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
+            ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
+            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad1)            
+            ->where('solicitud_detalles.deleted_at', null)
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
+            ->get();   
             //return $descarga;
         
-        foreach($descarga as $d):
-            $dias = $d->dias;
-            $beneficiarios = $d->total_beneficiarios;
+        foreach($descarga_pre as $d_pre):
+            $dias_pre = $d_pre->dias;
+            $beneficiarios_pre = $d_pre->total_beneficiarios;
+        endforeach;
+
+        foreach($descarga_pri as $d_pri):
+            $dias_pri = $d_pri->dias;
+            $beneficiarios_pri = $d_pri->total_beneficiarios;
         endforeach;
 
         //return Carbon::now()->format('Y-m-d');
@@ -1536,9 +1562,19 @@ class SolicitudController extends Controller
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
             $detalle->pl = 0;  
-            $detalle->no_unidades =  number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
+            $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' )  ;
             $detalle->save();
             $cont=$cont+1;
+        }
+
+        $cont1=0;
+
+        while ($cont<count($alimentos1)) {
+            DB::table('bodegas_egresos_detalles')
+                    ->where('id_egreso', $be->id)
+                    ->where('id_insumo', $alimentos1[$cont1])
+                    ->increment('no_unidades', number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont1]->cantidad)/1000)/50), 2, '.', ',' ));
+            $cont1=$cont1+1;
         }
 
         $detalles_actuales = BodegaEgresoDetalle::where('pl', 0)->where('id_egreso',$be->id)->get();
