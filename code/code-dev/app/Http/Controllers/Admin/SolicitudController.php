@@ -1561,22 +1561,12 @@ class SolicitudController extends Controller
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
             $detalle->pl = 0;  
-            $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' )  ;
+            $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
             $detalle->save();
             $cont=$cont+1;
         }
 
-        $cont1=0;
-
-        while ($cont<count($alimentos1)) {
-            return number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont1]->cantidad)/1000)/50), 2, '.', ',' );
-            DB::table('bodegas_egresos_detalles')
-                    ->where('id_egreso', $be->id)
-                    ->where('id_insumo', $alimentos1[$cont1])
-                    ->increment('no_unidades', );
-            $cont1=$cont1+1;
-        }
-
+        
         $detalles_actuales = BodegaEgresoDetalle::where('pl', 0)->where('id_egreso',$be->id)->get();
 
         foreach($detalles_actuales as $det):
