@@ -1550,7 +1550,7 @@ class SolicitudController extends Controller
         $be->id_solicitud_despacho = $request->input('idSolicitud');
         $be->id_escuela_despacho = $request->input('idEscuela');
         $be->tipo_racion = $actividad;
-        $be->participantes = $beneficiarios;
+        $be->participantes = $beneficiarios_pre + $beneficiarios_pri;
         $be->tipo_bodega = 1;
         $be->id_institucion = Auth::user()->id_institucion;
         $be->save();
