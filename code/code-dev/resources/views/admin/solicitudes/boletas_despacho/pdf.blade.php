@@ -72,7 +72,7 @@
         </div>
 
         <div style="position: relative; top: 42.2mm; left: 45mm;  width: 100px; height: 10px; font-size: 12px; "  >
-            {{ $d->escuela->ruta_asignada->ruta_solicitud->tipo_vehiculo}}           
+            {{ $d->escuela->ruta_asignada->id_ruta_despacho}}           
         </div>
 
         <div style="position: relative; top: 46.5mm; left: 43.3mm;  width: 175px; height: 10px; font-size: 12px;"  >
