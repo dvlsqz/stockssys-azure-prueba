@@ -64,7 +64,7 @@
         </div>
 
         <div style="position: relative; top: 38mm; left: 150mm;  width: 250px; height: 10px; font-size: 12px;"  >
-            {{ $d->ruta_asignada->ruta_solicitud->nombre}}           
+            {{ $d->escuela->ruta_asignada->ruta->ubicacion->nomenclatura.'0'.$d->escuela->ruta_asignada->ruta->correlativo}}           
         </div>
 
         <div style="position: relative; top: 34.2mm; left: 48.2mm;  width: 250px; height: 5px; font-size: 12px;" >

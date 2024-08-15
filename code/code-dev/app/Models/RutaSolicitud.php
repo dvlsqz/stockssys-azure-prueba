@@ -15,7 +15,7 @@ class RutaSolicitud extends Model
     protected $hidden = ['created_at', 'updated_at'];
 
     public function ruta_base(){
-        return $this->hasOne(Ruta::class,'id','id_ruta_base');
+        return $this->hasOne(Ruta::class,'id','id_ruta_base'); 
     }
 
     public function detalles(){

@@ -31,7 +31,7 @@ class BodegaEgreso extends Model
     }
 
     public function ruta_asignada(){
-        return $this->hasOne(RutaSolicitudDetalles::class,'id_escuela','id_escuela_despacho');
+        return $this->hasOne(RutaSolicitudDetalles::class,'id_escuela','id_escuela_despacho'); 
     }
 
 }
