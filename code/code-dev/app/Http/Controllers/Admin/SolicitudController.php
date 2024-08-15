@@ -1495,7 +1495,7 @@ class SolicitudController extends Controller
         foreach($racion2  as $r2):
             $alimentos1 = $r2->alimentos;
         endforeach;
-        return $alimentos;
+        //return $alimentos;
         //return $request->all();
 
         $descarga_pre =  DB::table('solicitud_detalles')
@@ -1569,10 +1569,11 @@ class SolicitudController extends Controller
         $cont1=0;
 
         while ($cont<count($alimentos1)) {
+            return number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont1]->cantidad)/1000)/50), 2, '.', ',' );
             DB::table('bodegas_egresos_detalles')
                     ->where('id_egreso', $be->id)
                     ->where('id_insumo', $alimentos1[$cont1])
-                    ->increment('no_unidades', number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont1]->cantidad)/1000)/50), 2, '.', ',' ));
+                    ->increment('no_unidades', );
             $cont1=$cont1+1;
         }
 
