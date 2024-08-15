@@ -72,19 +72,19 @@
         </div>
 
         <div style="position: relative; top: 42.2mm; left: 45mm;  width: 100px; height: 10px; font-size: 12px; "  >
-            {{ $d->escuela->ruta_asignada->id_ruta_despacho}}           
+            {{ $d->ruta_asignada->ruta_solicitud->tipo_vehiculo}}           
         </div>
 
         <div style="position: relative; top: 46.5mm; left: 43.3mm;  width: 175px; height: 10px; font-size: 12px;"  >
-            {{ $d->ruta_asignada}}           
+            {{ $d->ruta_asignada->ruta_solicitud->nombre_piloto}}           
         </div>
 
         <div style="position: relative; top: 36.4mm; left: 96mm;  width: 100px; height: 10px; font-size: 12px;"  >
-            {{ $d->ruta_asignada}}           
+            {{ $d->ruta_asignada->ruta_solicitud->placa_vehiculo}}           
         </div>
 
         <div style="position: relative; top: 40.6mm; left: 99mm;  width: 100px; height: 10px; font-size: 12px;"  >
-            {{ $d->ruta_asignada}}           
+            {{ $d->ruta_asignada->ruta_solicitud->no_licencia}}           
         </div>
 
         @foreach($d->detalles as $det)
