@@ -1493,7 +1493,6 @@ class SolicitudController extends Controller
 
         $racion2 = Racion::with('alimentos')->where('nombre', 'like', '%escolar2')->where('id_institucion', Auth::user()->id_institucion)->get();
         foreach($racion2  as $r2):
-            $actividad1 = $r2->id;
             $alimentos1 = $r2->alimentos;
         endforeach;
         //return $saldos;
@@ -1524,7 +1523,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad1)            
+            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
             ->get();   
