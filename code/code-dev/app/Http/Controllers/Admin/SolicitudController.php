@@ -837,7 +837,7 @@ class SolicitudController extends Controller
                             DB::raw('alimentos_racion.peso as peso_racion')
                         )
                         ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
-                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j)  use($id_lideres_expansion_racion){
                             $j->on("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
                         })
                         ->where('solicitud_detalles.id_solicitud', $id)
@@ -897,7 +897,7 @@ class SolicitudController extends Controller
                             DB::raw('alimentos_racion.peso as peso_racion')
                         )
                         ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
-                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j)  use($id_do_vo_expansion_racion){
                             $j->on("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
                         })
                         ->where('solicitud_detalles.id_solicitud', $id)
@@ -1688,7 +1688,7 @@ class SolicitudController extends Controller
                         DB::raw('alimentos_racion.cantidad as alimento_peso'),
                         DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                     ) 
-                    ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($id_lideres_expansion_racion){
+                    ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_lideres_expansion_racion){
                         $j->on("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
                     })
                     ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
@@ -1766,7 +1766,7 @@ class SolicitudController extends Controller
             ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
             ->get();
 
-            if(isset($id_lideres_expansion_racion)):
+            if(isset($id_do_vo_expansion_racion)):
                 $det_escuelas_v_d_ex_enc =  DB::table('solicitud_detalles')
                     ->select(
                         DB::raw('solicitud_detalles.id_escuela as escuela_id'),
@@ -1790,8 +1790,8 @@ class SolicitudController extends Controller
                             DB::raw('alimentos_racion.cantidad as alimento_peso'),
                             DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                         ) 
-                        ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($id_lideres_expansion_racion){
-                            $j->on("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
+                        ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_do_vo_expansion_racion){
+                            $j->on("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
                         })
                         ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                         ->where('solicitud_detalles.id_solicitud', $solicitud)  
