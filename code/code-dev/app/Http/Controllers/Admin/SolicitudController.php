@@ -636,13 +636,30 @@ class SolicitudController extends Controller
                     $id_escolar2_racion = $r->id;
                 endif;
 
+                if($r->nombre =="Escolar expansión"):
+                    $id_escolar_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 expansión"):
+                    $id_escolar2_expansion_racion = $r->id;
+                endif;
+
+
                 if($r->nombre =="Líderes"):
                     $id_lideres_racion = $r->id;
                 endif;
 
+                if($r->nombre =="Líderes expansión"):
+                    $id_lideres_expansion_racion = $r->id;
+                endif;
+
                 if($r->nombre =="Voluntarios"):
                     $id_do_vo_racion = $r->id;
-                endif;                
+                endif;     
+                
+                if($r->nombre =="Voluntarios expansión"):
+                    $id_do_vo_expansion_racion = $r->id;
+                endif; 
             endforeach;
 
 
@@ -707,6 +724,88 @@ class SolicitudController extends Controller
                 ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                 ->get();
             endif;
+
+            if(isset($id_escolar_expasion_racion) ):
+                //return $id_escolar2_racion;
+                $det_escuelas_preprimaria_ex = DB::table('solicitud_detalles')
+                    ->select(
+                        DB::raw('escuelas.id as escuela_id'),
+                        DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                        DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_ninos'),
+                        DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                        DB::raw('alimentos_racion.peso as peso_racion')
+                    )
+                    ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                    ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j)  use($id_escolar2_racion){
+                        $j->where("alimentos_racion.id_racion","=",$id_escolar_expansion_racion);
+                    })
+                    ->where('solicitud_detalles.id_solicitud', $id)
+                    ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                    ->where('solicitud_detalles.deleted_at', null)
+                    ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                    ->get();
+            else:
+                $det_escuelas_preprimaria_ex = DB::table('solicitud_detalles')
+                ->select(
+                    DB::raw('escuelas.id as escuela_id'),
+                    DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                    DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_ninos'),
+                    DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                    DB::raw('alimentos_racion.peso as peso_racion')
+                )
+                ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                    $j->on("alimentos_racion.id_racion","=","solicitud_detalles.tipo_de_actividad_alimentos");
+                })
+                ->where('solicitud_detalles.id_solicitud', $id)
+                ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.deleted_at', null)
+                ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                ->get();
+            endif;
+
+            if(isset($id_escolar2_expasion_racion) ):
+                //return $id_escolar2_racion;
+                $det_escuelas_primaria_ex = DB::table('solicitud_detalles')
+                    ->select(
+                        DB::raw('escuelas.id as escuela_id'),
+                        DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                        DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_ninos'),
+                        DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                        DB::raw('alimentos_racion.peso as peso_racion')
+                    )
+                    ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                    ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j)  use($id_escolar2_racion){
+                        $j->where("alimentos_racion.id_racion","=",$id_escolar2_expansion_racion);
+                    })
+                    ->where('solicitud_detalles.id_solicitud', $id)
+                    ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                    ->where('solicitud_detalles.deleted_at', null)
+                    ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                    ->get();
+            else:
+                $det_escuelas_primaria_ex = DB::table('solicitud_detalles')
+                ->select(
+                    DB::raw('escuelas.id as escuela_id'),
+                    DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                    DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_ninos'),
+                    DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                    DB::raw('alimentos_racion.peso as peso_racion')
+                )
+                ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                    $j->on("alimentos_racion.id_racion","=","solicitud_detalles.tipo_de_actividad_alimentos");
+                })
+                ->where('solicitud_detalles.id_solicitud', $id)
+                ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.deleted_at', null)
+                ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                ->get();
+            endif;
                 //return $det_escuelas_preprimaria;
             $det_escuelas_l = DB::table('solicitud_detalles')
                 ->select(
@@ -727,6 +826,47 @@ class SolicitudController extends Controller
                 ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                 ->get();
 
+                if(isset($id_lideres_expansion_racion) ):
+                    //return $id_escolar2_racion;
+                    $det_escuelas_l_ex = DB::table('solicitud_detalles')
+                        ->select(
+                            DB::raw('escuelas.id as escuela_id'),
+                            DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                            DB::raw('SUM(Distinct solicitud_detalles.total_de_docentes_y_voluntarios) as total_personas'),
+                            DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                            DB::raw('alimentos_racion.peso as peso_racion')
+                        )
+                        ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                            $j->on("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
+                        })
+                        ->where('solicitud_detalles.id_solicitud', $id)
+                        ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos',$id_lideres_racion)                
+                        ->where('solicitud_detalles.deleted_at', null)
+                        ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                        ->get();
+                else:
+                    $det_escuelas_l_ex = DB::table('solicitud_detalles')
+                        ->select(
+                            DB::raw('escuelas.id as escuela_id'),
+                            DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                            DB::raw('SUM(Distinct solicitud_detalles.total_de_docentes_y_voluntarios) as total_personas'),
+                            DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                            DB::raw('alimentos_racion.peso as peso_racion')
+                        )
+                        ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                            $j->on("alimentos_racion.id_racion","=","solicitud_detalles.tipo_de_actividad_alimentos");
+                        })
+                        ->where('solicitud_detalles.id_solicitud', $id)
+                        ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos',$id_lideres_racion)                
+                        ->where('solicitud_detalles.deleted_at', null)
+                        ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                        ->get();
+                endif;
+
             $det_escuelas_v_d = DB::table('solicitud_detalles')
                 ->select(
                     DB::raw('escuelas.id as escuela_id'),
@@ -746,7 +886,46 @@ class SolicitudController extends Controller
                 ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                 ->get();
 
-        
+                if(isset($id_do_vo_expansion_racion) ):
+                    //return $id_escolar2_racion;
+                    $det_escuelas_v_d_ex = DB::table('solicitud_detalles')
+                        ->select(
+                            DB::raw('escuelas.id as escuela_id'),
+                            DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                            DB::raw('SUM(Distinct solicitud_detalles.total_de_docentes_y_voluntarios) as total_personas'),
+                            DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                            DB::raw('alimentos_racion.peso as peso_racion')
+                        )
+                        ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                            $j->on("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
+                        })
+                        ->where('solicitud_detalles.id_solicitud', $id)
+                        ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_racion)
+                        ->where('solicitud_detalles.deleted_at', null)
+                        ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                        ->get();
+                else:
+                    $det_escuelas_v_d_ex = DB::table('solicitud_detalles')
+                        ->select(
+                            DB::raw('escuelas.id as escuela_id'),
+                            DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
+                            DB::raw('SUM(Distinct solicitud_detalles.total_de_docentes_y_voluntarios) as total_personas'),
+                            DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
+                            DB::raw('alimentos_racion.peso as peso_racion')
+                        )
+                        ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
+                        ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j){
+                            $j->on("alimentos_racion.id_racion","=","solicitud_detalles.tipo_de_actividad_alimentos");
+                        })
+                        ->where('solicitud_detalles.id_solicitud', $id)
+                        ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_racion)
+                        ->where('solicitud_detalles.deleted_at', null)
+                        ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
+                        ->get();
+                endif;
             
             
             $datos = [
@@ -760,8 +939,12 @@ class SolicitudController extends Controller
                 'detalles_ruta_escuelas' => $detalles_ruta_escuelas,
                 'det_escuelas_preprimaria' => $det_escuelas_preprimaria,
                 'det_escuelas_primaria' => $det_escuelas_primaria,
+                'det_escuelas_preprimaria_ex' => $det_escuelas_preprimaria_ex,
+                'det_escuelas_primaria_ex' => $det_escuelas_primaria_ex,
                 'det_escuelas_v_d' => $det_escuelas_v_d,
+                'det_escuelas_v_d_ex' => $det_escuelas_v_d_ex,
                 'det_escuelas_l' => $det_escuelas_l,
+                'det_escuelas_l_ex' => $det_escuelas_l_ex,
                 'detalle_escuelas' => $detalle_escuelas
             ];
 
