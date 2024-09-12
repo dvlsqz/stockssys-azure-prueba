@@ -842,7 +842,7 @@ class SolicitudController extends Controller
                         })
                         ->where('solicitud_detalles.id_solicitud', $id)
                         ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
-                        ->where('solicitud_detalles.tipo_de_actividad_alimentos',$id_lideres_racion)                
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos',$id_lideres_expansion_racion)                
                         ->where('solicitud_detalles.deleted_at', null)
                         ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                         ->get();
@@ -1678,7 +1678,7 @@ class SolicitudController extends Controller
                     ->where('solicitud_detalles.deleted_at', null)
                     ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
                     ->get(); 
-                    $det_escuelas_l_ex = DB::table('solicitud_detalles')
+                $det_escuelas_l_ex = DB::table('solicitud_detalles')
                     ->select(
                         DB::raw('solicitud_detalles.id_escuela as escuela_id'),
                         DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
