@@ -888,7 +888,7 @@ class SolicitudController extends Controller
 
                 if(isset($id_do_vo_expansion_racion) ):
                     //return $id_escolar2_racion;
-                    $det_escuelas_v_d = DB::table('solicitud_detalles')
+                    $det_escuelas_v_d_ex = DB::table('solicitud_detalles')
                         ->select(
                             DB::raw('escuelas.id as escuela_id'),
                             DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
