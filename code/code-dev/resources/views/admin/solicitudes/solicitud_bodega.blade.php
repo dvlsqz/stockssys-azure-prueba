@@ -25,6 +25,7 @@ ini_set('max_execution_time', 0); ?>
                         <div class="row">
                             <div class="col-md-3" >
                                 @if(isset($det_escuelas_preprimaria_ex_enc))
+                                    <span style="color: red;"> Datos de ración de expansion</span>
                                     @foreach($det_escuelas_preprimaria_ex_enc as $det_preprimaria_ex_enc)
                                         @if($det_preprimaria_ex_enc->escuela_id == $e->escuela_id)    
                                             Racion:  <b> {{ $det_preprimaria_ex_enc->racion}}</b> &nbsp                                    
@@ -80,7 +81,7 @@ ini_set('max_execution_time', 0); ?>
                             </div>
                             <div class="col-md-3">
                                 @if(isset($det_escuelas_primaria_ex_enc))
-
+                                    <span style="color: red;"> Datos de ración de expansion</span>
                                     @foreach($det_escuelas_primaria_ex_enc as $det_primaria_ex_enc)
                                         @if($det_primaria_ex_enc->escuela_id == $e->escuela_id)    
                                             Racion:  <b>{{ $det_primaria_ex_enc->racion}}</b>  &nbsp                                    
@@ -109,6 +110,7 @@ ini_set('max_execution_time', 0); ?>
 
                                 @else
                                     @foreach($det_escuelas_primaria_enc as $det_primaria_enc)
+                                        <span style="color: red;"> Datos de ración de expansion</span>
                                         @if($det_primaria_enc->escuela_id == $e->escuela_id)    
                                             Racion:  <b>{{ $det_primaria_enc->racion}}</b>  &nbsp                                    
                                             Dias:  <b>{{ $det_primaria_enc->dias}} </b> &nbsp
@@ -149,6 +151,7 @@ ini_set('max_execution_time', 0); ?>
                                     <b>Desgloce: </b>  <br>
                                     <br>         
                                     @foreach($det_escuelas_l_ex as $det_l_ex)
+                                        <span style="color: red;"> Datos de ración de expansion</span>
                                         @if($det_l_ex->escuela_id == $e->escuela_id)                                        
                                             <b><i class="fa-solid fa-caret-right"></i> </b> Alimento: <b>{{ $det_l_ex->alimento}} </b>Peso Ración (lbs.): <b>{{ $det_l_ex->alimento_peso}} </b>  <br>
                                             - Libras: <b>{{ number_format( ($det_l_ex->dias*$det_l_ex->total_beneficiarios*$det_l_ex->alimento_peso), 2, '.', ',' )}} </b>  <br>
@@ -181,6 +184,7 @@ ini_set('max_execution_time', 0); ?>
                             </div>
                             <div class="col-md-3">
                                 @if(isset($det_escuelas_v_d_ex_enc))
+                                    <span style="color: red;"> Datos de ración de expansion</span>
                                     @foreach($det_escuelas_v_d_ex_enc as $det_v_d_ex_enc)
                                         @if($det_v_d_ex_enc->escuela_id == $e->escuela_id)    
                                             Racion: <b>  {{ $det_v_d_ex_enc->racion}} </b>  &nbsp                                    
