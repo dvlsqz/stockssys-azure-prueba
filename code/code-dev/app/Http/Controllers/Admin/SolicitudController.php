@@ -1690,7 +1690,7 @@ class SolicitudController extends Controller
                         DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                     ) 
                     ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_lideres_expansion_racion){
-                        $j->on("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
+                        $j->where("alimentos_racion.id_racion","=",$id_lideres_expansion_racion);
                     })
                     ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                     ->where('solicitud_detalles.id_solicitud', $solicitud)  
@@ -1792,7 +1792,7 @@ class SolicitudController extends Controller
                             DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                         ) 
                         ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_do_vo_expansion_racion){
-                            $j->on("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
+                            $j->where("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
                         })
                         ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                         ->where('solicitud_detalles.id_solicitud', $solicitud)  
