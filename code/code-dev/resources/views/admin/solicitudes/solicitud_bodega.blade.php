@@ -376,9 +376,9 @@ ini_set('max_execution_time', 0); ?>
                                 @endif
 
                                 @if($det_escuelas_v_d_ex)
-                                    @foreach($det_escuelas_v_d_ex as $det_escuelas_v_d_ex)
-                                        @if($det_escuelas_v_d_ex->alimento_id == $a->id)                                        
-                                            @php($total_peso_ruta = $total_peso_ruta + ($det_escuelas_v_d_ex->dias*$det_escuelas_v_d_ex->total_beneficiarios*$det_escuelas_v_d_ex->alimento_peso)  )  
+                                    @foreach($det_escuelas_v_d_ex as $det_v_d_ex)
+                                        @if($det_v_d_ex->alimento_id == $a->id)                                        
+                                            @php($total_peso_ruta = $total_peso_ruta + ($det_v_d_ex->dias*$det_v_d_ex->total_beneficiarios*$det_v_d_ex->alimento_peso)  )  
                                         @endif
                                     @endforeach
                                 @endif
