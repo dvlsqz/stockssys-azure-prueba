@@ -898,7 +898,7 @@ class SolicitudController extends Controller
                         )
                         ->join('escuelas', 'escuelas.id', 'solicitud_detalles.id_escuela')
                         ->join(DB::RAW("(SELECT id_racion, SUM(cantidad) as peso FROM alimentos_raciones GROUP BY id_racion) as alimentos_racion"), function($j)  use($id_do_vo_expansion_racion){
-                            $j->on("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
+                            $j->where("alimentos_racion.id_racion","=",$id_do_vo_expansion_racion);
                         })
                         ->where('solicitud_detalles.id_solicitud', $id)
                         ->whereIn('solicitud_detalles.id_escuela', $idEscuelas)
