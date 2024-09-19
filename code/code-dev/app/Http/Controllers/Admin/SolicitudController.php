@@ -606,7 +606,7 @@ class SolicitudController extends Controller
             ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [4])
             ->groupBy('escuelas.id', 'solicitud_detalles.tipo_de_actividad_alimentos','alimentos_racion.peso')
             ->get();
-
+            return $detalles_escuelas;
         $tipo_ruta;
         if(isset($ruta_despacho) ): 
             $tipo_ruta = 0;
@@ -681,7 +681,10 @@ class SolicitudController extends Controller
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('escuelas.id', 'solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                 ->get();
-            
+            /*foreach($det_escuelas_preprimaria as $det_pre):
+
+                $idRacionPre = $det_pre->racion;
+            endforeach;*/
                 //return $det_escuelas_preprimaria;
 
             if(isset($id_escolar2_racion) ):
