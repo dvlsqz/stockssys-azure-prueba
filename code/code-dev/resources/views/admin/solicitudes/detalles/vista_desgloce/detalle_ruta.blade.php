@@ -13,9 +13,30 @@
                 <div class="row mtop16">
                     <div class="col-md-3">
                         <b style="color:blue;">Niños Pre Primaria a Tercero Primaria</b><br> 
+
+                        @foreach($det_escuelas_preprimaria_enc as $det_pre_enc)
+                            @php($id_racion_escolar == 0)
+                            @if($det_pre_enc->escuela_id == $det->escuela_id)
+                                @php($id_racion_escolar = $det_pre_enc->idracion)
+                            @endif
+                        @endforeach
                         @php($total_peso_ruta = 0) 
 
-                        @if(isset($det_escuelas_preprimaria_ex))
+                        @if($id_racion_escolar == 1)
+                            @foreach($det_escuelas_preprimaria as $det1)
+                                @if($det1->escuela_id == $det->escuela_id)
+                                    <p> 
+                                        <b>Dias/Mes:</b> {{ $det1->dias }} <br>
+                                        <b>No. Beneficiarios:</b> {{ $det1->total_ninos }} <br>
+                                        <b>Raciones:</b> {{ number_format($det1->dias * $det1->total_ninos)}} <br>
+                                        <b>Peso de Raciones en Gramos:</b> {{ number_format( ($det1->dias * $det1->total_ninos * $det1->peso_racion), 2, '.', ',' )}} <br> @php($total_peso_ruta = $total_peso_ruta + ($det1->dias * $det1->total_ninos * $det1->peso_racion)  ) 
+                                        <b>Peso de Raciones en Quintales:</b> {{ number_format( (($det1->dias * $det1->total_ninos * $det1->peso_racion)/453.59237)/100, 2, '.', ',' ) }} <br>  @php($total_peso_ruta_quintales = $total_peso_ruta_quintales + ((($det1->dias * $det1->total_ninos * $det1->peso_racion)/453.59237)/100))
+                                        <b>Unidades de Racion:</b> {{ number_format( (($det1->dias * $det1->total_ninos * $det1->peso_racion)/1000)/50, 2, '.', ',' ) }}
+                                    </p>  
+                                @endif
+
+                            @endforeach
+                        @else
                             <span style="color: red;"> Datos de ración de expansion</span>
                             @foreach($det_escuelas_preprimaria_ex as $det1_ex)
                                 @if($det1_ex->escuela_id == $det->escuela_id)
@@ -31,20 +52,8 @@
                                 @endif
 
                             @endforeach
-                        @else
-                            @foreach($det_escuelas_preprimaria as $det1)
-                                @if($det1->escuela_id == $det->escuela_id)
-                                    <p> 
-                                        <b>Dias/Mes:</b> {{ $det1->dias }} <br>
-                                        <b>No. Beneficiarios:</b> {{ $det1->total_ninos }} <br>
-                                        <b>Raciones:</b> {{ number_format($det1->dias * $det1->total_ninos)}} <br>
-                                        <b>Peso de Raciones en Gramos:</b> {{ number_format( ($det1->dias * $det1->total_ninos * $det1->peso_racion), 2, '.', ',' )}} <br> @php($total_peso_ruta = $total_peso_ruta + ($det1->dias * $det1->total_ninos * $det1->peso_racion)  ) 
-                                        <b>Peso de Raciones en Quintales:</b> {{ number_format( (($det1->dias * $det1->total_ninos * $det1->peso_racion)/453.59237)/100, 2, '.', ',' ) }} <br>  @php($total_peso_ruta_quintales = $total_peso_ruta_quintales + ((($det1->dias * $det1->total_ninos * $det1->peso_racion)/453.59237)/100))
-                                        <b>Unidades de Racion:</b> {{ number_format( (($det1->dias * $det1->total_ninos * $det1->peso_racion)/1000)/50, 2, '.', ',' ) }}
-                                    </p>  
-                                @endif
 
-                            @endforeach
+                            
                         @endif
                     </div>
                     <div class="col-md-3">

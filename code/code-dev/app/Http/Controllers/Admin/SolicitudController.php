@@ -662,6 +662,19 @@ class SolicitudController extends Controller
                 endif; 
             endforeach;
 
+            $det_escuelas_preprimaria_enc =  DB::table('solicitud_detalles')
+            ->select(
+                DB::raw('solicitud_detalles.id_escuela as escuela_id'),
+                DB::raw('raciones.id as idracion'),
+                DB::raw('raciones.nombre as racion'),
+            )
+            ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+            ->where('solicitud_detalles.id_solicitud', $solicitud)  
+            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+            ->where('solicitud_detalles.deleted_at', null)
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
+            ->get();
+
 
             $det_escuelas_preprimaria =  DB::table('solicitud_detalles')
                 ->select(
@@ -941,6 +954,7 @@ class SolicitudController extends Controller
                 'escuelas' => $escuelas,
                 'idSolicitud' => $idSolicitud,
                 'detalles_ruta_escuelas' => $detalles_ruta_escuelas,
+                'det_escuelas_preprimaria_enc' =>$det_escuelas_preprimaria_enc,
                 'det_escuelas_preprimaria' => $det_escuelas_preprimaria,
                 'det_escuelas_primaria' => $det_escuelas_primaria,
                 'det_escuelas_preprimaria_ex' => $det_escuelas_preprimaria_ex,
