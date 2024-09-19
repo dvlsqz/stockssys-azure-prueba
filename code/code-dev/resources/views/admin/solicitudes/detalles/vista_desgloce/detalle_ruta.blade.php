@@ -15,7 +15,7 @@
                         <b style="color:blue;">Niños Pre Primaria a Tercero Primaria</b><br> 
 
                         @foreach($det_escuelas_preprimaria_enc as $det_pre_enc)
-                            @php($id_racion_escolar == 0)
+                            @php($id_racion_escolar = 0)
                             @if($det_pre_enc->escuela_id == $det->escuela_id)
                                 @php($id_racion_escolar = $det_pre_enc->idracion)
                             @endif
