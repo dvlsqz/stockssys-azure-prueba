@@ -606,7 +606,7 @@ class SolicitudController extends Controller
             ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [4])
             ->groupBy('escuelas.id', 'solicitud_detalles.tipo_de_actividad_alimentos','alimentos_racion.peso')
             ->get();
-            return $detalle_escuelas;
+            //return $detalle_escuelas;
         $tipo_ruta;
         if(isset($ruta_despacho) ): 
             $tipo_ruta = 0;
