@@ -41,7 +41,6 @@
                             @foreach($det_escuelas_preprimaria_ex as $det1_ex)
                                 @if($det1_ex->escuela_id == $det->escuela_id)
                                     <p> 
-                                    {{ $det1_ex->racion }}
                                         <b>Dias/Mes:</b> {{ $det1_ex->dias }} <br>
                                         <b>No. Beneficiarios:</b> {{ $det1_ex->total_ninos }} <br>
                                         <b>Raciones:</b> {{ number_format($det1_ex->dias * $det1_ex->total_ninos)}} <br>
