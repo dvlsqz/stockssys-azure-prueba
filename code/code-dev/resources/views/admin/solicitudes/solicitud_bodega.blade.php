@@ -24,13 +24,13 @@ ini_set('max_execution_time', 0); ?>
                         <p style="color: blue;"><b>{{ $loop->iteration.'. '.$e->escuela }} </b></p>
                         <div class="row">
                             <div class="col-md-3" >
-                                    @ph($tipo_racion = 0)
+                                    @php($tipo_racion = 0)
                                     @foreach($det_escuelas_preprimaria_enc as $det_preprimaria_enc)
                                         @if($det_preprimaria_enc->escuela_id == $e->escuela_id)    
                                             Racion:  <b> {{ $det_preprimaria_enc->racion}}</b> &nbsp                                    
                                             Dias: <b>{{ $det_preprimaria_enc->dias}} </b>&nbsp
                                             Total Beneficiarios:  <b>{{ $det_preprimaria_enc->total_beneficiarios}}  </b>
-                                            {{ $tipo_racion = $det_preprimaria_enc->idracion }}
+                                            @php($tipo_racion = $det_preprimaria_enc->idracion)
                                         @endif                                   
                                     @endforeach 
                                     <br>
