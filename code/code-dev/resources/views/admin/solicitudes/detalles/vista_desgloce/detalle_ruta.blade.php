@@ -14,11 +14,13 @@
                     <div class="col-md-3">
                         <b style="color:blue;">Niños Pre Primaria a Tercero Primaria</b><br> 
                         @php($total_peso_ruta = 0) 
+
                         @if(isset($det_escuelas_preprimaria_ex))
                             <span style="color: red;"> Datos de ración de expansion</span>
                             @foreach($det_escuelas_preprimaria_ex as $det1_ex)
                                 @if($det1_ex->escuela_id == $det->escuela_id)
                                     <p> 
+                                    {{ $det1_ex->racion }}
                                         <b>Dias/Mes:</b> {{ $det1_ex->dias }} <br>
                                         <b>No. Beneficiarios:</b> {{ $det1_ex->total_ninos }} <br>
                                         <b>Raciones:</b> {{ number_format($det1_ex->dias * $det1_ex->total_ninos)}} <br>
