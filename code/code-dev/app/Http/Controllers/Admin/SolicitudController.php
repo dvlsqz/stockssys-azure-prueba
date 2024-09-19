@@ -702,6 +702,19 @@ class SolicitudController extends Controller
 
             if(isset($id_escolar2_racion) ):
                 //return $id_escolar2_racion;
+                $det_escuelas_primaria_enc =  DB::table('solicitud_detalles')
+                ->select(
+                    DB::raw('solicitud_detalles.id_escuela as escuela_id'),
+                    DB::raw('raciones.id as idracion'),
+                    DB::raw('raciones.nombre as racion'),
+                )
+                ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+                ->where('solicitud_detalles.id_solicitud', $id)  
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.deleted_at', null)
+                ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
+                ->get();
+
                 $det_escuelas_primaria = DB::table('solicitud_detalles')
                     ->select(
                         DB::raw('escuelas.id as escuela_id'),
@@ -823,6 +836,20 @@ class SolicitudController extends Controller
                 ->get();
             endif;
                 //return $det_escuelas_preprimaria;
+
+            $det_escuelas_l_enc =  DB::table('solicitud_detalles')
+                ->select(
+                    DB::raw('solicitud_detalles.id_escuela as escuela_id'),
+                    DB::raw('raciones.id as idracion'),
+                    DB::raw('raciones.nombre as racion'),
+                )
+                ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+                ->where('solicitud_detalles.id_solicitud', $id)  
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_lideres_racion)                
+                ->where('solicitud_detalles.deleted_at', null)
+                ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
+                ->get(); 
+
             $det_escuelas_l = DB::table('solicitud_detalles')
                 ->select(
                     DB::raw('escuelas.id as escuela_id'),
@@ -882,6 +909,18 @@ class SolicitudController extends Controller
                         ->groupBy('escuelas.id','solicitud_detalles.tipo_de_actividad_alimentos', 'alimentos_racion.peso')
                         ->get();
                 endif;
+                $det_escuelas_v_d_enc =  DB::table('solicitud_detalles')
+                ->select(
+                    DB::raw('solicitud_detalles.id_escuela as escuela_id'),
+                    DB::raw('raciones.id as idracion'),
+                    DB::raw('raciones.nombre as racion'),
+                )
+                ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+                ->where('solicitud_detalles.id_solicitud', $id)  
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_racion)                
+                ->where('solicitud_detalles.deleted_at', null)
+                ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
+                ->get();        
 
             $det_escuelas_v_d = DB::table('solicitud_detalles')
                 ->select(
@@ -956,11 +995,14 @@ class SolicitudController extends Controller
                 'detalles_ruta_escuelas' => $detalles_ruta_escuelas,
                 'det_escuelas_preprimaria_enc' =>$det_escuelas_preprimaria_enc,
                 'det_escuelas_preprimaria' => $det_escuelas_preprimaria,
+                'det_escuelas_primaria_enc' =>$det_escuelas_primaria_enc,
                 'det_escuelas_primaria' => $det_escuelas_primaria,
                 'det_escuelas_preprimaria_ex' => $det_escuelas_preprimaria_ex,
                 'det_escuelas_primaria_ex' => $det_escuelas_primaria_ex,
+                'det_escuelas_v_d_enc' => $det_escuelas_v_d_enc,
                 'det_escuelas_v_d' => $det_escuelas_v_d,
                 'det_escuelas_v_d_ex' => $det_escuelas_v_d_ex,
+                'det_escuelas_l_enc' =>$det_escuelas_l_enc,
                 'det_escuelas_l' => $det_escuelas_l,
                 'det_escuelas_l_ex' => $det_escuelas_l_ex,
                 'detalle_escuelas' => $detalle_escuelas
