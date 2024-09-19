@@ -669,7 +669,7 @@ class SolicitudController extends Controller
                 DB::raw('raciones.nombre as racion'),
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
-            ->where('solicitud_detalles.id_solicitud', $solicitud)  
+            ->where('solicitud_detalles.id_solicitud', $id)  
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
