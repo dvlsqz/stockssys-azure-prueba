@@ -779,7 +779,7 @@ class SolicitudController extends Controller
                 ->select(
                     DB::raw('escuelas.id as escuela_id'),
                     DB::raw('SUM(Distinct solicitud_detalles.dias_de_solicitud) as dias'),
-                    DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_ninos'),
+                    DB::raw('SUM(Distinct solicitud_detalles.total_pre_primaria_a_tercero_primaria) as total_ninos'),
                     DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                     DB::raw('alimentos_racion.peso as peso_racion')
                 )
