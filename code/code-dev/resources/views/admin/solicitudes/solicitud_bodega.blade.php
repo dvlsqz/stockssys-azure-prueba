@@ -83,7 +83,7 @@ ini_set('max_execution_time', 0); ?>
                                     <br>
                                     <b>Desgloce: </b>  <br>
                                     <br>      
-                                    @if($tipo_racion_escolar2 == 3)
+                                    @if($tipo_racion_escolar2 == 1)
                                         @foreach($det_escuelas_primaria as $det_primaria)
                                             @if($det_primaria->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_primaria->alimento}} </b>Peso Ración (gr.): <b>{{ $det_primaria->alimento_peso}}</b>  <br>

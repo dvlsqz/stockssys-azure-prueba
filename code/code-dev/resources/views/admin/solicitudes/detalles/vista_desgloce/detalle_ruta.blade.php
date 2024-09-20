@@ -64,7 +64,7 @@
                             @endif
                         @endforeach
 
-                        @if($id_racion_escolar2 == 3)
+                        @if($id_racion_escolar2 == 1)
                             @foreach($det_escuelas_primaria as $det2)
                                 @if($det2->escuela_id == $det->escuela_id)
                                     <p> 
