@@ -64,7 +64,7 @@
                             @endif
                         @endforeach
 
-                        @if($id_racion_escolar2 == 2)
+                        @if($id_racion_escolar2 == 3)
                             @foreach($det_escuelas_primaria as $det2)
                                 @if($det2->escuela_id == $det->escuela_id)
                                     <p> 
@@ -106,7 +106,7 @@
                             @endif
                         @endforeach
 
-                        @if($id_racion_l == 3)
+                        @if($id_racion_l == 5)
                             @foreach($det_escuelas_l as $det3)
                                 @if($det3->escuela_id == $det->escuela_id)
                                     <p> 
