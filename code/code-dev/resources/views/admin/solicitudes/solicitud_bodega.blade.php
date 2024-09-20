@@ -71,7 +71,7 @@ ini_set('max_execution_time', 0); ?>
                                     @endif
                             </div>
                             <div class="col-md-3">
-                                    @php($tipo_racion_escolar2 = $det_preprimaria_enc->idracion)
+                                    @php($tipo_racion_escolar2 = 0)
                                     @foreach($det_escuelas_primaria_enc as $det_primaria_enc)
                                         @if($det_primaria_enc->escuela_id == $e->escuela_id)    
                                             Racion:  <b>{{ $det_primaria_enc->racion}}</b>  &nbsp                                    
