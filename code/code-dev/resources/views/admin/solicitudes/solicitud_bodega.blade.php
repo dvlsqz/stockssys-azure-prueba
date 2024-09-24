@@ -38,7 +38,7 @@ ini_set('max_execution_time', 0); ?>
                                     <br>
                                     <b>Desgloce: </b>  <br>
                                     <br>   
-                                    @if($tipo_racion_escolar == 1)
+                                    @if($tipo_racion_escolar != 1)
                                         <span>funciona</span>
                                         @foreach($det_escuelas_preprimaria as $det_preprimaria)
                                             @if($det_preprimaria->escuela_id == $e->escuela_id)                                        
