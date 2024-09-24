@@ -1474,7 +1474,7 @@ class SolicitudController extends Controller
                 DB::raw('alimentos_racion.cantidad as alimento_peso'),
                 DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
             )
-            ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones WHERE deleted_at = null GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_escolar_racion){
+            ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones WHERE deleted_at = NULL GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_escolar_racion){
                 $j->where("alimentos_racion.id_racion","=",$id_escolar_racion);
             })
             ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
