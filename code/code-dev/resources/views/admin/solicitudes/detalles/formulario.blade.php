@@ -166,7 +166,7 @@
         <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Tipo de Actividad Alimentos: </strong></label>
         <div class="input-group">
             <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
-            {!! Form::select('tipo_de_actividad_alimentos', $raciones,$detalles->tipo_de_actividad_alimentos,['class'=>'form-select']) !!}
+            {!! Form::select('tipo_de_actividad_alimentos', $raciones,$detalles->nombre,['class'=>'form-select']) !!}
         </div>
     </div>  
 
