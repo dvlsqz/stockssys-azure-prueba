@@ -30,7 +30,9 @@ ini_set('max_execution_time', 0); ?>
                                             Racion:  <b> {{ $det_preprimaria_enc->racion}}</b> &nbsp                                    
                                             Dias: <b>{{ $det_preprimaria_enc->dias}} </b>&nbsp
                                             Total Beneficiarios:  <b>{{ $det_preprimaria_enc->total_beneficiarios}}  </b>
+                                            {{ $det_preprimaria_enc->idracion}}
                                             @php($tipo_racion_escolar = $det_preprimaria_enc->idracion)
+                                            {{$tipo_racion_escolar }}
                                         @endif                                   
                                     @endforeach 
                                     <br>
