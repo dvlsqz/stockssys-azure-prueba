@@ -1437,7 +1437,7 @@ class SolicitudController extends Controller
             endif; 
         endforeach;
 
-        //return $id_escolar2_racion;
+        return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion;
 
         $escuelas = DB::table('solicitud_detalles')
             ->select(
