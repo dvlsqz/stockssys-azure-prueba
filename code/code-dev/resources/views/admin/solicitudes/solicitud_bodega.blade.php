@@ -30,16 +30,13 @@ ini_set('max_execution_time', 0); ?>
                                             Racion:  <b> {{ $det_preprimaria_enc->racion}}</b> &nbsp                                    
                                             Dias: <b>{{ $det_preprimaria_enc->dias}} </b>&nbsp
                                             Total Beneficiarios:  <b>{{ $det_preprimaria_enc->total_beneficiarios}}  </b>
-                                            {{ $det_preprimaria_enc->idracion}}
                                             @php($tipo_racion_escolar = $det_preprimaria_enc->idracion)
-                                            {{$tipo_racion_escolar }}
                                         @endif                                   
                                     @endforeach 
                                     <br>
                                     <b>Desgloce: </b>  <br>
                                     <br>   
                                     @if($tipo_racion_escolar == 1)
-                                        <b>funciona!</b>
                                         @foreach($det_escuelas_preprimaria as $det_preprimaria)
                                             @if($det_preprimaria->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b> Alimento: <b>{{ $det_preprimaria->alimento}}</b> Peso Ración (gr.): <b>{{ $det_preprimaria->alimento_peso}} </b><br>
