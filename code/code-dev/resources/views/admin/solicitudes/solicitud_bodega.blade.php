@@ -39,7 +39,7 @@ ini_set('max_execution_time', 0); ?>
                                     <b>Desgloce: </b>  <br>
                                     <br>   
                                     @if($tipo_racion_escolar == 1)
-                                        <span>funciona</span>
+                                        <b>funciona!</b>
                                         @foreach($det_escuelas_preprimaria as $det_preprimaria)
                                             @if($det_preprimaria->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b> Alimento: <b>{{ $det_preprimaria->alimento}}</b> Peso Ración (gr.): <b>{{ $det_preprimaria->alimento_peso}} </b><br>

@@ -1437,7 +1437,7 @@ class SolicitudController extends Controller
             endif; 
         endforeach;
 
-        return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion;
+        //return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion;
 
         $escuelas = DB::table('solicitud_detalles')
             ->select(
@@ -1567,7 +1567,7 @@ class SolicitudController extends Controller
                 )
                 ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
                 ->get();
@@ -1586,7 +1586,7 @@ class SolicitudController extends Controller
                 })
                 ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                 ->get();
@@ -1638,7 +1638,7 @@ class SolicitudController extends Controller
                 )
                 ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar2_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
                 ->get();
@@ -1657,7 +1657,7 @@ class SolicitudController extends Controller
                 })
                 ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar2_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                 ->get();
@@ -1745,7 +1745,7 @@ class SolicitudController extends Controller
                     )
                     ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
                     ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_lideres_racion)                
+                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_lideres_expansion_racion)                
                     ->where('solicitud_detalles.deleted_at', null)
                     ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
                     ->get(); 
@@ -1764,7 +1764,7 @@ class SolicitudController extends Controller
                     })
                     ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                     ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_lideres_racion)                
+                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_lideres_expansion_racion)                
                     ->where('solicitud_detalles.deleted_at', null)
                     ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                     ->get();
@@ -1850,7 +1850,7 @@ class SolicitudController extends Controller
                     )
                     ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
                     ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_racion)                
+                    ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_expansion_racion)                
                     ->where('solicitud_detalles.deleted_at', null)
                     ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
                     ->get();        
@@ -1869,7 +1869,7 @@ class SolicitudController extends Controller
                         })
                         ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                         ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                        ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_racion)                
+                        ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_do_vo_expansion_racion)                
                         ->where('solicitud_detalles.deleted_at', null)
                         ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                         ->get();
