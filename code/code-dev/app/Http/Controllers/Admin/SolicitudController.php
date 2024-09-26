@@ -1640,7 +1640,7 @@ class SolicitudController extends Controller
                 )
                 ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar2_expansion_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
                 ->get();
@@ -1655,11 +1655,11 @@ class SolicitudController extends Controller
                     DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
                 )
                 ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_escolar2_expansion_racion){
-                    $j->where("alimentos_racion.id_racion","=",$id_escolar2_expansion_racion);
+                    $j->where("alimentos_racion.id_racion","=",$id_escolar_expansion_racion);
                 })
                 ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
                 ->where('solicitud_detalles.id_solicitud', $solicitud)  
-                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar2_expansion_racion)                
+                ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_expansion_racion)                
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                 ->get();
