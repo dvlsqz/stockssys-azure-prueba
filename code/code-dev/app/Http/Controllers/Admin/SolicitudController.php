@@ -1458,13 +1458,12 @@ class SolicitudController extends Controller
                 DB::raw('SUM(Distinct solicitud_detalles.total_pre_primaria_a_tercero_primaria) as total_beneficiarios'),
                 DB::raw('raciones.id as idracion'),
                 DB::raw('raciones.nombre as racion'),
-                'solicitud_detalles.tipo_de_actividad_alimentos',
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $solicitud)  
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id', 'solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id','solicitud_detalles.tipo_de_actividad_alimentos')
+            ->groupBy('solicitud_detalles.id', 'solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
             ->get();
         return $det_escuelas_preprimaria_enc;
         $det_escuelas_preprimaria =  DB::table('solicitud_detalles')
