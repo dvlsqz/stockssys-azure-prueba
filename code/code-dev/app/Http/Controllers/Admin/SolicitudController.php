@@ -1700,7 +1700,7 @@ class SolicitudController extends Controller
 
         endif;
 
-        return $det_escuelas_primaria_ex_enc;
+        //return $det_escuelas_primaria_ex_enc;
 
         $det_escuelas_l_enc =  DB::table('solicitud_detalles')
             ->select(
