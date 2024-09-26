@@ -94,10 +94,11 @@ ini_set('max_execution_time', 0); ?>
                                             @php($tipo_racion_escolar2 = $det_primaria_enc->idracion)
                                         @endif                                   
                                     @endforeach 
-                                    <br>
-                                    <b>Desgloce: </b>  <br>
-                                    <br>      
+                                     
                                     @if($tipo_racion_escolar2 == 1)
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>     
                                         @foreach($det_escuelas_primaria as $det_primaria)
                                             @if($det_primaria->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_primaria->alimento}} </b>Peso Ración (gr.): <b>{{ $det_primaria->alimento_peso}}</b>  <br>
@@ -115,7 +116,17 @@ ini_set('max_execution_time', 0); ?>
                                         @endforeach                                         
 
                                     @else
-                                        <span style="color: red;"> Datos de ración de expansion</span><br>  
+                                        @foreach($det_escuelas_primaria_ex_enc as $det_primaria_enc_ex)
+                                            @if($det_primaria_enc_ex->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_primaria_enc_ex->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_primaria_enc_ex->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_primaria_enc_ex->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>       
+                                        <span style="color: red;"> Datos de ración de expansion</span><br> 
                                         @foreach($det_escuelas_primaria_ex as $det_primaria_ex)
                                             @if($det_primaria_ex->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_primaria_ex->alimento}} </b>Peso Ración (gr.): <b>{{ $det_primaria_ex->alimento_peso}}</b>  <br>
@@ -145,11 +156,12 @@ ini_set('max_execution_time', 0); ?>
                                             @php($tipo_racion_lider = $det_l_enc->idracion)
                                         @endif                                   
                                     @endforeach 
-                                    <br>
-                                    <b>Desgloce: </b>  <br>
-                                    <br>     
+                                      
                                     
                                     @if($tipo_racion_lider == 5)
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
                                         @foreach($det_escuelas_l as $det_l)
                                             @if($det_l->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i> </b> Alimento: <b>{{ $det_l->alimento}} </b>Peso Ración (lbs.): <b>{{ $det_l->alimento_peso}} </b>  <br>
@@ -160,6 +172,17 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach
                                     @else
+                                        @foreach($det_escuelas_l_enc as $det_l_enc_ex)
+                                            @if($det_l_enc_ex->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_l_enc_ex->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_l_enc_ex->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_l_enc_ex->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
+
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
                                         <span style="color: red;"> Datos de ración de expansion</span><br>
                                         @foreach($det_escuelas_l_ex as $det_l_ex)
                                             @if($det_l_ex->escuela_id == $e->escuela_id)                                        
@@ -183,12 +206,12 @@ ini_set('max_execution_time', 0); ?>
                                             @php($tipo_racion_v_d  = $det_v_d_enc->idracion)
                                         @endif                                   
                                     @endforeach 
-                                    <br>
-                                    <b>Desgloce: </b>  <br>
-                                    <br>   
+                                    
 
                                     @if($tipo_racion_v_d == 4)
-                                           
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
                                         @foreach($det_escuelas_v_d as $det_v_d)
                                             @if($det_v_d->escuela_id == $e->escuela_id)                                        
                                             <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_v_d->alimento}} </b>Peso Ración (lbs.): <b>{{ $det_v_d->alimento_peso}} </b>  <br>
@@ -199,7 +222,18 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach
                                     @else
+                                        @foreach($det_escuelas_v_d_ex_enc as $det_v_d_enc_ex)
+                                            @if($det_v_d_enc_ex->escuela_id == $e->escuela_id)    
+                                                Racion: <b>  {{ $det_v_d_enc_ex->racion}} </b>  &nbsp                                    
+                                                Dias: <b>  {{ $det_v_d_enc_ex->dias}}</b>  &nbsp
+                                                Total Beneficiarios: <b>  {{ $det_v_d_enc_ex->total_beneficiarios}} </b> 
+                                                @php($tipo_racion_v_d  = $det_v_d_enc_ex->idracion)
+                                            @endif                                   
+                                        @endforeach 
 
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
                                         <span style="color: red;"> Datos de ración de expansion</span> <br>     
                                         @foreach($det_escuelas_v_d_ex as $det_v_d_ex)
                                             @if($det_v_d_ex->escuela_id == $e->escuela_id)                                        
