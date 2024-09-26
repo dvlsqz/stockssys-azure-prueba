@@ -1464,6 +1464,7 @@ class SolicitudController extends Controller
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
             ->get();
+        return $det_escuelas_preprimaria_enc;
         $det_escuelas_preprimaria =  DB::table('solicitud_detalles')
             ->select(
                 DB::raw('solicitud_detalles.id_escuela as escuela_id'),
