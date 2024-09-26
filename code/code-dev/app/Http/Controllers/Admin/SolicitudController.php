@@ -1452,7 +1452,7 @@ class SolicitudController extends Controller
 
         $det_escuelas_preprimaria_enc =  DB::table('solicitud_detalles')
             ->select(
-                'id',
+                'solicitud_detalles.id',
                 DB::raw('solicitud_detalles.id_escuela as escuela_id'),
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_pre_primaria_a_tercero_primaria) as total_beneficiarios'),
