@@ -172,7 +172,7 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach
                                     @else
-                                        @foreach($det_escuelas_l_enc as $det_l_enc_ex)
+                                        @foreach($det_escuelas_l_enc_ex as $det_l_enc_ex)
                                             @if($det_l_enc_ex->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_l_enc_ex->racion}}</b> &nbsp                                    
                                                 Dias: <b>{{ $det_l_enc_ex->dias}} </b>&nbsp
