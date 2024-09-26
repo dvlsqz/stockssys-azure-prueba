@@ -54,7 +54,14 @@ ini_set('max_execution_time', 0); ?>
                                                 <br>
                                             @endif
                                         @endforeach 
-                                    @else           
+                                    @else     
+                                    @foreach($det_escuelas_preprimaria_ex_enc as $det_preprimaria_enc_ex)
+                                        @if($det_preprimaria_enc_ex->escuela_id == $e->escuela_id)    
+                                            Racion:  <b> {{ $det_preprimaria_enc_ex->racion}}</b> &nbsp                                    
+                                            Dias: <b>{{ $det_preprimaria_enc_ex->dias}} </b>&nbsp
+                                            Total Beneficiarios:  <b>{{ $det_preprimaria_enc_ex->total_beneficiarios}}  </b>
+                                        @endif                                   
+                                    @endforeach       
                                         @foreach($det_escuelas_preprimaria_ex as $det_preprimaria_ex)
                                             @if($det_preprimaria_ex->escuela_id == $e->escuela_id)                                        
                                                 <b><i class="fa-solid fa-caret-right"></i></b> Alimento: <b>{{ $det_preprimaria_ex->alimento}}</b> Peso Ración (gr.): <b>{{ $det_preprimaria_ex->alimento_peso}} </b><br>
