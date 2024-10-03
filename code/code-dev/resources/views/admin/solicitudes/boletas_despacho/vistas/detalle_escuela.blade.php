@@ -118,6 +118,7 @@
                                         <td><strong> RACION </strong></td>
                                         <td><strong> TOTAL EN LIBRAS/LITROS </strong></td>
                                         <td><strong> TOTAL EN SACO/CANECAS </strong></td>
+                                        <td><strong> RACIONES </strong></td>
                                     </tr>
                                 </thead>
                                 <tbody>
