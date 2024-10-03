@@ -116,7 +116,7 @@
                         @else 
                             {{number_format(  $det->no_unidades*20, 2, '.', ',' )}} 
                         @endif
-                       
+                        &nbsp;&nbsp;&nbsp;
                 @endforeach    
             </div> 
 
