@@ -108,7 +108,7 @@
                 @endforeach
             </div>
 
-            <div style="position: relative; top: 50mm; left: 60mm; display:inline-block; padding-top:0px; padding-bottom:0px;  width: 50px; height: 10px; font-size: 12px;" >
+            <div style="position: relative; top: 50mm; left: 65mm; display:inline-block; padding-top:0px; padding-bottom:0px;  width: 50px; height: 10px; font-size: 12px;" >
 
                 @foreach($det->alimento_bodega_socio->pesos_alimento as $p) 
                         @if(Illuminate\Support\Str::lower($det->alimento_bodega_socio->nombre) != "aceite")
@@ -120,7 +120,7 @@
                 @endforeach    
             </div> 
 
-            <div style="position: relative; top: 50mm; left: 65mm; display:inline-block; padding-top:0px; padding-bottom:0px;  width: 50px; height: 10px; font-size: 12px;" >
+            <div style="position: relative; top: 50mm; left: 70mm; display:inline-block; padding-top:0px; padding-bottom:0px;  width: 50px; height: 10px; font-size: 12px;" >
                 {{ number_format( $det->no_unidades , 2, '.', ',' )}}    
             </div> <br>
             
