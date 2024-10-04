@@ -1452,18 +1452,22 @@ class SolicitudController extends Controller
 
         $det_escuelas_preprimaria_enc =  DB::table('solicitud_detalles')
             ->select(
-                'solicitud_detalles.id',
                 DB::raw('solicitud_detalles.id_escuela as escuela_id'),
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_pre_primaria_a_tercero_primaria) as total_beneficiarios'),
-                DB::raw('raciones.id as idracion'),
-                DB::raw('raciones.nombre as racion'),
+                DB::raw('bodegas.id as alimento_id'),
+                DB::raw('bodegas.nombre as alimento'),
+                DB::raw('alimentos_racion.cantidad as alimento_peso'),
+                DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as racion'),
             )
-            ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
+            ->join(DB::RAW("(SELECT id_racion, id_alimento, cantidad FROM alimentos_raciones GROUP BY id_racion, id_alimento, cantidad) as alimentos_racion"), function($j) use($id_escolar_racion){
+                $j->where("alimentos_racion.id_racion","=",$id_escolar_racion);
+            })
+            ->join('bodegas', 'bodegas.id', 'alimentos_racion.id_alimento')
             ->where('solicitud_detalles.id_solicitud', $solicitud)  
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $id_escolar_racion)                
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id', 'solicitud_detalles.id_escuela', 'raciones.nombre', 'raciones.id')
+            ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
             ->get();
         //return $det_escuelas_preprimaria_enc;
         $det_escuelas_preprimaria =  DB::table('solicitud_detalles')
