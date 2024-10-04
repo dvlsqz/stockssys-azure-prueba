@@ -2048,16 +2048,7 @@ class SolicitudController extends Controller
 
         
 
-        $racion = Racion::with('alimentos')->where('nombre', 'like', '%escolar')->where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($racion  as $r):
-            $actividad = $r->id;
-            $alimentos = $r->alimentos;
-        endforeach;
-
-        $racion2 = Racion::with('alimentos')->where('nombre', 'like', '%escolar2')->where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($racion2  as $r2):
-            $alimentos1 = $r2->alimentos;
-        endforeach;
+        
         //return $alimentos;
         //return $request->all();
 
@@ -2067,13 +2058,14 @@ class SolicitudController extends Controller
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_pre_primaria_a_tercero_primaria) as total_beneficiarios'),
                 DB::raw('raciones.nombre as racion'),
+                DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as tipo_alimentacion'),
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
 
         $descarga_pri =  DB::table('solicitud_detalles')
@@ -2082,24 +2074,40 @@ class SolicitudController extends Controller
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_cuarto_a_sexto) as total_beneficiarios'),
                 DB::raw('raciones.nombre as racion'),
+                DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as tipo_alimentacion'),
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
         //return $descarga_pri;
+
+        
         
         foreach($descarga_pre as $d_pre):
             $dias_pre = $d_pre->dias;
             $beneficiarios_pre = $d_pre->total_beneficiarios;
+            $tipo_act_ali_pre = $d_pre->tipo_alimentacion;
         endforeach;
 
         foreach($descarga_pri as $d_pri):
             $dias_pri = $d_pri->dias;
             $beneficiarios_pri = $d_pri->total_beneficiarios;
+            $tipo_act_ali_pri = $d_pre->tipo_alimentacion;
+        endforeach;
+
+        $racion = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pre)->where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($racion  as $r):
+            $actividad = $r->id;
+            $alimentos = $r->alimentos;
+        endforeach;
+
+        $racion2 = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pri)->where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($racion2  as $r2):
+            $alimentos1 = $r2->alimentos;
         endforeach;
 
         //return Carbon::now()->format('Y-m-d');
@@ -2124,7 +2132,12 @@ class SolicitudController extends Controller
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
             $detalle->pl = 0;  
-            $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
+
+            if( $alimentos[$cont]->id_alimento != 26 ):
+                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
+            else:
+                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/18.5), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/18.5), 2, '.', ',' ) ;
+            endif;
             $detalle->save();
             $cont=$cont+1;
         }
@@ -2181,12 +2194,7 @@ class SolicitudController extends Controller
         ->orderBy('bi_det.bubd')
         ->get();
 
-        $racion = Racion::with('alimentos')->where('nombre', 'like', '%líderes')->where('id_institucion', Auth::user()->id_institucion)->get();
-        //return $racion;
-        foreach($racion  as $r):
-            $actividad = $r->id;
-            $alimentos = $r->alimentos;
-        endforeach;
+        
         //return $saldos;
 
         $descarga =  DB::table('solicitud_detalles')
@@ -2195,19 +2203,28 @@ class SolicitudController extends Controller
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_de_personas) as total_beneficiarios'),
                 DB::raw('raciones.nombre as racion'),
+                DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as tipo_alimentacion'),
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
             //return $descarga;
         
         foreach($descarga as $d):
             $dias = $d->dias;
             $beneficiarios = $d->total_beneficiarios;
+            $tipo_alimentacion = $d->tipo_alimentacion;
+        endforeach;
+
+        $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        //return $racion;
+        foreach($racion  as $r):
+            $actividad = $r->id;
+            $alimentos = $r->alimentos;
         endforeach;
 
         //return Carbon::now()->format('Y-m-d');
@@ -2289,11 +2306,7 @@ class SolicitudController extends Controller
         ->orderBy('bi_det.bubd')
         ->get();
         //return $saldos;
-        $racion = Racion::with('alimentos')->where('nombre', 'like', '%voluntarios')->where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($racion  as $r):
-            $actividad = $r->id;
-            $alimentos = $r->alimentos;
-        endforeach;
+        
         //return $saldos;
         //return $request->all();
 
@@ -2303,19 +2316,27 @@ class SolicitudController extends Controller
                 DB::raw('SUM( solicitud_detalles.dias_de_solicitud) as dias'),
                 DB::raw('SUM(Distinct solicitud_detalles.total_de_personas) as total_beneficiarios'),
                 DB::raw('raciones.nombre as racion'),
+                DB::raw('solicitud_detalles.tipo_de_actividad_alimentos as tipo_alimentacion'),
             )
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $idSolicitud)  
             ->where('solicitud_detalles.id_escuela', $idEscuela)   
             ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
             ->where('solicitud_detalles.deleted_at', null)
-            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre')
+            ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
             //return $descarga;
         
         foreach($descarga as $d):
             $dias = $d->dias;
             $beneficiarios = $d->total_beneficiarios;
+            $tipo_alimentacion = $d->tipo_alimentacion;
+        endforeach;
+
+        $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($racion  as $r):
+            $actividad = $r->id;
+            $alimentos = $r->alimentos;
         endforeach;
 
         //return Carbon::now()->format('Y-m-d');
