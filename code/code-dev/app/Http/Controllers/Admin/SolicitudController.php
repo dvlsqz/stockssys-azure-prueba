@@ -2101,7 +2101,7 @@ class SolicitudController extends Controller
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
-        return $descarga_pre;
+        return $descarga_pri;
 
         
         
