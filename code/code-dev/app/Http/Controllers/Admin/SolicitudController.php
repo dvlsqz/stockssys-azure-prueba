@@ -2050,6 +2050,25 @@ class SolicitudController extends Controller
         
         //return $alimentos;
         //return $request->all();
+        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($raciones as $r):
+            if($r->nombre =="Escolar"):
+                $id_escolar_racion = $r->id;
+            endif;
+
+            if($r->nombre =="Escolar2"):
+                $id_escolar2_racion = $r->id;
+            endif;
+
+            if($r->nombre =="Escolar expansión"):
+                $id_escolar_expansion_racion = $r->id;
+            endif;
+
+            if($r->nombre =="Escolar2 expansión"):
+                $id_escolar2_expansion_racion = $r->id;
+            endif;
+
+        endforeach;
 
         $descarga_pre =  DB::table('solicitud_detalles')
             ->select(
@@ -2062,7 +2081,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion])            
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
@@ -2078,11 +2097,11 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar2_racion,$id_escolar2_expansion_racion])          
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
-        //return $descarga_pri;
+        //return $descarga_pre;
 
         
         
