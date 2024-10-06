@@ -2133,7 +2133,7 @@ class SolicitudController extends Controller
             $alimentos1 = $r2->alimentos;
         endforeach;
 
-       return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
+       //return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
 
         //return Carbon::now()->format('Y-m-d');
         $pls = BodegaIngresoDetalle::select('id','pl')->whereRaw('(no_unidades - no_unidades_usadas) > 0')->get();
@@ -2206,6 +2206,18 @@ class SolicitudController extends Controller
     public function postDespacharLideres(Request $request){
         $escuela = Escuela::where('id', $request->input('idEscuela'))->first();
 
+        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($raciones as $r):            
+
+            if($r->nombre =="Líderes"):
+                $id_lideres_racion = $r->id;
+            endif;
+
+            if($r->nombre =="Líderes expansión"):
+                $id_lideres_expansion_racion = $r->id;
+            endif;
+        endforeach;
+
         $saldos = DB::table('bodegas as b')
         ->select(
             DB::RAW('b.id as id_insumo'),
@@ -2233,7 +2245,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_lideres_racion,$id_lideres_expansion_racion])           
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
@@ -2248,7 +2260,6 @@ class SolicitudController extends Controller
         $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
         //return $racion;
         foreach($racion  as $r):
-            $actividad = $r->id;
             $alimentos = $r->alimentos;
         endforeach;
 
@@ -2318,6 +2329,17 @@ class SolicitudController extends Controller
         $idEscuela = $request->input('idEscuela');
         $escuela = Escuela::where('id', $idEscuela)->first();
 
+        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        foreach($raciones as $r):
+            if($r->nombre =="Voluntarios"):
+                $id_do_vo_racion = $r->id;
+            endif;     
+            
+            if($r->nombre =="Voluntarios expansión"):
+                $id_do_vo_expansion_racion = $r->id;
+            endif; 
+        endforeach;
+
         $saldos = DB::table('bodegas as b')
         ->select(
             DB::RAW('b.id as id_insumo'),
@@ -2346,7 +2368,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $idSolicitud)  
             ->where('solicitud_detalles.id_escuela', $idEscuela)   
-            ->where('solicitud_detalles.tipo_de_actividad_alimentos', $actividad)            
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_do_vo_racion,$id_do_vo_expansion_racion])           
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
@@ -2385,6 +2407,7 @@ class SolicitudController extends Controller
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
             
             $detalle->pl = 0;
+            
             $detalle->no_unidades =  number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/110)), 2, '.', ',' ) ;
             $detalle->save();
             $cont=$cont+1;
