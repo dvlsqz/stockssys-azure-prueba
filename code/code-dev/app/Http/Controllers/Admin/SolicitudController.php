@@ -2102,7 +2102,7 @@ class SolicitudController extends Controller
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
-        return $descarga_pri;
+        //return $descarga_pri;
 
         
         
@@ -2115,7 +2115,6 @@ class SolicitudController extends Controller
         foreach($descarga_pri as $d_pri):
             $dias_pri = $d_pri->dias;
             $beneficiarios_pri = $d_pri->total_beneficiarios;
-            $tipo_act_ali_pri = $d_pre->tipo_alimentacion;
         endforeach;
 
         $racion = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pre)->where('id_institucion', Auth::user()->id_institucion)->get();
@@ -2124,10 +2123,17 @@ class SolicitudController extends Controller
             $alimentos = $r->alimentos;
         endforeach;
 
-        $racion2 = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pri)->where('id_institucion', Auth::user()->id_institucion)->get();
+        if($id_escolar_racion == $tipo_act_ali_pre):
+            $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_racion)->where('id_institucion', Auth::user()->id_institucion)->get();           
+        else:
+            $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_expansion_racion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
         foreach($racion2  as $r2):
             $alimentos1 = $r2->alimentos;
         endforeach;
+
+       return $alimentos.' \nsegundos alimentos\n'.$alimentos1 
 
         //return Carbon::now()->format('Y-m-d');
         $pls = BodegaIngresoDetalle::select('id','pl')->whereRaw('(no_unidades - no_unidades_usadas) > 0')->get();
