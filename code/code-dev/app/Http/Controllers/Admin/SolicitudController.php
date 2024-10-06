@@ -2069,6 +2069,7 @@ class SolicitudController extends Controller
             endif;
 
         endforeach;
+        return $id_escolar2_racion.' - '.$id_escolar2_expansion_racion;
 
         $descarga_pre =  DB::table('solicitud_detalles')
             ->select(
@@ -2101,7 +2102,7 @@ class SolicitudController extends Controller
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
-        return $descarga_pri;
+        //return $descarga_pri;
 
         
         
