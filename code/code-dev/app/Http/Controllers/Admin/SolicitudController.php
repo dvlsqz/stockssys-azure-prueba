@@ -2271,7 +2271,7 @@ class SolicitudController extends Controller
         $be->no_documento = $request->input('no_boleta');
         $be->id_solicitud_despacho = $request->input('idSolicitud');
         $be->id_escuela_despacho = $request->input('idEscuela');
-        $be->tipo_racion = $actividad;
+        $be->tipo_racion = $tipo_alimentacion;
         $be->participantes = $beneficiarios;
         $be->tipo_bodega = 1;
         $be->id_institucion = Auth::user()->id_institucion;
@@ -2394,7 +2394,7 @@ class SolicitudController extends Controller
         $be->no_documento = $request->input('no_boleta');
         $be->id_solicitud_despacho = $idSolicitud;
         $be->id_escuela_despacho = $idEscuela;
-        $be->tipo_racion = $actividad;
+        $be->tipo_racion =  $tipo_alimentacion;
         $be->participantes = $beneficiarios;
         $be->tipo_bodega = 1;
         $be->id_institucion = Auth::user()->id_institucion;
