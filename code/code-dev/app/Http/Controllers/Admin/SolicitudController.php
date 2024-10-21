@@ -1303,7 +1303,7 @@ class SolicitudController extends Controller
             ]);
         });
 
-        return $detalles;
+        //return $detalles;
 
         $deta[] = $detalles;
 
