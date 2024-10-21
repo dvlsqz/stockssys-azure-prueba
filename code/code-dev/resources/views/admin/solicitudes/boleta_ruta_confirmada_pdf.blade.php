@@ -123,11 +123,12 @@
                                         
                                         @for($j =0; $j< count($detalles[$d]["detalles_alimentos"]); $j++)
                                             @if($detalles[$d]["detalles_alimentos"][$e]["id_insumo"] == $a->id)
-                                                
-                                                    <td> {{ number_format( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"] , 2, '.', ',' )  }}</td>       
+                                                <td> {{ number_format( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"] , 2, '.', ',' )  }}</td>   
+                                                @foreach($a->pesos_alimento as $p)
+                                                        
 
                                                     @php($total_quintales = $total_quintales + ( ($detalles[$d]["detalles_alimentos"][$e]["no_unidades"] * $p->libras_x_unidad)/100 ) )   
-                                                
+                                                @endforeach
                                                                             
                                             @endif                                             
                                             @php($e++)
