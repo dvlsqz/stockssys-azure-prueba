@@ -1309,7 +1309,7 @@ class SolicitudController extends Controller
 
 
 
-        $alimentos = Bodega::with('pesos_alimento')->where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->orderBy('id', 'Asc')->get();
+        $alimentos = Bodega::with('pesos_alimento')->where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->where('deleted_at', '!=',NULL)->orderBy('id', 'Asc')->get();
         $solicitud = Solicitud::with(['entrega', 'usuario'])->where('id', $idSolicitud)->first();
         
         
