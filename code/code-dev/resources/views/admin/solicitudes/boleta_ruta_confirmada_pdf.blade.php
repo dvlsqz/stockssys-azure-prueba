@@ -158,8 +158,9 @@
                         @foreach($totales_alimentos as $t)
                         
                         @if($a->id == $t->insumo)     
+                        <td>{{ number_format(($t->total_insumo* $p->libras_x_unidad)/100, 2, '.', ',' ) }}</td>  
                             @foreach($a->pesos_alimento as $p)     
-                                <td>{{ number_format(($t->total_insumo* $p->libras_x_unidad)/100, 2, '.', ',' ) }}</td>  
+                                
                                 @php($totales = $totales + (($t->total_insumo* $p->libras_x_unidad)/100))
                             @endforeach            
                             
