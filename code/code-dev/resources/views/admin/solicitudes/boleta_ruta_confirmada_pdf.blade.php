@@ -118,7 +118,7 @@
                             
                                 @if($det->escuela_id  == $detalles[$d]["escuela_id"] && $det->idracion  == $detalles[$d]["idracion"]  )
                                 @php($total_quintales = 0)
-                                    @foreach($alimentos as $a)
+                                    @foreach($alimentos as $a) 
                                         @php($e = 0)
                                         
                                         @for($j =0; $j< count($detalles[$d]["detalles_alimentos"]); $j++)
