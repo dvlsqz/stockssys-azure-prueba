@@ -42,7 +42,7 @@ class EscuelaController extends Controller
     public function postEscuelaRegistrar(Request $request){
         $reglas = [
             'codigo' => 'required',
-    		'nombre' => 'required',
+    		'nombre' => 'required|min=8',
             'direccion' => 'required',
             'id_ubicacion' => 'required',
             'director' => 'required'
@@ -50,6 +50,7 @@ class EscuelaController extends Controller
     	$mensajes = [
             'codigo.required' => 'Se requiere un codigo para la escuela.',
     		'nombre.required' => 'Se requiere un nombre para la escuela.',
+            'nombre.min' => 'Se requiere un nombre para la escuela, con minimo 8 caracteres.',
             'direccion.required' => 'Se requiere una direccion de la escuela.',
             'id_ubicacion.required' => 'Se requiere seleccione la ubicación de la escuela.',
             'director.required' => 'Se requiere el nombre del director de la escuela.'
