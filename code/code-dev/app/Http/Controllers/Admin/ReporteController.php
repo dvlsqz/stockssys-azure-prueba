@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Exports\Reporte1Export, App\Exports\Reporte2Export, App\Exports\Reporte3Export, App\Exports\Reporte4Export, App\Exports\Reporte5Export;
 use App\Exports\Reporte6Export, App\Exports\Reporte8Export, App\Exports\Reporte10Export,  App\Exports\Reporte11Export,  App\Exports\Reporte12Export;
 use App\Exports\Reporte14Export, App\Exports\Reporte15Export, App\Exports\Reporte16Export,  App\Exports\Reporte17Export;
+use App\Exports\InformeMensualExport;
 use App\Models\Bodega, App\Models\Institucion, App\Models\Solicitud, App\Models\Racion, App\Models\SolicitudDetalles;
 use DB, Validator, Auth, Hash, Config, Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
