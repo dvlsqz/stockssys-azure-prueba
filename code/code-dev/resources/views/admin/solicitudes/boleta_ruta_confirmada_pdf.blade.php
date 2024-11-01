@@ -156,10 +156,10 @@
                         
                         @if($a->id == $t->insumo)     
                         <td>{{ number_format(($t->total_insumo), 2, '.', ',' ) }}</td>  
-                            @foreach($a->pesos_alimento as $p)     
+                              
                                 
-                                @php($totales = $totales + (($t->total_insumo* $p->libras_x_unidad)/100))
-                            @endforeach            
+                                @php($totales = $totales + $t->total_insumo)
+                                    
                             
                         @endif
                         
@@ -205,11 +205,11 @@
                                     
                                         @if($detalles[$d]["detalles_alimentos"][$e]["id_insumo"] == $a->id)   
                                                                                        
-                                            @foreach($a->pesos_alimento as $p)           
+                                                      
                                                                                        
-                                                @php($peso_alimentos = $peso_alimentos + intval( ($detalles[$d]["detalles_alimentos"][$e]["no_unidades"] * $p->libras_x_unidad)/100 ) )   
+                                                @php($peso_alimentos = $peso_alimentos + intval( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ) )   
                                                 
-                                            @endforeach   
+                                               
                                             
                                             
                                         @endif                                             
@@ -242,11 +242,11 @@
                                     
                                         @if($detalles[$d]["detalles_alimentos"][$e]["id_insumo"] == $a->id)   
                                                                                        
-                                            @foreach($a->pesos_alimento as $p)           
+                                                    
                                                                                        
-                                                @php($peso_alimentos = $peso_alimentos + ( ($detalles[$d]["detalles_alimentos"][$e]["no_unidades"] * $p->libras_x_unidad)/100 ) - intval(($detalles[$d]["detalles_alimentos"][$e]["no_unidades"] * $p->libras_x_unidad)/100) )   
+                                            @php($peso_alimentos = $peso_alimentos + ( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ) - intval($detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  )   
                                                 
-                                            @endforeach   
+                                            
                                             
                                             
                                         @endif                                             
