@@ -244,7 +244,7 @@
                                                                                        
                                                     
                                                                                        
-                                            @php($peso_alimentos = $peso_alimentos + ( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ) - intval($detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  )   
+                                            @php($peso_alimentos = $peso_alimentos + ( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ) - intval($detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ) )  
                                                 
                                             
                                             
