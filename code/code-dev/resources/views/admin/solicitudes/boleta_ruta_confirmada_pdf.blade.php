@@ -117,14 +117,14 @@
                             @for($i =0; $i < count($detalles); $i++)                    
                             
                                 @if($det->escuela_id  == $detalles[$d]["escuela_id"] && $det->idracion  == $detalles[$d]["idracion"]  )
-                                @php($total_quintales = 0)
+                                    @php($total_quintales = 0)
                                     @foreach($alimentos as $a) 
                                         @php($e = 0)
                                         
                                         @for($j =0; $j< count($detalles[$d]["detalles_alimentos"]); $j++)
                                             @if($detalles[$d]["detalles_alimentos"][$e]["id_insumo"] == $a->id)
                                                 <td> {{ number_format( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"] , 2, '.', ',' )  }}</td>   
-                                                @php($total_quintales = $total_quintales + ( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  )
+                                                @php($total_quintales = $total_quintales + ( $detalles[$d]["detalles_alimentos"][$e]["no_unidades"]  ))
                                                 
                                                                             
                                             @endif                                             
