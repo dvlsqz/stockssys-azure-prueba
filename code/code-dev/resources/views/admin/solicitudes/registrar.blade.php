@@ -34,7 +34,7 @@
                                 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Seleccionar Entrega: </strong></label>
                                 <div class="input-group">           
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
-                                    <select name="idEntrega" id="idEntrega" style="width: 95%" >
+                                    <select name="idEntrega" id="idEntrega" style="width: 90%" >
                                         @foreach($entregas as $e)
                                             <option value="{{ $e->id }}">{{ $e->correlativo.'-'.$e->year.' => '.obtenerMeses(null, $e->mes_inicial).' / '.obtenerMeses(null, $e->mes_final) }}</option>
                                         @endforeach
