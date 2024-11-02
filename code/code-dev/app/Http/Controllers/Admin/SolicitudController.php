@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Solicitud, App\Models\SolicitudDetalles,App\Models\Institucion, App\Models\Bodega, App\Models\Escuela, App\Models\Entrega;
-use App\Models\Ruta, App\Models\RutaEscuela,  App\Models\RutaSolicitud,  App\Models\RutaSolicitudDetalles,  App\Models\Racion, App\Models\BodegaEgreso, App\Models\BodegaEgresoDetalle;
+use App\Models\Ruta, App\Models\RutaEscuela,  App\Models\RutaSolicitud,  App\Models\RutaSolicitudDetalles,  App\Models\Racion, App\Models\Kit, App\Models\BodegaEgreso, App\Models\BodegaEgresoDetalle;
 use App\Models\BodegaIngreso, App\Models\BodegaIngresoDetalle;
-use App\Models\AlimentoRacion, App\Models\Usuario, App\Models\Bitacora, App\Models\SolicitudBodegaPrimaria, App\Models\SolicitudBodegaPrimariaDetalle;
+use App\Models\AlimentoRacion, App\Models\InsumoKit,App\Models\Usuario, App\Models\Bitacora, App\Models\SolicitudBodegaPrimaria, App\Models\SolicitudBodegaPrimariaDetalle;
 use DB, Validator, Auth, Hash, Config, Carbon\Carbon, Illuminate\Support\Arr;
 use App\Imports\SolicitudDetallesImport;
 use App\Exports\GuiaTerrestreExport;
@@ -212,6 +212,9 @@ class SolicitudController extends Controller
     public function getSolicitudDetallesRegistrar($id){
         $detalles = new SolicitudDetalles;
         $escuelas = Escuela::pluck('nombre','id');
+        $solicitudes = Solicitud::with(['entrega', 'usuario'])->get();
+        $tipo_insumo = Solicitud::where('id',$id)->pluck('tipo_insumos');
+        return $tipo_insumo;
         $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->pluck('tipo_alimentos', 'id');
         $idSolicitud = $id;
         $registrar = 1;
