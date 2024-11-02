@@ -86,7 +86,15 @@
                                 </div>
                             </div>  
 
-                            <div class="col-md-12 mtop16">
+                            <div class="col-md-4 mtop16">
+                                <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Tipo de insumos que se usaran: </strong></label>
+                                <div class="input-group">           
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    {!! Form::select('tipo_insumos', ['1'=>'Alimentos', '2'=>'Otros insumos'], $e->tipo_insumos,['class'=>'form-select', 'readonly']) !!}          
+                                </div>
+                            </div>    
+
+                            <div class="col-md-4 mtop16">
                                 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Usuario Que Inicia La Solicitud: </strong></label>
                                 <div class="input-group">           
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
@@ -94,7 +102,7 @@
                                 </div>
                             </div>    
                             
-                            <div class="col-md-12 mtop16">
+                            <div class="col-md-4 mtop16">
                                 <label for="name"> <strong> Observaciones: </strong></label>
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
