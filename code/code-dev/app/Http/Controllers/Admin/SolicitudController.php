@@ -214,7 +214,10 @@ class SolicitudController extends Controller
         $escuelas = Escuela::pluck('nombre','id');
         $solicitudes = Solicitud::with(['entrega', 'usuario'])->get();
         $consulta = Solicitud::where('id',$id)->pluck('tipo_insumos');
-        $tipo_insumo = intval($consulta->tipo_insumos);
+        foreach($consulta as $c):
+            $tipo_insumo = intval($c->tipo_insumos);
+        endforeach;
+        
         if($tipo_insumo == 1):
             $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->pluck('tipo_alimentos', 'id');
         else:
