@@ -213,9 +213,9 @@ class SolicitudController extends Controller
         $detalles = new SolicitudDetalles;
         $escuelas = Escuela::pluck('nombre','id');
         $solicitudes = Solicitud::with(['entrega', 'usuario'])->get();
-        $consulta = Solicitud::where('id',$id)->pluck('tipo_insumos');
+        $consulta = Solicitud::where('id',$id)->get();
         foreach($consulta as $c):
-            $tipo_insumo = intval($c->tipo_insumos);
+            $tipo_insumo = $c->tipo_insumos;
         endforeach;
         
         if($tipo_insumo == "1"):
