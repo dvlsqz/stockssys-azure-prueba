@@ -213,7 +213,7 @@ class SolicitudController extends Controller
         $detalles = new SolicitudDetalles;
         $escuelas = Escuela::pluck('nombre','id');
         $solicitudes = Solicitud::with(['entrega', 'usuario'])->get();
-        $tipo_insumo = Solicitud::where('id',$id)->pluck('id');
+        $tipo_insumo = Solicitud::where('id',$id)->pluck('tipo_insumos');
         return $tipo_insumo;
         $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->pluck('tipo_alimentos', 'id');
         $idSolicitud = $id;
