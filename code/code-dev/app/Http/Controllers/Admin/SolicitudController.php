@@ -218,7 +218,7 @@ class SolicitudController extends Controller
             $tipo_insumo = intval($c->tipo_insumos);
         endforeach;
         
-        if($tipo_insumo == 1):
+        if($tipo_insumo == "1"):
             $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->pluck('tipo_alimentos', 'id');
         else:
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->pluck('tipo_kits', 'id');
