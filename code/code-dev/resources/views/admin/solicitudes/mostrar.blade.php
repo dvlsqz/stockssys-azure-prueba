@@ -90,7 +90,7 @@
                                 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Tipo de insumos que se usaran: </strong></label>
                                 <div class="input-group">           
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
-                                    {!! Form::select('tipo_insumos', ['1'=>'Alimentos', '2'=>'Otros insumos'], $e->tipo_insumos,['class'=>'form-select', 'readonly']) !!}          
+                                    {!! Form::select('tipo_insumos', ['1'=>'Alimentos', '2'=>'Otros insumos'], $solicitud->tipo_insumos,['class'=>'form-select', 'readonly']) !!}          
                                 </div>
                             </div>    
 
