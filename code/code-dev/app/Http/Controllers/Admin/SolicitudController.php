@@ -349,6 +349,17 @@ class SolicitudController extends Controller
         $detalles = SolicitudDetalles::findOrFail($id);
         $escuelas = Escuela::pluck('nombre','id');
         $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
+
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
+        endif;
         $registrar = 0;
 
         $datos = [
@@ -526,7 +537,16 @@ class SolicitudController extends Controller
         
         $despachos = BodegaEgreso::with(['detalles', 'escuela'])->where('id_solicitud_despacho', $id)->where('id_escuela_despacho', $idEscuela)->get();
         $escuelas_principales = Escuela::where('id_socio', Auth::user()->id_institucion)->get();
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
         //$kits = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
         $idSolicitud = $id;
             
@@ -545,7 +565,17 @@ class SolicitudController extends Controller
     public function getSolicitudEscuelaDespachoPDF($idSolicitud, $idEscuela, $id){     
         
         $despachos = BodegaEgreso::with(['detalles', 'escuela'])->where('id', $id)->where('id_solicitud_despacho', $idSolicitud)->where('id_escuela_despacho', $idEscuela)->get();
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
         //$kits = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
         $datos = [
             'raciones' => $raciones,
@@ -635,44 +665,90 @@ class SolicitudController extends Controller
                 $idEscuelas[] = $det->escuela_id;
             endforeach;
 
-            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+            $consulta = Solicitud::where('id',$id)->get();
+            foreach($consulta as $c):
+                $tipo_insumo = $c->tipo_insumos;
+            endforeach;
+            
+            if($tipo_insumo == "1"):
+                $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
 
             //return $raciones; 
             
-            foreach($raciones as $r):
-                if($r->nombre =="Escolar"):
-                    $id_escolar_racion = $r->id;
-                endif;
+                foreach($raciones as $r):
+                    if($r->nombre =="Escolar"):
+                        $id_escolar_racion = $r->id;
+                    endif;
 
-                if($r->nombre =="Escolar2"):
-                    $id_escolar2_racion = $r->id;
-                endif;
+                    if($r->nombre =="Escolar2"):
+                        $id_escolar2_racion = $r->id;
+                    endif;
 
-                if($r->nombre =="Escolar expansión"):
-                    $id_escolar_expansion_racion = $r->id;
-                endif;
+                    if($r->nombre =="Escolar expansión"):
+                        $id_escolar_expansion_racion = $r->id;
+                    endif;
 
-                if($r->nombre =="Escolar2 expansión"):
-                    $id_escolar2_expansion_racion = $r->id;
-                endif;
+                    if($r->nombre =="Escolar2 expansión"):
+                        $id_escolar2_expansion_racion = $r->id;
+                    endif;
 
 
-                if($r->nombre =="Líderes"):
-                    $id_lideres_racion = $r->id;
-                endif;
+                    if($r->nombre =="Líderes"):
+                        $id_lideres_racion = $r->id;
+                    endif;
 
-                if($r->nombre =="Líderes expansión"):
-                    $id_lideres_expansion_racion = $r->id;
-                endif;
+                    if($r->nombre =="Líderes expansión"):
+                        $id_lideres_expansion_racion = $r->id;
+                    endif;
 
-                if($r->nombre =="Voluntarios"):
-                    $id_do_vo_racion = $r->id;
-                endif;     
-                
-                if($r->nombre =="Voluntarios expansión"):
-                    $id_do_vo_expansion_racion = $r->id;
-                endif; 
-            endforeach;
+                    if($r->nombre =="Voluntarios"):
+                        $id_do_vo_racion = $r->id;
+                    endif;     
+                    
+                    if($r->nombre =="Voluntarios expansión"):
+                        $id_do_vo_expansion_racion = $r->id;
+                    endif; 
+                endforeach;
+            else:
+                $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+
+                foreach($raciones as $r):
+                    if($r->nombre =="Escolar"):
+                        $id_escolar_racion = $r->id;
+                    endif;
+
+                    if($r->nombre =="Escolar2"):
+                        $id_escolar2_racion = $r->id;
+                    endif;
+
+                    if($r->nombre =="Escolar expansión"):
+                        $id_escolar_expansion_racion = $r->id;
+                    endif;
+
+                    if($r->nombre =="Escolar2 expansión"):
+                        $id_escolar2_expansion_racion = $r->id;
+                    endif;
+
+
+                    if($r->nombre =="Líderes"):
+                        $id_lideres_racion = $r->id;
+                    endif;
+
+                    if($r->nombre =="Líderes expansión"):
+                        $id_lideres_expansion_racion = $r->id;
+                    endif;
+
+                    if($r->nombre =="Voluntarios"):
+                        $id_do_vo_racion = $r->id;
+                    endif;     
+                    
+                    if($r->nombre =="Voluntarios expansión"):
+                        $id_do_vo_expansion_racion = $r->id;
+                    endif; 
+                endforeach;
+            endif;
+
+            
 
             $det_escuelas_preprimaria_enc =  DB::table('solicitud_detalles')
             ->select(
@@ -1172,7 +1248,17 @@ class SolicitudController extends Controller
     public function getSolicitudRutasConfirmadas($id){
         $idSolicitud = $id;
         $rutas = RutaSolicitud::with('ruta_base')->where('id_solicitud_despacho',$id)->get();
-        $raciones = Racion::select('id')->where('id_institucion', Auth::user()->id_institucion)->get();
+        
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::select('id')->where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $raciones = Kit::select('id')->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
         //$kits = Kit::select('id')->where('id_institucion', Auth::user()->id_institucion)->get();
 
         
@@ -1320,8 +1406,17 @@ class SolicitudController extends Controller
         $deta[] = $detalles;
 
 
-
-        $alimentos = Bodega::with('pesos_alimento')->where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',NULL)->orderBy('id', 'Asc')->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $alimentos = Bodega::with('pesos_alimento')->where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',NULL)->orderBy('id', 'Asc')->get();
+        else:
+            $alimentos = Bodega::where('categoria' , 1)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',NULL)->orderBy('id', 'Asc')->get();
+        endif;
+        
         $solicitud = Solicitud::with(['entrega', 'usuario'])->where('id', $idSolicitud)->first();
         
         
@@ -1380,7 +1475,18 @@ class SolicitudController extends Controller
 
     public function getEscuelasPesosDespacho($solicitud, $escuela){
         $idRaciones;         
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
         foreach($raciones as $r):
             $idRaciones[] = $r->id;
         endforeach;
@@ -1416,40 +1522,85 @@ class SolicitudController extends Controller
     }
 
     public function getSolicitudABodegaPrimaria($solicitud){
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($raciones as $r):
-            if($r->nombre =="Escolar"):
-                $id_escolar_racion = $r->id;
-            endif;
 
-            if($r->nombre =="Escolar2"):
-                $id_escolar2_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Escolar expansión"):
-                $id_escolar_expansion_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Escolar2 expansión"):
-                $id_escolar2_expansion_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Líderes"):
-                $id_lideres_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Líderes expansión"):
-                $id_lideres_expansion_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Voluntarios"):
-                $id_do_vo_racion = $r->id;
-            endif;     
-            
-            if($r->nombre =="Voluntarios expansión"):
-                $id_do_vo_expansion_racion = $r->id;
-            endif; 
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
         endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Escolar"):
+                    $id_escolar_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2"):
+                    $id_escolar2_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar expansión"):
+                    $id_escolar_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 expansión"):
+                    $id_escolar2_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Líderes"):
+                    $id_lideres_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Líderes expansión"):
+                    $id_lideres_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Voluntarios"):
+                    $id_do_vo_racion = $r->id;
+                endif;     
+                
+                if($r->nombre =="Voluntarios expansión"):
+                    $id_do_vo_expansion_racion = $r->id;
+                endif; 
+            endforeach;
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Escolar"):
+                    $id_escolar_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2"):
+                    $id_escolar2_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar expansión"):
+                    $id_escolar_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 expansión"):
+                    $id_escolar2_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Líderes"):
+                    $id_lideres_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Líderes expansión"):
+                    $id_lideres_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Voluntarios"):
+                    $id_do_vo_racion = $r->id;
+                endif;     
+                
+                if($r->nombre =="Voluntarios expansión"):
+                    $id_do_vo_expansion_racion = $r->id;
+                endif; 
+            endforeach;
+        endif;
+
+        
 
         //return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion;
 
@@ -1932,7 +2083,18 @@ class SolicitudController extends Controller
 
         $bodegas = Institucion::where('nivel', 2)->pluck('nombre','id');
 
-        $raciones = Racion::select('id','tipo_alimentos')->where('id_institucion', Auth::user()->id_institucion)->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::select('id','tipo_alimentos')->where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $raciones = Kit::select('id','tipo_kits')->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
+        
         
 
         $datos = [
@@ -2064,25 +2226,53 @@ class SolicitudController extends Controller
         
         //return $alimentos;
         //return $request->all();
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($raciones as $r):
-            if($r->nombre =="Escolar"):
-                $id_escolar_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Escolar2"):
-                $id_escolar2_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Escolar expansión"):
-                $id_escolar_expansion_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Escolar2 expansión"):
-                $id_escolar2_expansion_racion = $r->id;
-            endif;
-
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
         endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Escolar"):
+                    $id_escolar_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2"):
+                    $id_escolar2_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar expansión"):
+                    $id_escolar_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 expansión"):
+                    $id_escolar2_expansion_racion = $r->id;
+                endif;
+
+            endforeach;
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Escolar"):
+                    $id_escolar_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2"):
+                    $id_escolar2_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar expansión"):
+                    $id_escolar_expansion_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 expansión"):
+                    $id_escolar2_expansion_racion = $r->id;
+                endif;
+
+            endforeach;
+        endif;
+        
         //return $id_escolar2_racion.' - '.$id_escolar2_expansion_racion;
 
         $descarga_pre =  DB::table('solicitud_detalles')
@@ -2131,16 +2321,47 @@ class SolicitudController extends Controller
             $beneficiarios_pri = $d_pri->total_beneficiarios;
         endforeach;
 
-        $racion = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pre)->where('id_institucion', Auth::user()->id_institucion)->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $racion = Racion::with('alimentos')->where('id', '=', $tipo_act_ali_pre)->where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $racion = Kit::with('alimentos')->where('id', '=', $tipo_act_ali_pre)->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
+
         foreach($racion  as $r):
             $actividad = $r->id;
             $alimentos = $r->alimentos;
         endforeach;
 
         if($id_escolar_racion == $tipo_act_ali_pre):
-            $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_racion)->where('id_institucion', Auth::user()->id_institucion)->get();           
+            $consulta = Solicitud::where('id',$id)->get();
+            foreach($consulta as $c):
+                $tipo_insumo = $c->tipo_insumos;
+            endforeach;
+            
+            if($tipo_insumo == "1"):
+                $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_racion)->where('id_institucion', Auth::user()->id_institucion)->get();     
+            else:
+                $racion2 = Kit::with('insumos')->where('id', '=', $id_escolar2_racion)->where('id_institucion', Auth::user()->id_institucion)->get();     
+            endif;
+                  
         else:
-            $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_expansion_racion)->where('id_institucion', Auth::user()->id_institucion)->get();
+            
+            $consulta = Solicitud::where('id',$id)->get();
+            foreach($consulta as $c):
+                $tipo_insumo = $c->tipo_insumos;
+            endforeach;
+            
+            if($tipo_insumo == "1"):
+                $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_expansion_racion)->where('id_institucion', Auth::user()->id_institucion)->get();
+            else:
+                $$racion2 = Kit::with('insumos')->where('id', '=', $id_escolar2_expansion_racion)->where('id_institucion', Auth::user()->id_institucion)->get();
+            endif;
         endif;
 
         foreach($racion2  as $r2):
@@ -2220,17 +2441,38 @@ class SolicitudController extends Controller
     public function postDespacharLideres(Request $request){
         $escuela = Escuela::where('id', $request->input('idEscuela'))->first();
 
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($raciones as $r):            
-
-            if($r->nombre =="Líderes"):
-                $id_lideres_racion = $r->id;
-            endif;
-
-            if($r->nombre =="Líderes expansión"):
-                $id_lideres_expansion_racion = $r->id;
-            endif;
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
         endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):            
+    
+                if($r->nombre =="Líderes"):
+                    $id_lideres_racion = $r->id;
+                endif;
+    
+                if($r->nombre =="Líderes expansión"):
+                    $id_lideres_expansion_racion = $r->id;
+                endif;
+            endforeach;
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):            
+    
+                if($r->nombre =="Líderes"):
+                    $id_lideres_racion = $r->id;
+                endif;
+    
+                if($r->nombre =="Líderes expansión"):
+                    $id_lideres_expansion_racion = $r->id;
+                endif;
+            endforeach;
+        endif;
+
+       
 
         $saldos = DB::table('bodegas as b')
         ->select(
@@ -2271,7 +2513,18 @@ class SolicitudController extends Controller
             $tipo_alimentacion = $d->tipo_alimentacion;
         endforeach;
 
-        $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $racion = Kit::with('insumos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
+        
         //return $racion;
         foreach($racion  as $r):
             $alimentos = $r->alimentos;
@@ -2343,16 +2596,36 @@ class SolicitudController extends Controller
         $idEscuela = $request->input('idEscuela');
         $escuela = Escuela::where('id', $idEscuela)->first();
 
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
-        foreach($raciones as $r):
-            if($r->nombre =="Voluntarios"):
-                $id_do_vo_racion = $r->id;
-            endif;     
-            
-            if($r->nombre =="Voluntarios expansión"):
-                $id_do_vo_expansion_racion = $r->id;
-            endif; 
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
         endforeach;
+        
+        if($tipo_insumo == "1"):
+            $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Voluntarios"):
+                    $id_do_vo_racion = $r->id;
+                endif;     
+                
+                if($r->nombre =="Voluntarios expansión"):
+                    $id_do_vo_expansion_racion = $r->id;
+                endif; 
+            endforeach;
+        else:
+            $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
+            foreach($raciones as $r):
+                if($r->nombre =="Voluntarios"):
+                    $id_do_vo_racion = $r->id;
+                endif;     
+                
+                if($r->nombre =="Voluntarios expansión"):
+                    $id_do_vo_expansion_racion = $r->id;
+                endif; 
+            endforeach;
+        endif;
+
+        
 
         $saldos = DB::table('bodegas as b')
         ->select(
@@ -2394,7 +2667,18 @@ class SolicitudController extends Controller
             $tipo_alimentacion = $d->tipo_alimentacion;
         endforeach;
 
-        $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        $consulta = Solicitud::where('id',$id)->get();
+        foreach($consulta as $c):
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
+        
+        if($tipo_insumo == "1"):
+            $racion = Racion::with('alimentos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        else:
+            $$racion = Kit::with('insumos')->where('id', '=', $tipo_alimentacion)->where('id_institucion', Auth::user()->id_institucion)->get();
+        endif;
+
+        
         foreach($racion  as $r):
             $actividad = $r->id;
             $alimentos = $r->alimentos;
