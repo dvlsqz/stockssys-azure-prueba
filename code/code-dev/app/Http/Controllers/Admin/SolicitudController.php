@@ -49,6 +49,7 @@ class SolicitudController extends Controller
         $s->id_entrega = $request->input('idEntrega');
         $s->id_usuario = $request->input('idUsuario');
         $s->observaciones = $request->input('observaciones');
+        $s->tipo_insumos = $request->input('tipo_insumos');
         $s->id_socio = Auth::user()->id_institucion;
         $s->save();
 
