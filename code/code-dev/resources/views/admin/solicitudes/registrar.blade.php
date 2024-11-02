@@ -22,7 +22,7 @@
                     {!! Form::open(['url' => '/admin/solicitud_despacho/registrar', 'files' => true]) !!}
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Fecha de Inicio de Solicitud: </strong></label>
                                 <div class="input-group">           
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Seleccionar Entrega: </strong></label>
                                 <div class="input-group">           
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
@@ -39,6 +39,14 @@
                                             <option value="{{ $e->id }}">{{ $e->correlativo.'-'.$e->year.' => '.obtenerMeses(null, $e->mes_inicial).' / '.obtenerMeses(null, $e->mes_final) }}</option>
                                         @endforeach
                                     </select>            
+                                </div>
+                            </div>  
+
+                            <div class="col-md-4">
+                                <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> ¿Que tipo de insumos se usaran?: </strong></label>
+                                <div class="input-group">           
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    {!! Form::select('tipo_insumos', ['1'=>'Alimentos', '2'=>'Otros insumos'], $e->tipo_insumos,['class'=>'form-select']) !!}       
                                 </div>
                             </div>  
 
