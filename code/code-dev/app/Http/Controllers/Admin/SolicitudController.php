@@ -566,7 +566,7 @@ class SolicitudController extends Controller
         
         $despachos = BodegaEgreso::with(['detalles', 'escuela'])->where('id', $id)->where('id_solicitud_despacho', $idSolicitud)->where('id_escuela_despacho', $idEscuela)->get();
         
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$idSolicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -1406,7 +1406,7 @@ class SolicitudController extends Controller
         $deta[] = $detalles;
 
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$idSolicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -1476,7 +1476,7 @@ class SolicitudController extends Controller
     public function getEscuelasPesosDespacho($solicitud, $escuela){
         $idRaciones;         
         
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$solicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -1523,7 +1523,7 @@ class SolicitudController extends Controller
 
     public function getSolicitudABodegaPrimaria($solicitud){
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$solicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2083,7 +2083,7 @@ class SolicitudController extends Controller
 
         $bodegas = Institucion::where('nivel', 2)->pluck('nombre','id');
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$solicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2226,7 +2226,7 @@ class SolicitudController extends Controller
         
         //return $alimentos;
         //return $request->all();
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2321,7 +2321,7 @@ class SolicitudController extends Controller
             $beneficiarios_pri = $d_pri->total_beneficiarios;
         endforeach;
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2339,7 +2339,7 @@ class SolicitudController extends Controller
         endforeach;
 
         if($id_escolar_racion == $tipo_act_ali_pre):
-            $consulta = Solicitud::where('id',$id)->get();
+            $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
             foreach($consulta as $c):
                 $tipo_insumo = $c->tipo_insumos;
             endforeach;
@@ -2352,7 +2352,7 @@ class SolicitudController extends Controller
                   
         else:
             
-            $consulta = Solicitud::where('id',$id)->get();
+            $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
             foreach($consulta as $c):
                 $tipo_insumo = $c->tipo_insumos;
             endforeach;
@@ -2441,7 +2441,7 @@ class SolicitudController extends Controller
     public function postDespacharLideres(Request $request){
         $escuela = Escuela::where('id', $request->input('idEscuela'))->first();
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2513,7 +2513,7 @@ class SolicitudController extends Controller
             $tipo_alimentacion = $d->tipo_alimentacion;
         endforeach;
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2596,7 +2596,7 @@ class SolicitudController extends Controller
         $idEscuela = $request->input('idEscuela');
         $escuela = Escuela::where('id', $idEscuela)->first();
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$idSolicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
@@ -2667,7 +2667,7 @@ class SolicitudController extends Controller
             $tipo_alimentacion = $d->tipo_alimentacion;
         endforeach;
 
-        $consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$idSolicitud)->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
