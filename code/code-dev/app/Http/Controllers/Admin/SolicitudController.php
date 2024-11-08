@@ -349,7 +349,7 @@ class SolicitudController extends Controller
         $detalles = SolicitudDetalles::findOrFail($id);
         $escuelas = Escuela::pluck('nombre','id');
         $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
-        return $detalles;
+        return $detalles->id_solicitud;
 
         /*$consulta = Solicitud::where('id',$id)->get();
         foreach($consulta as $c):
