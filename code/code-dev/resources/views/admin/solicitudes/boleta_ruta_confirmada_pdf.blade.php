@@ -19,7 +19,7 @@
 
         .page-number:after { content: counter(page); }
 
-    
+        table {page-break-before:auto;}
 
 
     </style>
