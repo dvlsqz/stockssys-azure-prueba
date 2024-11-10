@@ -362,7 +362,7 @@ class SolicitudController extends Controller
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
         endif;
 
-        return $raciones.'-'.$detalles->id_solicitud.'-'.$tipo_insumo;
+        //return $raciones.'-'.$detalles->id_solicitud.'-'.$tipo_insumo;
         $registrar = 0;
 
         $datos = [
