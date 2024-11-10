@@ -19,9 +19,6 @@
 
         .page-number:after { content: counter(page); }
 
-        table {page-break-before:auto;}
-
-
     </style>
     
 
@@ -84,7 +81,7 @@
     </p>
 
     <div>
-        <table style="text-align:center;">
+        <table style="text-align:center; page-break-before:auto;">
             <thead style="background-color: #bfbfbf; border: 1px solid black; border-collapse: collapse;">
                 <tr>
                     <td>CODIGO</td>
@@ -100,7 +97,7 @@
             </thead>
             <tbody style="border: 1px solid black; font-size: 10px;">
                     @php($total_participantes = 0)
-                    @foreach($detalle_escuelas as $det)  
+                    @foreach($detalle_escuelas->sortBy('boleta') as $det)  
 
                         <tr>
                             <td> {{$det->escuela_codigo}} </td>
