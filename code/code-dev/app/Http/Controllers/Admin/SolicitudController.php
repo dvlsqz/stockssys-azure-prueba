@@ -1322,6 +1322,8 @@ class SolicitudController extends Controller
             $r->no_licencia = $request->input('no_licencia');
             $r->placa_vehiculo = $request->input('placa_vehiculo');
             $r->tipo_vehiculo = $request->input('tipo_vehiculo');
+            $r->fecha_traslado = $request->input('fecha_traslado');
+            $r->direccion_emision = $request->input('direccion_emision');
 
 
             if($r->save()):

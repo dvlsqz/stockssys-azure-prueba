@@ -61,6 +61,22 @@
                                     {!! Form::text('tipo_vehiculo', $ruta->tipo_vehiculo, ['class'=>'form-control']) !!}
                                 </div>
                             </div>
+
+                            <div class="col-md-6 mtop16">
+                                <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Fecha de Traslado: </strong></label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    {!! Form::date('fecha_traslado', $ruta->fecha_traslado, ['class'=>'form-control']) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 mtop16">
+                                <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Direccion de Emisión: </strong></label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
+                                    {!! Form::text('direccion_emision', $ruta->direccion_emision, ['class'=>'form-control']) !!}
+                                </div>
+                            </div>
                             
                             
                         </div>
