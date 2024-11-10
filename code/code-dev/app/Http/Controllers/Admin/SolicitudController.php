@@ -349,12 +349,12 @@ class SolicitudController extends Controller
         $detalles = SolicitudDetalles::findOrFail($id);
         $escuelas = Escuela::pluck('nombre','id');
         //$raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
-        $tipo_insumo = $detalles->id_solicitud;
+    
 
-        /*$consulta = Solicitud::where('id',$id)->get();
+        $consulta = Solicitud::where('id',$detalles->id_solicitud)->get();
         foreach($consulta as $c):
-             = $c->tipo_insumos;
-        endforeach;*/
+            $tipo_insumo = $c->tipo_insumos;
+        endforeach;
         
         if($tipo_insumo == "1"):
             $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
@@ -362,7 +362,7 @@ class SolicitudController extends Controller
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
         endif;
 
-        return $raciones.'-'.$detalles->id_solicitud;
+        return $raciones.'-'.$detalles->id_solicitud.'-'.$tipo_insumo;
         $registrar = 0;
 
         $datos = [
