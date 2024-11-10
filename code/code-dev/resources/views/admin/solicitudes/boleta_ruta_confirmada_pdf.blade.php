@@ -46,7 +46,7 @@
 
     <div style="display: flex;">
         <div style="text-align: left; display: inline-block; float:left;">
-            <b>Fecha de traslado: </b>    
+            <b>Fecha de traslado: </b> {{ $ruta->fecha_traslado }}    
         </div>
 
         <div style="text-align: right; display: inline-block; float:right;">
@@ -69,7 +69,7 @@
         </div>
 
         <div style="text-align: left; width: 50%; display: inline-block; float:right;">
-            <b>Dirección de emisión: </b> <br>
+            <b>Dirección de emisión: </b> {{ $ruta->direccion_emision }}<br>
             <b>Municipio de destino:</b> {{$ruta->ruta_base->ubicacion->nombre}}<br>
             <b>Placa del vehículo: </b> {{ $ruta->placa_vehiculo }} <br>
             <b>Tipo de vehículo: </b> {{ $ruta->tipo_vehiculo }}<br>   
