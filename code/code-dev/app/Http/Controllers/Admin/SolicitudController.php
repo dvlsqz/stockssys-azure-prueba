@@ -2176,7 +2176,7 @@ class SolicitudController extends Controller
             $raciones = Kit::select('id','tipo_kits')->where('id_institucion', Auth::user()->id_institucion)->get();
         endif;
 
-        return $det_escuelas_preprimaria_sllr_enc.' - '.$det_escuelas_preprimaria_sllr;
+        //return $det_escuelas_preprimaria_sllr_enc.' - '.$det_escuelas_preprimaria_sllr;
         
 
         $datos = [
