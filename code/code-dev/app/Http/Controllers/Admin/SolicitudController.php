@@ -348,7 +348,7 @@ class SolicitudController extends Controller
     public function getSolicitudDetallesEditar($id){
         $detalles = SolicitudDetalles::findOrFail($id);
         $escuelas = Escuela::pluck('nombre','id');
-        $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
+        //$raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->where('deleted_at',null)->pluck('nombre', 'id');
         $tipo_insumo = $detalles->id_solicitud;
 
         /*$consulta = Solicitud::where('id',$id)->get();
