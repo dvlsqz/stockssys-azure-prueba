@@ -88,9 +88,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @endif    
-                                        
-                                    @if($tipo_racion_escolar == 10)
+                                    @else
 
                                         @foreach($det_escuelas_preprimaria_sllr_enc as $det_preprimaria_enc_sllr)
                                             @if($det_preprimaria_enc_sllr->escuela_id == $e->escuela_id)    
