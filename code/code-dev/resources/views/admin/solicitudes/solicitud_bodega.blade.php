@@ -183,7 +183,13 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach 
                                     @else 
-                                        
+                                        @foreach($det_escuelas_primaria_sllr_enc as $det_primaria_enc_sllr)
+                                            @if($det_primaria_enc_sllr->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_primaria_enc_sllr->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_primaria_enc_sllr->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_primaria_enc_sllr->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
                                         <br>
                                         <b>Desgloce: </b>  <br>
                                         <br>       

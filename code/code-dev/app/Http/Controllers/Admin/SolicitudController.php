@@ -2260,7 +2260,7 @@ class SolicitudController extends Controller
             'det_escuelas_preprimaria_ex' => $det_escuelas_preprimaria_ex,
             'det_escuelas_preprimaria_sllr_enc' => $det_escuelas_preprimaria_sllr_enc,
             'det_escuelas_preprimaria_sllr' => $det_escuelas_preprimaria_sllr,
-            'det_escuelas_primaria_sllr_enc,' => $det_escuelas_primaria_sllr_enc,
+            'det_escuelas_primaria_sllr_enc' => $det_escuelas_primaria_sllr_enc,
             'det_escuelas_primaria_sllr' => $det_escuelas_primaria_sllr,            
             'det_escuelas_primaria_ex_enc' => $det_escuelas_primaria_ex_enc,
             'det_escuelas_primaria_ex' => $det_escuelas_primaria_ex,
