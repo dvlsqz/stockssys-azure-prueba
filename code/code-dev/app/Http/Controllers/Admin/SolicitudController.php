@@ -2013,7 +2013,7 @@ class SolicitudController extends Controller
         
             endif;
 
-
+        return $det_escuelas_primaria_sllr_enc;
 
         
 
@@ -2261,8 +2261,10 @@ class SolicitudController extends Controller
             'det_escuelas_preprimaria_sllr_enc' => $det_escuelas_preprimaria_sllr_enc,
             'det_escuelas_preprimaria_sllr' => $det_escuelas_preprimaria_sllr,
             'det_escuelas_primaria_sllr_enc,' => $det_escuelas_primaria_sllr_enc,
+
             'det_escuelas_primaria_sllr' => $det_escuelas_primaria_sllr,
             'det_escuelas_primaria_ex_enc' => $det_escuelas_primaria_ex_enc,
+
             'det_escuelas_primaria_ex' => $det_escuelas_primaria_ex,
             'det_escuelas_l_enc' => $det_escuelas_l_enc,
             'det_escuelas_l' => $det_escuelas_l,
