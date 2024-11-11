@@ -1532,7 +1532,7 @@ class SolicitudController extends Controller
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
-        
+        return $consulta;
         if($tipo_insumo == "1"):
             $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
             foreach($raciones as $r):
