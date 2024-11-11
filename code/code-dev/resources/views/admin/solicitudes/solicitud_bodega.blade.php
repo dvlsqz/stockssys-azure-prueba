@@ -58,7 +58,8 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @elseif($tipo_racion_escolar == 3)   
+                                    @endif
+                                    @if($tipo_racion_escolar == 3)   
                                         @foreach($det_escuelas_preprimaria_ex_enc as $det_preprimaria_enc_ex)
                                             @if($det_preprimaria_enc_ex->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_preprimaria_enc_ex->racion}}</b> &nbsp                                    
