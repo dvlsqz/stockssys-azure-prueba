@@ -32,6 +32,8 @@ ini_set('max_execution_time', 0); ?>
                                             Dias: <b>{{ $det_preprimaria_enc->dias}} </b>&nbsp
                                             Total Beneficiarios:  <b>{{ $det_preprimaria_enc->total_beneficiarios}}  </b>
                                             @php($tipo_racion_escolar = $det_preprimaria_enc->idracion)
+
+                                            <b sytle="color: green;">{{$tipo_racion_escolar}}</b>
                                         @endif                                   
                                     @endforeach 
                                    
@@ -127,6 +129,7 @@ ini_set('max_execution_time', 0); ?>
                                             Dias:  <b>{{ $det_primaria_enc->dias}} </b> &nbsp
                                             Total Beneficiarios:  <b> {{ $det_primaria_enc->total_beneficiarios}} </b> 
                                             @php($tipo_racion_escolar2 = $det_primaria_enc->idracion)
+                                            <b sytle="color: green;">{{$tipo_racion_escolar2}}</b>
                                         @endif                                   
                                     @endforeach 
                                      
