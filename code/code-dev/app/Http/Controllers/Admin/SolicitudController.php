@@ -1532,7 +1532,7 @@ class SolicitudController extends Controller
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
         endforeach;
-        return $consulta;
+        //return $consulta;
         if($tipo_insumo == "1"):
             $raciones = Racion::where('id_institucion', Auth::user()->id_institucion)->get();
             foreach($raciones as $r):
@@ -1609,7 +1609,7 @@ class SolicitudController extends Controller
             endforeach;
         endif;
 
-        
+        return $tipo_insumo;
 
         //return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion;
 
