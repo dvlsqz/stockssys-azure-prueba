@@ -2013,7 +2013,7 @@ class SolicitudController extends Controller
         
             endif;
 
-        return $det_escuelas_primaria_sllr_enc;
+        //return $det_escuelas_primaria_sllr_enc;
 
         
 
