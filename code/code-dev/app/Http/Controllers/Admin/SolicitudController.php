@@ -1611,7 +1611,7 @@ class SolicitudController extends Controller
 
         //return $tipo_insumo;
 
-        return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion.'-'.$id_escolar_sllr;
+        //return $id_escolar_racion.'-'.$id_escolar2_racion.'-'.$id_lideres_racion.'-'.$id_do_vo_racion.'-'.$id_escolar_sllr;
 
         $escuelas = DB::table('solicitud_detalles')
             ->select(
