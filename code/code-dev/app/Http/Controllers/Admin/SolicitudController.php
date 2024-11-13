@@ -1731,7 +1731,7 @@ class SolicitudController extends Controller
 
         endif;
 
-        return $det_escuelas_primaria_enc;
+        
 
         if(isset($id_escolar_expansion_racion)):
             $det_escuelas_preprimaria_ex_enc =  DB::table('solicitud_detalles')

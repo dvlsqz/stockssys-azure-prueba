@@ -131,7 +131,7 @@ ini_set('max_execution_time', 0); ?>
                                         @endif                                   
                                     @endforeach 
                                      
-                                    @if($tipo_racion_escolar2 == 1 || $tipo_racion_escolar2 == 3 )
+                                    @if($tipo_racion_escolar2 == 0 || $tipo_racion_escolar2 == 1 || $tipo_racion_escolar2 == 3 )
                                         <br>
                                         <b>Desgloce: </b>  <br>
                                         <br>     
