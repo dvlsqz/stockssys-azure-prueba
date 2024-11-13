@@ -188,6 +188,7 @@ ini_set('max_execution_time', 0); ?>
                                                 Racion:  <b> {{ $det_primaria_enc_sllr->racion}}</b> &nbsp                                    
                                                 Dias: <b>{{ $det_primaria_enc_sllr->dias}} </b>&nbsp
                                                 Total Beneficiarios:  <b>{{ $det_primaria_enc_sllr->total_beneficiarios}}  </b>
+                                                {{$tipo_racion_escolar2}}
                                             @endif                                   
                                         @endforeach   
                                         <br>
