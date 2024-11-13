@@ -153,7 +153,7 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach                                         
 
-                                    @elseif($tipo_racion_escolar2 == 9)
+                                    @else
                                         @foreach($det_escuelas_primaria_ex_enc as $det_primaria_enc_ex)
                                             @if($det_primaria_enc_ex->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_primaria_enc_ex->racion}}</b> &nbsp                                    
@@ -182,36 +182,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @else 
-                                        @foreach($det_escuelas_primaria_sllr_enc as $det_primaria_enc_sllr)
-                                            @if($det_primaria_enc_sllr->escuela_id == $e->escuela_id)    
-                                                Racion:  <b> {{ $det_primaria_enc_sllr->racion}}</b> &nbsp                                    
-                                                Dias: <b>{{ $det_primaria_enc_sllr->dias}} </b>&nbsp
-                                                Total Beneficiarios:  <b>{{ $det_primaria_enc_sllr->total_beneficiarios}}  </b>
-                                                {{$tipo_racion_escolar2}}
-                                            @endif                                   
-                                        @endforeach   
-                                        <br>
-                                        <b>Desgloce: </b>  <br>
-                                        <br>       
-                                        <span style="color: red;"> Datos de ración de SLLR</span><br> 
-                                        @foreach($det_escuelas_primaria_sllr as $det_primaria_sllr)
-                                            @if($det_primaria_sllr->escuela_id == $e->escuela_id)   
-                                                @if($det_primaria_sllr->alimento_peso != 0)                                     
-                                                    <b><i class="fa-solid fa-caret-right"></i></b> Alimento: <b>{{ $det_primaria_sllr->alimento}}</b> Peso Ración (gr.): <b>{{ $det_primaria_sllr->alimento_peso}} </b><br>
-                                                    @if( Illuminate\Support\Str::lower($det_primaria_sllr->alimento) != "aceite" )
-                                                    - Gramos: <b>{{ number_format( ($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso), 2, '.', ',' )}} </b><br>
-                                                    - Quintales: <b>{{ number_format( ((($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
-                                                    - Unidades Racion: <b>{{ number_format( ((($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso)/1000)/50), 2, '.', ',' )}} </b> <br>
-                                                    @else
-                                                    - Gramos: <b>{{ number_format( ($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso), 2, '.', ',' )}} </b><br>
-                                                    - Quintales: <b>{{ number_format( ((($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
-                                                    - Unidades Racion: <b>{{ number_format( ((($det_primaria_sllr->dias*$det_primaria_sllr->total_beneficiarios*$det_primaria_sllr->alimento_peso)/1000)/18.5), 2, '.', ',' )}} </b> <br>
-                                                    @endif
-                                                    <br>
-                                                @endif
-                                            @endif
-                                        @endforeach 
+                                    
                                         
                                     @endif
                             </div>
