@@ -165,6 +165,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'UserStatus', 'Perm
     Route::get('/solicitud_despacho_sub_ruta/{id}/eliminar', [SolicitudController::class,'getSolicitudSubRutaEliminar'])->name('solicitud_rutas');   
     Route::get('/solicitud_despacho/{id}/solicitud_bodega_primaria', [SolicitudController::class, 'getSolicitudABodegaPrimaria'])->name('solicitud_rutas');
     Route::post('/solicitud_despacho/solicitud_bodega_primaria', [SolicitudController::class, 'postSolicitudABodegaPrimaria'])->name('solicitud_rutas');
+    Route::get('/solicitud_despacho/{id}/url/prueba', [SolicitudController::class, 'getPruebaDatos'])->name('solicitud_rutas');
     Route::get('/solicitud_despacho/{id}/escuelas', [SolicitudController::class, 'getSolicitudEscuelas'])->name('solicitud_escuelas');
     Route::get('/solicitud_despacho/{id}/escuela/{idEscuela}', [SolicitudController::class, 'getSolicitudEscuelaDespacho'])->name('solicitud_rutas');
     Route::get('/solicitud_despacho/{idSolicitud}/escuela/{idEscuela}/despacho/{id}/impresion', [SolicitudController::class, 'getSolicitudEscuelaDespachoPDF'])->name('solicitud_rutas');
