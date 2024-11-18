@@ -107,11 +107,11 @@ ini_set('max_execution_time', 0); ?>
                                                     @if( Illuminate\Support\Str::lower($det_preprimaria_sllr->alimento) != "aceite" )
                                                     - Gramos: <b>{{ number_format( ($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso), 2, '.', ',' )}} </b><br>
                                                     - Quintales: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
-                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/1000)/50), 2, '.', ',' )}} </b> <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
                                                     @else
                                                     - Gramos: <b>{{ number_format( ($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso), 2, '.', ',' )}} </b><br>
                                                     - Quintales: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
-                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/1000)/18.5), 2, '.', ',' )}} </b> <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_sllr->dias*$det_preprimaria_sllr->total_beneficiarios*$det_preprimaria_sllr->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
                                                     @endif
                                                     <br>
                                                 @endif
