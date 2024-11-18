@@ -127,7 +127,7 @@ ini_set('max_execution_time', 0); ?>
                                             Dias:  <b>{{ $det_primaria_enc->dias}} </b> &nbsp
                                             Total Beneficiarios:  <b> {{ $det_primaria_enc->total_beneficiarios}} </b> 
                                             @php($tipo_racion_escolar2 = $det_primaria_enc->idracion)
-                                            {{$tipo_racion_escolar2}}
+                                            
                                         @endif                                   
                                     @endforeach 
                                      
