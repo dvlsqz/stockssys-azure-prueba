@@ -2218,7 +2218,7 @@ class SolicitudController extends Controller
     }
 
     public function getPruebaDatos($solicitud){
-        $id_escolar_racion = 3;
+        $id_escolar2_racion = 3;
 
         $det_escuelas_primaria_enc =  DB::table('solicitud_detalles')
                 ->select(
