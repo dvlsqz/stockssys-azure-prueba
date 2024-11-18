@@ -14,7 +14,7 @@
         <div class="inside">
             {!! Form::open(['url' => '/iniciar_sesion']) !!}
 
-            <label for="ibm"><strong>Correo Electronico:</strong></label>
+            <label for="ibm"><strong>Usuario:</strong></label>
             <div class="input-group">
                 <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-address-card"></i></div>
