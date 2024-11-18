@@ -2253,6 +2253,8 @@ class SolicitudController extends Controller
                 ->where('solicitud_detalles.deleted_at', null)
                 ->groupBy('solicitud_detalles.id_escuela', 'solicitud_detalles.tipo_de_actividad_alimentos', 'bodegas.id', 'bodegas.nombre', 'alimentos_racion.cantidad')
                 ->get();
+
+        return '<h1> Encabezado: </h1> <br/>'.$det_escuelas_primaria_enc.'<h1> Detalles : </h1> <br/>'.$det_escuelas_primaria;
     }
 
     public function postSolicitudABodegaPrimaria(Request $request){
