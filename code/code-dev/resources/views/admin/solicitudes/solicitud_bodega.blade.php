@@ -153,7 +153,7 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach                                         
 
-                                    @eleif($tipo_racion_escolar2 == 9)
+                                    @elseif($tipo_racion_escolar2 == 9)
                                         @foreach($det_escuelas_primaria_ex_enc as $det_primaria_enc_ex)
                                             @if($det_primaria_enc_ex->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_primaria_enc_ex->racion}}</b> &nbsp                                    
