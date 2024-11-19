@@ -580,7 +580,7 @@ class BodegaSocioController extends Controller
         $solicitud = SolicitudBodegaPrimaria::findOrFail($id);
         
         $datos = [
-            'solicitud' => $solicitud
+            'solicitud' => $solicitud 
         ];
 
         $pdf = Pdf::loadView('admin.bodega.bodega_socio.solicitud_insumos_pdf', $datos)->setPaper('letter');

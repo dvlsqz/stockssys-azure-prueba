@@ -70,7 +70,7 @@
                     <td>Kilogramos</td>
                     <td>Unidades</td>
                 </tr>
-            </thead>
+            </thead> 
             <tbody style="border: 1px solid black; font-size: 10px;">
                 @foreach($solicitud->detalles as $det)
                 <tr>
@@ -82,12 +82,12 @@
                         @endif                                                            
                     @endforeach  
                     @foreach($det->alimento_bodega_socio->pesos_alimento as $p)                                                                               
-                        <td> {{ ceil($det->no_unidades/ $p->kg_x_unidad) }} </td> 
+                        <td> {{ ceil($p->kg_x_unidad) }} </td> 
                     @endforeach   
                     <td>{{$det->no_unidades}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
-                    <td>{{ ceil( ($det->no_unidades/ $p->kg_x_unidad) - $det->alimento_bodega_socio->saldo ) }} </td>
+                    <td>{{ ceil( ( $p->kg_x_unidad) - $det->alimento_bodega_socio->saldo ) }} </td>
                 </tr>
                 @endforeach                   
 
