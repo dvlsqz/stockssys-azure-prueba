@@ -59,7 +59,7 @@
                                         </select>        
                                         
                                         <a href="#" class="btn btn-sm btn-info " id="btn_buscar_escuelas_despacho" data-toogle="tooltrip" data-placement="top" title="Buscar" ><i class="fas fa-search"></i> </a>
-                                        <a href="{{ url('/admin/bodega_socio/insumo/egresos') }}" class="btn btn-sm btn-warning " data-toogle="tooltrip" data-placement="top" title="Buscar" ><i class="fa-solid fa-eraser"></i> </a>
+                                        <a href="{{ url('/admin/bodega_socio/insumo/egresos/alimentos') }}" class="btn btn-sm btn-warning " data-toogle="tooltrip" data-placement="top" title="Borrar" ><i class="fa-solid fa-eraser"></i> </a>
                                     </div>
 
                                     <label for="name" class="mtop16"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Escuela a Despachar: </strong></label>
