@@ -81,12 +81,12 @@
                             <td> {{ $a->cantidad }} </td> 
                         @endif                                                            
                     @endforeach  
-                    <td>{{$a->id_alimento.'-'.$p->id_insumo}}</td>
+                    
                     @foreach($det->alimento_bodega_socio->pesos_alimento as $p)   
-                        @if($a->id_alimento == $p->id_insumo)
+                        <!--@if($a->id_alimento == $p->id_insumo)
                             <td> {{ $p->gramos_x_kg }} </td> 
-                        @endif                                                                                 
-                        
+                        @endif                 -->                                                               
+                        <td>{{$a->id_alimento.'-'.$p->id_insumo}}</td>
                     @endforeach   
                     <td>{{$det->no_unidades}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
