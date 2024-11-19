@@ -1089,6 +1089,9 @@ class ReporteController extends Controller
     }
 
     public function getSociosSolicitudes($id){       
+
+        return $id;
+
         $solicitudes = SolicitudBodegaPrimaria::where('id_socio', $id)->get();
  
 
@@ -1096,6 +1099,6 @@ class ReporteController extends Controller
             'solicitudes' => $solicitudes
         ];
 
-        return response()->json($datos);
+        //return response()->json($datos);
     }
 }
