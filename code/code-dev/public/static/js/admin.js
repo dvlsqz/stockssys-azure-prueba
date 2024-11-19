@@ -509,7 +509,7 @@ function obtenerSociosSolicitudes(){
     select.innerHTML = "";
     //var url = base + '/agem/public/admin/agem/api/load/studies/'+exam;
     console.log(id_socio);
-    var url = base + '/stocksys/api/solicitudes/socios/'+id_socio;
+    var url = base + '/stocksys/api/solicitudes_despacho/socios/'+id_socio;
     http.open('GET', url, true);
     http.setRequestHeader('X-CSRF-TOKEN', csrfToken);
     http.send();
