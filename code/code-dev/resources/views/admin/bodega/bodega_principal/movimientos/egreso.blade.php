@@ -50,7 +50,7 @@
                                 <div class="input-group">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
 
-                                    <select name="id_socio" id="id_socio" style="width: 83%">
+                                    <select name="id_socio" id="id_socio" style="width: 78%">
                                         @foreach($socios as $s)
                                             <option value="{{ $s->id }}">{{ $s->nombre}}</option>
                                         @endforeach
