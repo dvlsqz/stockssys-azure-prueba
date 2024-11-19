@@ -1090,15 +1090,15 @@ class ReporteController extends Controller
 
     public function getSociosSolicitudes($id){       
 
-        return $id;
+        //return $id;
 
-        $solicitudes = SolicitudBodegaPrimaria::where('id_socio', $id)->get();
+        $solicitudes = SolicitudBodegaPrimaria::where('id_socio_solicitante', $id)->get();
  
 
         $datos = [
             'solicitudes' => $solicitudes
         ];
 
-        //return response()->json($datos);
+        return response()->json($datos);
     }
 }
