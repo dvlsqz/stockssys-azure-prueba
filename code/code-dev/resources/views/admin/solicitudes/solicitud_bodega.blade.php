@@ -87,7 +87,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @elseif($tipo_racion_escolar == 12)   
+                                    @elseif($tipo_racion_escolar == 0)   
                                         @foreach($det_escuelas_preprimaria_ordinario_enc as $det_preprimaria_enc_ordinario)
                                             @if($det_preprimaria_enc_ordinario->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_preprimaria_enc_ordinario->racion}}</b> &nbsp                                    
@@ -211,7 +211,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @elseif($tipo_racion_escolar2 == 12)
+                                    @elseif($tipo_racion_escolar2 == 0)
                                         @foreach($det_escuelas_primaria_ordinario_enc as $det_primaria_enc_ordinario)
                                             @if($det_primaria_enc_ordinario->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_primaria_enc_ordinario->racion}}</b> &nbsp                                    
@@ -302,7 +302,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach
-                                    @elseif($tipo_racion_lider == 15)
+                                    @elseif($tipo_racion_lider == 0)
                                         @foreach($det_escuelas_l_ordinario_enc as $det_l_enc_ordinario)
                                             @if($det_l_enc_ordinario->escuela_id == $e->escuela_id)    
                                                 Racion:  <b> {{ $det_l_enc_ordinario->racion}}</b> &nbsp                                    
@@ -380,7 +380,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach
-                                    @elseif($tipo_racion_v_d == 14)
+                                    @elseif($tipo_racion_v_d == 0)
                                         @foreach($det_escuelas_v_d_ordinario_enc as $det_v_d_enc_ordinario)
                                             @if($det_v_d_enc_ordinario->escuela_id == $e->escuela_id)    
                                                 Racion: <b>  {{ $det_v_d_enc_ordinario->racion}} </b>  &nbsp                                    
