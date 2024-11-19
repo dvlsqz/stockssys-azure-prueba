@@ -81,9 +81,10 @@
                             <td> {{ $a->cantidad }} </td> 
                         @endif                                                            
                     @endforeach  
-                    @foreach($det->alimento_bodega_socio->pesos_alimento as $p)                                                                               
+                    <td>{{$det->alimento_bodega_socio->pesos_alimento}}</td>
+                    <!--@foreach($det->alimento_bodega_socio->pesos_alimento as $p)                                                                               
                         <td> {{ ceil($p->kg_x_unidad) }} </td> 
-                    @endforeach   
+                    @endforeach   -->
                     <td>{{$det->no_unidades}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
