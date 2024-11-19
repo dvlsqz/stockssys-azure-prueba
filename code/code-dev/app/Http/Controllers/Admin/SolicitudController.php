@@ -2627,6 +2627,14 @@ class SolicitudController extends Controller
                     $id_escolar_sllr = $r->id;
                 endif;
 
+                if($r->nombre =="Escolar Ordinario"):
+                    $id_escolar_ordinario_racion = $r->id;
+                endif;
+
+                if($r->nombre =="Escolar2 Ordinario"):
+                    $id_escolar2_ordinario_racion = $r->id;
+                endif;
+
             endforeach;
         else:
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
@@ -2663,7 +2671,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_racion])            
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_racion,$id_escolar_ordinario_racion,$id_escolar2_ordinario_racion])            
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
@@ -2679,7 +2687,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_expansion_racion])         
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_expansion_racion,$id_escolar_ordinario_racion,$id_escolar2_ordinario_racion])         
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();   
@@ -2834,6 +2842,10 @@ class SolicitudController extends Controller
                 if($r->nombre =="Líderes expansión"):
                     $id_lideres_expansion_racion = $r->id;
                 endif;
+
+                if($r->nombre =="Líderes Ordinario"):
+                    $id_lideres_ordinario_racion = $r->id;
+                endif;
             endforeach;
         else:
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
@@ -2878,7 +2890,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_lideres_racion,$id_lideres_expansion_racion])           
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_lideres_racion,$id_lideres_expansion_racion,$id_lideres_ordinario_racion])           
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
@@ -2987,7 +2999,11 @@ class SolicitudController extends Controller
                 
                 if($r->nombre =="Voluntarios expansión"):
                     $id_do_vo_expansion_racion = $r->id;
-                endif; 
+                endif;
+                
+                if($r->nombre =="Voluntario Ordinario"):
+                    $id_do_vo_ordinario_racion = $r->id;
+                endif;
             endforeach;
         else:
             $raciones = Kit::where('id_institucion', Auth::user()->id_institucion)->get();
@@ -3032,7 +3048,7 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $idSolicitud)  
             ->where('solicitud_detalles.id_escuela', $idEscuela)   
-            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_do_vo_racion,$id_do_vo_expansion_racion])           
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_do_vo_racion,$id_do_vo_expansion_racion,$id_do_vo_ordinario_racion])           
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();
