@@ -36,7 +36,7 @@ ini_set('max_execution_time', 0); ?>
                                             
                                         @endif                                   
                                     @endforeach 
-                                   {{$tipo_racion_escolar}}
+                                   
                                     @if($tipo_racion_escolar == 1)
                                         <br>
                                         <b>Desgloce: </b>  <br>
