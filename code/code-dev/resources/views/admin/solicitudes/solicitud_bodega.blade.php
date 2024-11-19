@@ -87,6 +87,35 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
+                                    @elseif($tipo_racion_escolar == 12)   
+                                        @foreach($det_escuelas_preprimaria_ordinario_enc as $det_preprimaria_enc_ordinario)
+                                            @if($det_preprimaria_enc_ordinario->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_preprimaria_enc_ordinario->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_preprimaria_enc_ordinario->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_preprimaria_enc_ordinario->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>       
+                                        <span style="color: red;"> Datos de ración de ordinario</span><br> 
+                                        @foreach($det_escuelas_preprimaria_ordinario as $det_preprimaria_ordinario)
+                                            @if($det_preprimaria_ordinario->escuela_id == $e->escuela_id)   
+                                                @if($det_preprimaria_ordinario->alimento_peso != 0)                                     
+                                                    <b><i class="fa-solid fa-caret-right"></i></b> Alimento: <b>{{ $det_preprimaria_ordinario->alimento}}</b> Peso Ración (gr.): <b>{{ $det_preprimaria_ordinario->alimento_peso}} </b><br>
+                                                    @if( Illuminate\Support\Str::lower($det_preprimaria_ordinario->alimento) != "aceite" )
+                                                    - Gramos: <b>{{ number_format( ($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso), 2, '.', ',' )}} </b><br>
+                                                    - Quintales: <b>{{ number_format( ((($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
+                                                    @else
+                                                    - Gramos: <b>{{ number_format( ($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso), 2, '.', ',' )}} </b><br>
+                                                    - Quintales: <b>{{ number_format( ((($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b><br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_preprimaria_ordinario->dias*$det_preprimaria_ordinario->total_beneficiarios*$det_preprimaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
+                                                    @endif
+                                                    <br>
+                                                @endif
+                                            @endif
+                                        @endforeach 
                                     @else
 
                                         @foreach($det_escuelas_preprimaria_sllr_enc as $det_preprimaria_enc_sllr)
@@ -182,6 +211,35 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
+                                    @elseif($tipo_racion_escolar2 == 12)
+                                        @foreach($det_escuelas_primaria_ordinario_enc as $det_primaria_enc_ordinario)
+                                            @if($det_primaria_enc_ordinario->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_primaria_enc_ordinario->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_primaria_enc_ordinario->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_primaria_enc_ordinario->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>       
+                                        <span style="color: red;"> Datos de ración de ordinario</span><br> 
+                                        @foreach($det_escuelas_primaria_ordinario as $det_primaria_ordinario)
+                                            @if($det_primaria_ordinario->escuela_id == $e->escuela_id)      
+                                                @if($det_primaria_ordinario->alimento_peso != 0)                                  
+                                                    <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_primaria_ordinario->alimento}} </b>Peso Ración (gr.): <b>{{ $det_primaria_ordinario->alimento_peso}}</b>  <br>
+                                                    @if( Illuminate\Support\Str::lower($det_primaria_ordinario->alimento) != "aceite" )
+                                                    - Gramos: <b>{{ number_format( ($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso), 2, '.', ',' )}} </b>  <br>
+                                                    - Quintales: <b>{{ number_format( ((($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}}</b>  <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
+                                                    @else
+                                                    - Gramos: <b>{{ number_format( ($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso), 2, '.', ',' )}}</b>  <br>
+                                                    - Quintales: <b>{{ number_format( ((($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_primaria_ordinario->dias*$det_primaria_ordinario->total_beneficiarios*$det_primaria_ordinario->alimento_peso)/453.59237)/100), 2, '.', ',' )}} </b> <br>
+                                                    @endif
+                                                    <br>
+                                                @endif
+                                            @endif
+                                        @endforeach 
                                     @else
 
                                         @foreach($det_escuelas_primaria_sllr_enc as $det_primaria_enc_sllr)
@@ -244,6 +302,30 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach
+                                    @elseif($tipo_racion_lider == 15)
+                                        @foreach($det_escuelas_l_ordinario_enc as $det_l_enc_ordinario)
+                                            @if($det_l_enc_ordinario->escuela_id == $e->escuela_id)    
+                                                Racion:  <b> {{ $det_l_enc_ordinario->racion}}</b> &nbsp                                    
+                                                Dias: <b>{{ $det_l_enc_ordinario->dias}} </b>&nbsp
+                                                Total Beneficiarios:  <b>{{ $det_l_enc_ordinario->total_beneficiarios}}  </b>
+                                            @endif                                   
+                                        @endforeach   
+
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
+                                        <span style="color: red;"> Datos de ración de ordinario</span><br>
+                                        @foreach($det_escuelas_l_ordinario as $det_l_ordinario)
+                                            @if($det_l_ordinario->escuela_id == $e->escuela_id)       
+                                                @if($det_l_ordinario->alimento_peso != 0)                                 
+                                                    <b><i class="fa-solid fa-caret-right"></i> </b> Alimento: <b>{{ $det_l_ordinario->alimento}} </b>Peso Ración (lbs.): <b>{{ $det_l_ordinario->alimento_peso}} </b>  <br>
+                                                    - Libras: <b>{{ number_format( ($det_l_ordinario->dias*$det_l_ordinario->total_beneficiarios*$det_l_ordinario->alimento_peso), 2, '.', ',' )}} </b>  <br>
+                                                    - Quintales: <b>{{ number_format( ((($det_l_ordinario->dias*$det_l_ordinario->total_beneficiarios*$det_l_ordinario->alimento_peso))/100), 2, '.', ',' )}}</b>  <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_l_ordinario->dias*$det_l_ordinario->total_beneficiarios*$det_l_ordinario->alimento_peso)/100)), 2, '.', ',' )}}</b>  <br>
+                                                    <br>
+                                                @endif
+                                            @endif
+                                        @endforeach
                                     @else
                                         @foreach($det_escuelas_l_ex_enc as $det_l_enc_ex)
                                             @if($det_l_enc_ex->escuela_id == $e->escuela_id)    
@@ -294,6 +376,31 @@ ini_set('max_execution_time', 0); ?>
                                                     - Libras: <b>{{ number_format( ($det_v_d->dias*$det_v_d->total_beneficiarios*$det_v_d->alimento_peso), 2, '.', ',' )}}</b>  <br>
                                                     - Quintales: <b>{{ number_format( ((($det_v_d->dias*$det_v_d->total_beneficiarios*$det_v_d->alimento_peso)/100)), 2, '.', ',' )}}</b>  <br>
                                                     - Unidades Racion: <b>{{ number_format( ((($det_v_d->dias*$det_v_d->total_beneficiarios*$det_v_d->alimento_peso)/100)), 2, '.', ',' )}}</b>  <br>
+                                                    <br>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    @elseif($tipo_racion_v_d == 14)
+                                        @foreach($det_escuelas_v_d_ordinario_enc as $det_v_d_enc_ordinario)
+                                            @if($det_v_d_enc_ordinario->escuela_id == $e->escuela_id)    
+                                                Racion: <b>  {{ $det_v_d_enc_ordinario->racion}} </b>  &nbsp                                    
+                                                Dias: <b>  {{ $det_v_d_enc_ordinario->dias}}</b>  &nbsp
+                                                Total Beneficiarios: <b>  {{ $det_v_d_enc_ordinario->total_beneficiarios}} </b> 
+                                                @php($tipo_racion_v_d  = $det_v_d_enc_ordinario->idracion)
+                                            @endif                                   
+                                        @endforeach 
+
+                                        <br>
+                                        <b>Desgloce: </b>  <br>
+                                        <br>   
+                                        <span style="color: red;"> Datos de ración de ordinario</span> <br>     
+                                        @foreach($det_escuelas_v_d_ordinario as $det_v_d_ordinario)
+                                            @if($det_v_d_ordinario->escuela_id == $e->escuela_id)     
+                                                @if($det_v_d_ordinario->alimento_peso != 0)                                   
+                                                    <b><i class="fa-solid fa-caret-right"></i></b>  Alimento: <b>{{ $det_v_d_ordinario->alimento}} </b>Peso Ración (lbs.): <b>{{ $det_v_d_ordinario->alimento_peso}} </b>  <br>
+                                                    - Libras: <b>{{ number_format( ($det_v_d_ordinario->dias*$det_v_d_ordinario->total_beneficiarios*$det_v_d_ordinario->alimento_peso), 2, '.', ',' )}}</b>  <br>
+                                                    - Quintales: <b>{{ number_format( ((($det_v_d_ordinario->dias*$det_v_d_ordinario->total_beneficiarios*$det_v_d_ordinario->alimento_peso)/100)), 2, '.', ',' )}}</b>  <br>
+                                                    - Unidades Racion: <b>{{ number_format( ((($det_v_d_ordinario->dias*$det_v_d_ordinario->total_beneficiarios*$det_v_d_ordinario->alimento_peso)/100)), 2, '.', ',' )}}</b>  <br>
                                                     <br>
                                                 @endif
                                             @endif
