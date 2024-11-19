@@ -91,7 +91,7 @@
 <div class="row mtop16">
 
     <div class="col-md-6">
-        <label for="unit_id" ><strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> ¿Desea desglozar el dato de beneficiarios?:</strong></label>
+        <label for="unit_id" ><strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> ¿Desea desglosar el dato de beneficiarios?:</strong></label>
         <div class="input-group">
             <span class="input-group-text" id="basic-addon1"><i class="fas fa-layer-group"></i></span>
             {!! Form::select('desgloce', ['0'=>'No','1'=>'Si'],0,['class'=>'form-select', 'id' => 'desgloce']) !!}
