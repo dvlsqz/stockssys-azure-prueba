@@ -86,7 +86,7 @@
                         @if($a->id_alimento == $p->id_insumo)
                             <td> {{ $p->gramos_x_kg }} </td> 
                         @endif                                                                                 
-                        <td> {{ }} </td> 
+                        
                     @endforeach   
                     <td>{{$det->no_unidades}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
