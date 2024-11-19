@@ -1584,7 +1584,7 @@ class SolicitudController extends Controller
                     $id_lideres_ordinario_racion = $r->id;
                 endif;
 
-                if($r->nombre =="Voluntarios Ordinario"):
+                if($r->nombre =="Voluntario Ordinario"):
                     $id_do_vo_ordinario_racion = $r->id;
                 endif;
             endforeach;
