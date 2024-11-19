@@ -40,7 +40,7 @@
                                     
                                     <td>{{$i->fecha}}</td>
                                     <td>
-                                        @if(!is_null($i->procedente)):
+                                        @if(!is_null($i->procedente))
                                             {{ $i->procedente }}
                                         @else
                                             {{ $i->institucion->nombre }}
