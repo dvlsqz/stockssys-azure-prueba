@@ -9,7 +9,7 @@ use App\Exports\Reporte1Export, App\Exports\Reporte2Export, App\Exports\Reporte3
 use App\Exports\Reporte6Export, App\Exports\Reporte8Export, App\Exports\Reporte10Export,  App\Exports\Reporte11Export,  App\Exports\Reporte12Export;
 use App\Exports\Reporte14Export, App\Exports\Reporte15Export, App\Exports\Reporte16Export,  App\Exports\Reporte17Export;
 use App\Exports\InformeMensualExport;
-use App\Models\Bodega, App\Models\Institucion, App\Models\Solicitud, App\Models\Racion, App\Models\SolicitudDetalles;
+use App\Models\Bodega, App\Models\Institucion, App\Models\Solicitud, App\Models\Racion, App\Models\SolicitudDetalles, App\Models\SolicitudBodegaPrimaria;
 use DB, Validator, Auth, Hash, Config, Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -33,7 +33,7 @@ class ReporteController extends Controller
         //return Excel::download(new InformeMensualExport, 'informe mensual.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
         return Excel::download(new InformeMensualExport, 'informe mensual.xlsx');
     }
-
+ 
     public function getPanelReporte(){       
         if(Auth::user()->rol == 0):
             $socio = Institucion::where('nivel', 1)->get();
@@ -1090,7 +1090,7 @@ class ReporteController extends Controller
 
     public function getSociosSolicitudes($id){       
         $solicitudes = Solicitud::where('id_socio', $id)->get();
-
+ 
 
         $datos = [
             'solicitudes' => $solicitudes

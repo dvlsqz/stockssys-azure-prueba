@@ -204,4 +204,4 @@ Route::get('/stocksys/api/bodega_socio/solicitud_id/{id_solicitud}/escuela/{id_e
 Route::get('/stocksys/api/solicitudes/socios/{idSocio}',[BodegaPrincipalController::class, 'getSociosSolicitudes']);  
 Route::get('/stocksys/api/bodega_principal/insumo/pl_disponibles/{idAlimento}',[BodegaPrincipalController::class, 'getPlDisponiblesInsumo']); 
 Route::get('/stocksys/api/bodega_principal/insumo/pl/saldo_disponible/{pl}',[BodegaPrincipalController::class, 'getPlSaldoDisponibleInsumo']);  
-Route::get('/stocksys/api/solicitudes_despacho/socios/{idSocio}',[ReporteController::class, 'getSociosSolicitudes']); 
+Route::get('/stocksys/api/solicitudes_despacho/socios/{idSocio}',[ReporteController::class, 'getSociosSolicitudes']);  
