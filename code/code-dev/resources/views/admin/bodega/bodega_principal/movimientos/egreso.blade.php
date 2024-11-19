@@ -76,19 +76,7 @@
 
                         </div>
 
-                        <div class="row mtop16">
-                            <h5 ><strong>Cálculos de Alimentos en la Solicitud</strong></h5>
-                            <div id="div-msg-det-escuelas">
-                                <p style="color: red; text-aling: center;"><b>Seleccione una escuela </b></p>
-                            </div>
 
-                            <div id="div-res-det-escuelas" style="hidden:true;">
-                            <p style="color: red; text-aling: center;"><b>funcionaaaaaaa </b></p>
-                            </div>
-                            
-                        </div>
-
-                        <hr />
                         <h5><strong>Detalle De La Carga</strong></h5>
 
                         <div class="row">
