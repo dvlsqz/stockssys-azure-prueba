@@ -83,7 +83,7 @@
                     @endforeach  
                     <!--<td>{{$det->alimento_bodega_socio->pesos_alimento}}</td>-->
                     @foreach($det->alimento_bodega_socio->pesos_alimento as $p)                                                                               
-                        <td> {{$p->gramos_x_kg }} </td> 
+                        <td> {{$p }} </td> 
                     @endforeach   
                     <td>{{$det->no_unidades}}</td>
                     <td>{{$det->alimento_bodega_socio->saldo}}</td>
