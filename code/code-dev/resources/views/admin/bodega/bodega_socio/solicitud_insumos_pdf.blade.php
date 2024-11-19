@@ -81,7 +81,7 @@
                             <td> {{ $a->cantidad }} </td> 
                         @endif                                                            
                     @endforeach  
-                    <!--<td>{{$det->alimento_bodega_socio->pesos_alimento}}</td>-->
+                    <td>{{$a->id_alimento.'-'.$p->id_insumo}}</td>
                     @foreach($det->alimento_bodega_socio->pesos_alimento as $p)   
                         @if($a->id_alimento == $p->id_insumo)
                             <td> {{ $p->gramos_x_kg }} </td> 
