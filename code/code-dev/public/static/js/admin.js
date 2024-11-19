@@ -516,7 +516,7 @@ function obtenerSociosSolicitudes(){
         if(this.readyState == 4 && this.status == 200){
             var data = this.responseText;
             data = JSON.parse(data);            
-
+            console.log(data);
             if('solicitudes' in data){ 
                 for(i=0; i<data.solicitudes.length; i++){
                     select.innerHTML += "<option value=\""+data.solicitudes[i].id+"\" selected>"+"No."+data.solicitudes[i].id+"- Fecha: "+data.solicitudes[i].fecha+"</option>";
@@ -591,7 +591,7 @@ function cálculosEscuelasSolicitud(solicitud, escuela){
 
             //data.forEach(function(element){
                 //console.log(element);
-            //});
+            //}); 
 
             
         }
