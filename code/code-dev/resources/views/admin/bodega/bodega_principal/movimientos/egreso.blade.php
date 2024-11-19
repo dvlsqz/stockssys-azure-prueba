@@ -57,7 +57,7 @@
                                     </select>        
                                     
                                     <a href="#" class="btn btn-sm btn-info " id="btn_buscar_socios_solicitudes_despacho" data-toogle="tooltrip" data-placement="top" title="Buscar" ><i class="fas fa-search"></i> </a>
-                                    <a href="{{ url('/admin/bodega_principal/insumo/egresos') }}" class="btn btn-sm btn-warning " data-toogle="tooltrip" data-placement="top" title="Buscar" ><i class="fa-solid fa-eraser"></i> </a>
+                                    <a href="{{ url('/admin/bodega_principal/insumo/egresos') }}" class="btn btn-sm btn-warning " data-toogle="tooltrip" data-placement="top" title="Borrar" ><i class="fa-solid fa-eraser"></i> </a>
                                 </div>
                             </div>
 
