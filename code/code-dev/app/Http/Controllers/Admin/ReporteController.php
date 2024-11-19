@@ -1089,7 +1089,7 @@ class ReporteController extends Controller
     }
 
     public function getSociosSolicitudes($id){       
-        $solicitudes = Solicitud::where('id_socio', $id)->get();
+        $solicitudes = SolicitudBodegaPrimaria::where('id_socio', $id)->get();
  
 
         $datos = [
