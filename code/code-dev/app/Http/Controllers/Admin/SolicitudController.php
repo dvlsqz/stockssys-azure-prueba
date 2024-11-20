@@ -2776,12 +2776,12 @@ class SolicitudController extends Controller
             $detalle=new BodegaEgresoDetalle();
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
-            $detalle->pl = 0;  
+            $detalle->pl = 0;   
 
             if( $alimentos[$cont]->id_alimento != 26 ):
-                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/50), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/50), 2, '.', ',' ) ;
+                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/453.59237)/100), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/453.59237)/100), 2, '.', ',' ) ;
             else:
-                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/1000)/18.5), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/1000)/18.5), 2, '.', ',' ) ;
+                $detalle->no_unidades =  number_format( ((($dias_pre*$beneficiarios_pre*$alimentos[$cont]->cantidad)/453.59237)/100), 2, '.', ',' ) + number_format( ((($dias_pri*$beneficiarios_pri*$alimentos1[$cont]->cantidad)/453.59237)/100), 2, '.', ',' ) ;
             endif;
             $detalle->save();
             $cont=$cont+1;
@@ -2937,7 +2937,7 @@ class SolicitudController extends Controller
         $cont=0;
 
         while ($cont<count($alimentos)) {
-            $unidades_despachar = number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/110)), 2, '.', ',' ) ;
+            $unidades_despachar = number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/100)), 2, '.', ',' ) ;
             $detalle=new BodegaEgresoDetalle();
             $detalle->id_egreso = $be->id;
             $detalle->id_insumo = $alimentos[$cont]->id_alimento;        
@@ -3099,7 +3099,7 @@ class SolicitudController extends Controller
             
             $detalle->pl = 0;
             
-            $detalle->no_unidades =  number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/110)), 2, '.', ',' ) ;
+            $detalle->no_unidades =  number_format( ((($dias*$beneficiarios*$alimentos[$cont]->cantidad)/100)), 2, '.', ',' ) ;
             $detalle->save();
             $cont=$cont+1;
         }
