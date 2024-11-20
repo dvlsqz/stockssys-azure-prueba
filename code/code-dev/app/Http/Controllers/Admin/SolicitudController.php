@@ -2707,7 +2707,8 @@ class SolicitudController extends Controller
             $beneficiarios_pri = $d_pri->total_beneficiarios;
         endforeach;
 
-        return '<h1> Preprimaria </h1> </br>'.$dias_pre.'-'.$beneficiarios_pre.'-'.$tipo_act_ali_pre.'</br> <h1> Primaria </h1> </br>'.$dias_pri.'-'.$beneficiarios_pri;
+        //return '<h1> Preprimaria </h1> </br>'.$dias_pre.'-'.$beneficiarios_pre.'-'.$tipo_act_ali_pre.'</br> <h1> Primaria </h1> </br>'.$dias_pri.'-'.$beneficiarios_pri;
+        
         $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
@@ -2725,7 +2726,7 @@ class SolicitudController extends Controller
             $alimentos = $r->alimentos;
         endforeach;
 
-        if($id_escolar_racion == $tipo_act_ali_pre):
+        if($id_escolar_racion == $tipo_act_ali_pre ||  $tipo_act_ali_pre == 10):
             $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
             foreach($consulta as $c):
                 $tipo_insumo = $c->tipo_insumos;
@@ -2755,7 +2756,7 @@ class SolicitudController extends Controller
             $alimentos1 = $r2->alimentos;
         endforeach;
 
-       //return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
+       return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
 
         //return Carbon::now()->format('Y-m-d');
         $pls = BodegaIngresoDetalle::select('id','pl')->whereRaw('(no_unidades - no_unidades_usadas) > 0')->get();
