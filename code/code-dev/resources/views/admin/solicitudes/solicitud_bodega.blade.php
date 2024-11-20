@@ -88,7 +88,14 @@ ini_set('max_execution_time', 0); ?>
                                             @endif
                                         @endforeach 
                                     @else
-                                        {{$id_escuela}}
+                                        @php($id_escuela_aux = 0)
+                                        @foreach($det_escuelas_preprimaria_sllr_enc as $det_preprimaria_enc_sllr)
+                                            @if($det_preprimaria_enc_sllr->escuela_id == $e->escuela_id)    
+                                                @php($id_escuela_aux = $det_preprimaria_enc_sllr->escuela_id)
+                                            @endif                                   
+                                        @endforeach   
+                                        {{$id_escuela_aux}}
+                                        
                                     @endif
                             </div>
                             <div class="col-md-3">
