@@ -2708,7 +2708,7 @@ class SolicitudController extends Controller
         endforeach;
 
         //return '<h1> Preprimaria </h1> </br>'.$dias_pre.'-'.$beneficiarios_pre.'-'.$tipo_act_ali_pre.'</br> <h1> Primaria </h1> </br>'.$dias_pri.'-'.$beneficiarios_pri;
-        
+
         $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
@@ -2737,7 +2737,17 @@ class SolicitudController extends Controller
             else:
                 $racion2 = Kit::with('insumos')->where('id', '=', $id_escolar2_racion)->where('id_institucion', Auth::user()->id_institucion)->get();     
             endif;
-                  
+        elseif($tipo_act_ali_pre == 12):
+            $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
+            foreach($consulta as $c):
+                $tipo_insumo = $c->tipo_insumos;
+            endforeach;
+            
+            if($tipo_insumo == "1"):
+                $racion2 = Racion::with('alimentos')->where('id', '=', $id_escolar2_ordinario_racion)->where('id_institucion', Auth::user()->id_institucion)->get();     
+            else:
+                $racion2 = Kit::with('insumos')->where('id', '=', $id_escolar2_ordinario_racion)->where('id_institucion', Auth::user()->id_institucion)->get();     
+            endif;
         else:
             
             $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
