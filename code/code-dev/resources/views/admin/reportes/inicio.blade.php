@@ -37,9 +37,9 @@
                         <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Mes Inicial: </strong></label>
                         <div class="input-group">
                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
-                            {!! Form::select('mes_inicial', obtenerMeses('list', null), $entrega->mes_inicial,['class'=>'form-select']) !!} 
+                            {!! Form::select('mes_inicial', obtenerMeses('list', null), 1,['class'=>'form-select']) !!} 
                         </div>
-                        
+
                         {!! Form::submit('Generar', ['class'=>'btn btn-info mtop16']) !!}
                     {!! Form::close() !!}
                 </div>
