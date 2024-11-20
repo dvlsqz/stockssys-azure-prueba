@@ -87,7 +87,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @else  
+                                    @elseif($tipo_racion_escolar == 0)  
                                         @if($id_escuela == 159)
                                         @foreach($det_escuelas_preprimaria_sllr_enc as $det_preprimaria_enc_sllr)
                                                 @if($det_preprimaria_enc_sllr->escuela_id == $e->escuela_id)    
@@ -216,7 +216,7 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    @else
+                                    @elseif($tipo_racion_escolar == 0)  
                                         @if($id_escuela2 == 159)
                                             @foreach($det_escuelas_primaria_sllr_enc as $det_primaria_enc_sllr)
                                                 @if($det_primaria_enc_sllr->escuela_id == $e->escuela_id)    
