@@ -2707,7 +2707,7 @@ class SolicitudController extends Controller
             $beneficiarios_pri = $d_pri->total_beneficiarios;
         endforeach;
 
-        //return '<h1> Preprimaria </h1> </br>'.$dias_pre.'-'.$beneficiarios_pre.'-'.$tipo_act_ali_pre.'</br> <h1> Primaria </h1> </br>'.$dias_pri.'-'.$beneficiarios_pri;
+        return '<h1> Preprimaria </h1> </br>'.$dias_pre.'-'.$beneficiarios_pre.'-'.$tipo_act_ali_pre.'</br> <h1> Primaria </h1> </br>'.$dias_pri.'-'.$beneficiarios_pri;
         $consulta = Solicitud::where('id',$request->input('idSolicitud'))->get();
         foreach($consulta as $c):
             $tipo_insumo = $c->tipo_insumos;
