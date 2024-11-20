@@ -87,8 +87,8 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif
                                             @endif
                                         @endforeach 
-                                    
-                                        
+                                    @else
+                                        {{$id_escuela}}
                                     @endif
                             </div>
                             <div class="col-md-3">
