@@ -2766,7 +2766,7 @@ class SolicitudController extends Controller
             $alimentos1 = $r2->alimentos;
         endforeach;
 
-       return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
+       //return $alimentos.' \nsegundos alimentos\n'.$alimentos1; 
 
         //return Carbon::now()->format('Y-m-d');
         $pls = BodegaIngresoDetalle::select('id','pl')->whereRaw('(no_unidades - no_unidades_usadas) > 0')->get();
