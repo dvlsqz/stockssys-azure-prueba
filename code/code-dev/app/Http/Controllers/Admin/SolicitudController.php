@@ -2687,11 +2687,11 @@ class SolicitudController extends Controller
             ->join('raciones', 'raciones.id', 'solicitud_detalles.tipo_de_actividad_alimentos')
             ->where('solicitud_detalles.id_solicitud', $request->input('idSolicitud'))  
             ->where('solicitud_detalles.id_escuela', $request->input('idEscuela'))   
-            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_expansion_racion,$id_escolar_ordinario_racion,$id_escolar2_ordinario_racion])         
+            ->whereIn('solicitud_detalles.tipo_de_actividad_alimentos', [$id_escolar_racion,$id_escolar2_racion,$id_escolar_expansion_racion,$id_escolar_sllr,$id_escolar2_expansion_racion,$id_escolar_ordinario_racion,$id_escolar2_ordinario_racion])         
             ->where('solicitud_detalles.deleted_at', null)
             ->groupBy('solicitud_detalles.id_escuela', 'raciones.nombre','solicitud_detalles.tipo_de_actividad_alimentos')
             ->get();  
-             
+
         return '<h1> Preprimaria </h1> </br>'.$descarga_pre.'</br> <h1> Primaria </h1> </br>'.$descarga_pri;
 
         
