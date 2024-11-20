@@ -33,7 +33,7 @@ ini_set('max_execution_time', 0); ?>
                                             Total Beneficiarios:  <b>{{ $det_preprimaria_enc->total_beneficiarios}}  </b>
                                             @php($tipo_racion_escolar = $det_preprimaria_enc->idracion)
                                             @php($id_escuela = $det_preprimaria_enc->escuela_id )
-                                            
+                                            {{$id_escuela.' - '.$det_preprimaria_enc->escuela_id }}
                                         @endif                                   
                                     @endforeach 
                                    
