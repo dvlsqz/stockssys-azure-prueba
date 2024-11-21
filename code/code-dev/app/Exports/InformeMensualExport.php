@@ -100,7 +100,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->mergeCells('A7:B7');   
                 $event->sheet->setCellValue('A7', 'Mes: ');
                 $event->sheet->mergeCells('C7:E7');  
-                $event->sheet->setCellValue('C7', obtenerMeses(null, $mes));
+                $event->sheet->setCellValue('C7', obtenerMeses(null, $this->mes));
                 $event->sheet->getStyle('C7:E7')->getAlignment()->setHorizontal('center');       
                 $event->sheet->getStyle('C7:E7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);        
                 $event->sheet->getStyle('A7:E7')->getFont()->setBold(true); 
