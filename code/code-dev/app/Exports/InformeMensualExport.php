@@ -358,7 +358,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     for($f = 0; $f < $cantidad_alimentos; $f++){
                         foreach($pl as $p){
                             if($alimentos[$d]->id == $p->insumo){
-                                $event->sheet->setCellValue($prueba[$i].'13', $alimentos[$d]->nombre);
+                                $event->sheet->setCellValue($prueba[$i].'13', $p->pl_alimento);
                             }
                         }
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
