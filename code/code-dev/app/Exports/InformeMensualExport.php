@@ -310,7 +310,15 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getStyle('T26:V35')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
 
 
-                // consultas
+                // consultas saldos
+
+                $maiz_bio = DB::table('bodegas as b')
+                ->select(
+                    DB::RAW('b.saldos')
+                )            
+                ->where('b.id', 27)
+                ->get();
+
                 $maiz_bio = DB::table('bodegas_ingresos as bi')
                     ->select(
                         DB::RAW('bi_det.no_unidades')
@@ -342,6 +350,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 for($i =0; $i < count($prueba); $i++){
                     for($f = 0; $f < $cantidad_alimentos; $f++){
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
+                        $event->sheet->setCellValue($prueba[$i].'14', $alimentos[$d]->saldo);
                     }
                     $d++;
                 }
