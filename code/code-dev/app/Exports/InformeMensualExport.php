@@ -248,7 +248,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getStyle('C36:E36')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);  
         
                 
-                $columnas = ['G','I','J','K','L','M','N','O','P','Q'];
+                $columnas = ['G','I','J','K','L','M','N','O','P','Q','R','S'];
                 $filas = ['18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35'];
                 
                 for($i=0; $i<count($columnas); $i++){
@@ -326,7 +326,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     }
                 }
 
-                $prueba = ['G','J','L','N','P'];
+                $prueba = ['G','J','L','N','P','R'];
                 $row = 1;
                 $d = 0;
                 for($i =0; $i < count($prueba); $i++){
