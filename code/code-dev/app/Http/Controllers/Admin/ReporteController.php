@@ -1115,6 +1115,6 @@ class ReporteController extends Controller
                     ->groupBy('bi_det.id_insumo','bi_det.pl')
                     ->get();
         
-        return $maiz_bio;
+        return $pl;
     }
 }
