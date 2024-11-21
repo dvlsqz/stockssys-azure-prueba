@@ -35,7 +35,7 @@ class ReporteController extends Controller
         ];
         //return $alimentos;
         //return Excel::download(new InformeMensualExport, 'informe mensual.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        return Excel::download(new InformeMensualExport($data), 'informe mensual de '.$nombre.'.xlsx');
+        return Excel::download(new InformeMensualExport($data), 'informe mensual de '.$nombre.' '.Carbon::now()->year.'.xlsx');
     }
  
     public function getPanelReporte(){       

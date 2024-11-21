@@ -110,6 +110,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getStyle('S3:T3')->getFont()->setBold(true); 
         
                 $event->sheet->setCellValue('S7', 'Año:');
+                $event->sheet->setCellValue('T7', Carbon::now()->year);
                 $event->sheet->getStyle('T7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);
                 $event->sheet->getStyle('S7:T7')->getFont()->setBold(true); 
         
@@ -272,24 +273,24 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                 }
         
-                $event->sheet->getStyle('R9:T12')->getAlignment()->setHorizontal('center');  
-                $event->sheet->getStyle('R9:R12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->getStyle('R9:T12')->getFont()->setSize(7);
-                $event->sheet->setCellValue('R9', 'SOCIO');
-                $event->sheet->setCellValue('R10', 'PARTICIPANTES');
-                $event->sheet->setCellValue('R11', 'RECIBIDOS');
-                $event->sheet->setCellValue('R12', 'SOLICITUD');
-                $event->sheet->getStyle('S9:T12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->mergeCells('S9:T9');
-                $event->sheet->setCellValue('S9', 'BODEGA');
-                $event->sheet->setCellValue('S10', 'PARTICIPANTES');
-                $event->sheet->setCellValue('T10', 'RACIONES');
-                $event->sheet->setCellValue('S11', 'DISTRIBUIDOS');
-                $event->sheet->setCellValue('T11', 'DISTRIBUIDAS');
+                $event->sheet->getStyle('T9:V12')->getAlignment()->setHorizontal('center');  
+                $event->sheet->getStyle('T9:V12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->getStyle('T9:V12')->getFont()->setSize(7);
+                $event->sheet->setCellValue('T9', 'SOCIO');
+                $event->sheet->setCellValue('T10', 'PARTICIPANTES');
+                $event->sheet->setCellValue('T11', 'RECIBIDOS');
+                $event->sheet->setCellValue('T12', 'SOLICITUD');
+                $event->sheet->getStyle('U9:V12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->mergeCells('U9:V9');
+                $event->sheet->setCellValue('U9', 'BODEGA');
+                $event->sheet->setCellValue('U10', 'PARTICIPANTES');
+                $event->sheet->setCellValue('V10', 'RACIONES');
+                $event->sheet->setCellValue('U11', 'DISTRIBUIDOS');
+                $event->sheet->setCellValue('V11', 'DISTRIBUIDAS');
         
-                $event->sheet->getStyle('R13:T18')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->getStyle('R13:R18')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('f2f2f2');
-                $event->sheet->getStyle('S13:T18')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
+                $event->sheet->getStyle('T13:V18')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->getStyle('T13:T18')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('f2f2f2');
+                $event->sheet->getStyle('U13:V18')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
         
         
                 for($k=0; $k<count($filas); $k++){
@@ -302,11 +303,11 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     }
                 }
         
-                $event->sheet->getStyle('R19:T25')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->getStyle('R19:T25')->getBorders()->getInside()->setBorderStyle(Border::BORDER_THIN);
+                $event->sheet->getStyle('T19:V25')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->getStyle('T19:V25')->getBorders()->getInside()->setBorderStyle(Border::BORDER_THIN);
         
-                $event->sheet->getStyle('R26:T35')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->getStyle('R26:T35')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
+                $event->sheet->getStyle('T26:V35')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->getStyle('T26:V35')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
 
 
 
