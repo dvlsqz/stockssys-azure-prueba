@@ -1113,7 +1113,7 @@ class ReporteController extends Controller
                     ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
                      
                     ->whereMonth('bi.fecha',$mes)
-                    ->where('bi_det.id_insumo', 28)
+                    ->where('bi_det.id_insumo', 27)
                     ->get();
         
         return $maiz_bio;
