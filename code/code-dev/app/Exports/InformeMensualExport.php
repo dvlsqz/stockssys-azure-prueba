@@ -314,7 +314,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                 $maiz_bio = DB::table('bodegas as b')
                 ->select(
-                    DB::RAW('b.saldos')
+                    DB::RAW('b.saldo')
                 )            
                 ->where('b.id', 27)
                 ->get();
