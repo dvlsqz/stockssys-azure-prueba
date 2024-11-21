@@ -1108,7 +1108,7 @@ class ReporteController extends Controller
     public function prueba($mes){
         $maiz_bio = DB::table('bodegas_ingresos as bi')
                     ->select(
-                        DB::RAW('bi_det.no_unidades')
+                        DB::RAW('SUM(bi_det.no_unidades) as total')
                     )            
                     ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
                      
