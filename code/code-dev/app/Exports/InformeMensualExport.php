@@ -74,8 +74,6 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getColumnDimension('D')->setWidth(12.00);
                 $event->sheet->getColumnDimension('E')->setWidth(12.00);
                 $event->sheet->getColumnDimension('F')->setWidth(12.29);
-                $event->sheet->getColumnDimension('R')->setWidth(13.86);
-                $event->sheet->getColumnDimension('S')->setWidth(13.86);
                 $event->sheet->getColumnDimension('T')->setWidth(12.14);
                 $event->sheet->getRowDimension('6')->setRowHeight(23.25);
         
@@ -185,8 +183,8 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->setCellValue('B26', 'K.');
                 $event->sheet->mergeCells('C26:F26');
                 $event->sheet->setCellValue('C26', 'Total de egresos ( = F.+G.+H.+I.+J. )');
-                $event->sheet->getStyle('B26:Q26')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
-                $event->sheet->getStyle('B26:Q26')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('f2f2f2');
+                $event->sheet->getStyle('B26:S26')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
+                $event->sheet->getStyle('B26:S26')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('f2f2f2');
         
                 $event->sheet->getStyle('A27:F27')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
                 $event->sheet->setCellValue('A27', 'L.');
@@ -198,7 +196,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->mergeCells('B28:F28');
                 $event->sheet->setCellValue('B28', 'INVENTARIO FÍSICO');
                 $event->sheet->getStyle('A28:B28')->getFont()->setBold(true); 
-                $event->sheet->getStyle('A28:Q28')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
+                $event->sheet->getStyle('A28:S28')->getFill()->setFillType(\PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID)->getStartColor()->setARGB('c0c0c0');
         
                 $event->sheet->getStyle('A29:F29')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
                 $event->sheet->setCellValue('A29', 'N.');
