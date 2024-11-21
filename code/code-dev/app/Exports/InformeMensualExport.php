@@ -74,7 +74,9 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getColumnDimension('D')->setWidth(12.00);
                 $event->sheet->getColumnDimension('E')->setWidth(12.00);
                 $event->sheet->getColumnDimension('F')->setWidth(12.29);
-                $event->sheet->getColumnDimension('T')->setWidth(12.14);
+                $event->sheet->getColumnDimension('T')->setWidth(13.86);
+                $event->sheet->getColumnDimension('U')->setWidth(13.86);
+                $event->sheet->getColumnDimension('V')->setWidth(12.14);
                 $event->sheet->getRowDimension('6')->setRowHeight(23.25);
         
                 $event->sheet->mergeCells('J3:P3');        
