@@ -1106,14 +1106,13 @@ class ReporteController extends Controller
     }
 
     public function prueba($mes){
-        $maiz_bio = DB::table('bodegas_ingresos as bi')
+        $pl = DB::table('bodegas_ingresos as bi')
                     ->select(
-                        DB::RAW('SUM(bi_det.no_unidades) as total')
+                        DB::RAW('bi_det.pl as pl_alimento'),
+                        DB::RAW('bi_det.id_insumo as insumo')
                     )            
                     ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
-                     
-                    ->whereMonth('bi.fecha',$mes)
-                    ->where('bi_det.id_insumo', 27)
+                    ->groupBy('bi_det.id_insumo','bi_det.pl')
                     ->get();
         
         return $maiz_bio;
