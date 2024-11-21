@@ -330,7 +330,14 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     ->groupBy('bi_det.pl')
                     ->get();*/
 
-
+                $pl = DB::table('bodegas_ingresos as bi')
+                    ->select(
+                        DB::RAW('bi_det.pl as pl_alimento'),
+                        DB::RAW('bi_det.id_insumo as insumo')
+                    )            
+                    ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
+                    ->groupBy('bi_det.id_insumo','bi_det.pl')
+                    ->get();
 
 
                 
@@ -349,6 +356,11 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $d = 0;
                 for($i =0; $i < count($prueba); $i++){
                     for($f = 0; $f < $cantidad_alimentos; $f++){
+                        foreach($pl as $p){
+                            if($alimentos[$d]->id == $p->insumo){
+                                $event->sheet->setCellValue($prueba[$i].'13', $alimentos[$d]->nombre);
+                            }
+                        }
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
                         $event->sheet->setCellValue($prueba[$i].'14', $alimentos[$d]->saldo);
                     }
