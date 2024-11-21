@@ -1105,14 +1105,14 @@ class ReporteController extends Controller
         return response()->json($datos);
     }
 
-    public function prueba(){
+    public function prueba($mes){
         $maiz_bio = DB::table('bodegas_ingresos as bi')
                     ->select(
                         DB::RAW('bi_det.no_unidades')
                     )            
                     ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
                      
-                    ->whereMonth('bi.fecha',$this->mes)
+                    ->whereMonth('bi.fecha',$mes)
                     ->where('bi_det.id_insumo', 27)
                     ->groupBy('bi_det.pl')
                     ->get();
