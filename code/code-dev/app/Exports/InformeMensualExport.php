@@ -103,14 +103,14 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getStyle('C7:E7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);        
                 $event->sheet->getStyle('A7:E7')->getFont()->setBold(true); 
                 
-                $event->sheet->getStyle('S3:T3')->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
-                $event->sheet->setCellValue('S3', 'No.');        
-                $event->sheet->getStyle('S3:T3')->getFont()->setBold(true); 
+                $event->sheet->getStyle('U3:V3')->getBorders()->getAllBorders()->setBorderStyle(Border::BORDER_THIN);
+                $event->sheet->setCellValue('U3', 'No.');        
+                $event->sheet->getStyle('U3:V3')->getFont()->setBold(true); 
         
-                $event->sheet->setCellValue('S7', 'Año:');
-                $event->sheet->setCellValue('T7', Carbon::now()->year);
-                $event->sheet->getStyle('T7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);
-                $event->sheet->getStyle('S7:T7')->getFont()->setBold(true); 
+                $event->sheet->setCellValue('U7', 'Año:');
+                $event->sheet->setCellValue('V7', Carbon::now()->year);
+                $event->sheet->getStyle('V7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);
+                $event->sheet->getStyle('U7:V7')->getFont()->setBold(true); 
         
                 $event->sheet->getStyle('A9:F12')->getBorders()->getOutline()->setBorderStyle(Border::BORDER_MEDIUM);
         
