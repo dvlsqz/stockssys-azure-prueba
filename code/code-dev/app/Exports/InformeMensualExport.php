@@ -312,7 +312,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                 // consultas saldos
 
-                $maiz_bio = DB::table('bodegas as b')
+                /*$maiz_bio = DB::table('bodegas as b')
                 ->select(
                     DB::RAW('b.saldo')
                 )            
@@ -328,7 +328,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     ->whereMonth('bi.fecha',$this->mes)
                     ->where('bi_det.id_insumo', 27)
                     ->groupBy('bi_det.pl')
-                    ->get();
+                    ->get();*/
 
 
 
