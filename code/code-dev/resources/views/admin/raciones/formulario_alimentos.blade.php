@@ -3,7 +3,7 @@
 <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Alimento: </strong></label>
 <div class="input-group">
     <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
-    {!! Form::select('id_alimento', $alimentos, 0,['class'=>'form-select', 'id' => 'id_institucion', 'style' => 'width: 85%']) !!}
+    {!! Form::select('id_alimento', $alimentos, 0,['class'=>'form-select', 'id' => 'id_institucion', 'style' => 'width: 80%']) !!}
 </div>
 
 <label for="name" class="mtop16"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Cantidad de Alimento: </strong></label>
