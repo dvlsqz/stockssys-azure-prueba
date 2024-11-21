@@ -29,13 +29,13 @@ class ReporteController extends Controller
     public function postInformeMensualExport(Request $request){
         $mes = $request->input('mes');
         $alimentos = Bodega::where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->get();
-        
+        $nombre = obtenerMeses(null, $mes);
         $data = [
             'mes' => $mes
         ];
         //return $alimentos;
         //return Excel::download(new InformeMensualExport, 'informe mensual.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        return Excel::download(new InformeMensualExport($data), 'informe mensual.xlsx');
+        return Excel::download(new InformeMensualExport($data), 'informe mensual de '.$nombre.'.xlsx');
     }
  
     public function getPanelReporte(){       
