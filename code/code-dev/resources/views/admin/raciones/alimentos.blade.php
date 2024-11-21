@@ -51,17 +51,19 @@
                         </thead>
                         <tbody>
                             @foreach($alimentos_racion as $ar)
-                                <tr>
-                                    <td width="240px">
-                                        <div class="opts">
-                                            <a href="#" data-action="eliminar" data-path="admin/racion/alimentos" data-object="{{ $ar->id }}" class="btn-eliminar" data-toogle="tooltrip" data-placement="top" title="Eliminar" ><i class="fa-solid fa-trash-can"></i></a> 
-                                        </div>
-                                    </td>
-                                    <td>
-                                        {{ $ar->alimento->nombre }} <br>
-                                    </td>
-                                    <td>{{ $ar->cantidad }}  {{ obtenerUnidadesMedidaRaciones(null, $ar->unidad_medida) }} </td>
-                                </tr>
+                                @if($ar->cantidad != 0)
+                                    <tr>
+                                        <td width="240px">
+                                            <div class="opts">
+                                                <a href="#" data-action="eliminar" data-path="admin/racion/alimentos" data-object="{{ $ar->id }}" class="btn-eliminar" data-toogle="tooltrip" data-placement="top" title="Eliminar" ><i class="fa-solid fa-trash-can"></i></a> 
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {{ $ar->alimento->nombre }} <br>
+                                        </td>
+                                        <td>{{ $ar->cantidad }}  {{ obtenerUnidadesMedidaRaciones(null, $ar->unidad_medida) }} </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>
