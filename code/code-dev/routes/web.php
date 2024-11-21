@@ -177,6 +177,7 @@ Route::group(['prefix' => '/admin', 'middleware' => ['auth', 'UserStatus', 'Perm
     Route::get('/reporte/panel', [App\Http\Controllers\Admin\ReporteController::class, 'getPanelReporte'])->name('reportes');
     Route::post('/reporte/panel/generar', [App\Http\Controllers\Admin\ReporteController::class, 'postPanelReporteGenerar'])->name('reportes');
     Route::get('/reporte/exportar/pdf/{idSolicitud}/{idSocio}/{numReporte}', [App\Http\Controllers\Admin\ReporteController::class, 'getReporteGenerarPDF'])->name('reportes');
+    Route::get('/reporte/prueba', [App\Http\Controllers\Admin\ReporteController::class, 'prueba'])->name('reportes');
 
     //Reporte de Bitacoras
     Route::get('/bitacoras', [App\Http\Controllers\Admin\BitacoraController::class, 'getInicio'])->name('bitacoras');
