@@ -95,7 +95,14 @@ ini_set('max_execution_time', 0); ?>
                                             @endif                                   
                                         @endforeach   
 
-                                        @if($id_escuela_aux == 159)
+                                        @if($id_escuela_aux == 159 || $id_escuela_aux == 194 || $id_escuela_aux == 349 || $id_escuela_aux == 187 || $id_escuela_aux == 356 || $id_escuela_aux == 348
+                                        || $id_escuela_aux == 346 || $id_escuela_aux == 354 || $id_escuela_aux == 379 || $id_escuela_aux == 373 || $id_escuela_aux == 352 || $id_escuela_aux == 347
+                                        || $id_escuela_aux == 368 || $id_escuela_aux == 377 || $id_escuela_aux == 372 || $id_escuela_aux == 363 || $id_escuela_aux == 370 || $id_escuela_aux == 357
+                                        || $id_escuela_aux == 351 || $id_escuela_aux == 371 || $id_escuela_aux == 350 || $id_escuela_aux == 380 || $id_escuela_aux == 376 || $id_escuela_aux == 362 
+                                        || $id_escuela_aux == 362 || $id_escuela_aux == 369 || $id_escuela_aux == 364 || $id_escuela_aux == 353 || $id_escuela_aux == 366 || $id_escuela_aux == 360
+                                        || $id_escuela_aux == 359 || $id_escuela_aux == 358 || $id_escuela_aux == 367 || $id_escuela_aux == 355 || $id_escuela_aux == 378 || $id_escuela_aux == 374
+                                        || $id_escuela_aux == 375 || $id_escuela_aux == 365 || $id_escuela_aux == 361
+                                        )
                                             @foreach($det_escuelas_preprimaria_sllr_enc as $det_preprimaria_enc_sllr)
                                                 @if($det_preprimaria_enc_sllr->escuela_id == $e->escuela_id)    
                                                     Racion:  <b> {{ $det_preprimaria_enc_sllr->racion}}</b> &nbsp                                    
@@ -229,7 +236,14 @@ ini_set('max_execution_time', 0); ?>
                                                 @endif                                   
                                             @endforeach   
                                         
-                                        @if($id_escuela2_aux == 159)
+                                        @if($id_escuela2_aux == 159 || $id_escuela2_aux == 194 || $id_escuela2_aux == 349 || $id_escuela2_aux == 187 || $id_escuela2_aux == 356 || $id_escuela2_aux == 348
+                                        || $id_escuela2_aux == 346 || $id_escuela2_aux == 354 || $id_escuela2_aux == 379 || $id_escuela2_aux == 373 || $id_escuela2_aux == 352 || $id_escuela2_aux == 347
+                                        || $id_escuela2_aux == 368 || $id_escuela2_aux == 377 || $id_escuela2_aux == 372 || $id_escuela2_aux == 363 || $id_escuela2_aux == 370 || $id_escuela2_aux == 357
+                                        || $id_escuela2_aux == 351 || $id_escuela2_aux == 371 || $id_escuela2_aux == 350 || $id_escuela2_aux == 380 || $id_escuela2_aux == 376 || $id_escuela2_aux == 362 
+                                        || $id_escuela2_aux == 362 || $id_escuela2_aux == 369 || $id_escuela2_aux == 364 || $id_escuela2_aux == 353 || $id_escuela2_aux == 366 || $id_escuela2_aux == 360
+                                        || $id_escuela2_aux == 359 || $id_escuela2_aux == 358 || $id_escuela2_aux == 367 || $id_escuela2_aux == 355 || $id_escuela2_aux == 378 || $id_escuela2_aux == 374
+                                        || $id_escuela2_aux == 375 || $id_escuela2_aux == 365 || $id_escuela2_aux == 361
+                                        )
                                             @foreach($det_escuelas_primaria_sllr_enc as $det_primaria_enc_sllr)
                                                 @if($det_primaria_enc_sllr->escuela_id == $e->escuela_id)    
                                                     Racion:  <b> {{ $det_primaria_enc_sllr->racion}}</b> &nbsp                                    
