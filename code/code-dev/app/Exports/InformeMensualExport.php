@@ -25,9 +25,10 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
     * @return \Illuminate\Support\Collection
     */
 
+    public $mes;
 
-    function __construct(){
-
+    function __construct($data){
+        $this->mes = $data['mes'];
     }
 
 
@@ -97,7 +98,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->getStyle('J6')->getFont()->setBold(true);
 
                 $event->sheet->mergeCells('A7:B7');   
-                $event->sheet->setCellValue('A7', 'Mes:');
+                $event->sheet->setCellValue('A7', 'Mes: ', $this->mes);
                 $event->sheet->mergeCells('C7:E7');  
                 $event->sheet->getStyle('C7:E7')->getAlignment()->setHorizontal('center');       
                 $event->sheet->getStyle('C7:E7')->getBorders()->getBottom()->setBorderStyle(Border::BORDER_THIN);        

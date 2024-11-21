@@ -26,12 +26,16 @@ class ReporteController extends Controller
         return view('admin.reportes.inicio',$datos);
     }
 
-    public function postInformeMensualExport(){
+    public function postInformeMensualExport(Request $request){
+        $mes = $request->input('mes');
         $alimentos = Bodega::where('categoria' , 0)->where('tipo_bodega',1)->where('id_institucion', Auth::user()->id_institucion)->get();
         
+        $data = [
+            'mes' => $mes
+        ];
         //return $alimentos;
         //return Excel::download(new InformeMensualExport, 'informe mensual.pdf', \Maatwebsite\Excel\Excel::DOMPDF);
-        return Excel::download(new InformeMensualExport, 'informe mensual.xlsx');
+        return Excel::download(new InformeMensualExport($data), 'informe mensual.xlsx');
     }
  
     public function getPanelReporte(){       
@@ -1088,7 +1092,7 @@ class ReporteController extends Controller
         return $datos;
     }
 
-    public function getSociosSolicitudes($id){       
+    public function getSociosSolicitudes($id){        
 
 
         $solicitudes = SolicitudBodegaPrimaria::where('id_socio_solicitante', $id)->get();
