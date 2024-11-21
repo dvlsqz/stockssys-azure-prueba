@@ -1114,7 +1114,7 @@ class ReporteController extends Controller
                      
                     ->whereMonth('bi.fecha',$mes)
                     ->where('bi_det.id_insumo', 27)
-                    ->groupBy('bi_det.pl')
+                    ->groupBy('bi_det.pl','bi_det.no_unidades')
                     ->get();
         
         return $maiz_bio;
