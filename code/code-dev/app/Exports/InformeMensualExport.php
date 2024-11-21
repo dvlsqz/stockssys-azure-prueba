@@ -361,10 +361,24 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                                 $event->sheet->setCellValue($prueba[$i].'13', $p->pl_alimento);
                             }
                         }
+
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
                         $event->sheet->setCellValue($prueba[$i].'14', $alimentos[$d]->saldo);
                         $event->sheet->setCellValue($prueba[$i].'17', '=SUM('.$prueba[$i].'15:'.$prueba[$i].'16)');
                         $event->sheet->setCellValue($prueba[$i].'18', '=SUM('.$prueba[$i].'14:'.$prueba[$i].'17)');
+
+                        $event->sheet->setCellValue($prueba[$i].'26', '=SUM('.$prueba[$i].'20:'.$prueba[$i].'25)');
+
+                        $event->sheet->setCellValue($prueba[$i].'27', '=('.$prueba[$i].'18-'.$prueba[$i].'26)');
+
+                        $event->sheet->getParent()->getActiveSheet()
+                            ->getStyle($prueba[$i].'28:'.$prueba[$i].'28')
+                            ->getProtection()
+                            ->setLocked(Protection::PROTECTION_UNPROTECTED);
+
+                        $event->sheet->setCellValue($prueba[$i].'29', '=('.$prueba[$i].'27-'.$prueba[$i].'28)');
+
+                        
                     }
                     $d++;
                 }
