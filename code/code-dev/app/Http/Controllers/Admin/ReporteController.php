@@ -1116,6 +1116,6 @@ class ReporteController extends Controller
         ->groupBy('be_det.id_insumo')
         ->get();
         
-        return $pl;
+        return $saldos;
     }
 }
