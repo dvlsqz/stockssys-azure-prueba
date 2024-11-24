@@ -1108,8 +1108,8 @@ class ReporteController extends Controller
     public function prueba($mes){
         $saldos = DB::table('bodegas_egresos as be')
         ->select(
-            'be_det.id_insumo as insumo',
-            'SUM(be_det.no_unidades) as despachado'
+            DB::RAW('be_det.id_insumo as insumo'),
+            DB::RAW('SUM(be_det.no_unidades) as despachado')
         )
         ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
         ->whereMonth('be.fecha',$mes)
