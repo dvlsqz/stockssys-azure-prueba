@@ -411,7 +411,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         $event->sheet->setCellValue($prueba[$i].'17', '=SUM('.$prueba[$i].'15:'.$prueba[$i].'16)');
                         $event->sheet->setCellValue($prueba[$i].'18', '=SUM('.$prueba[$i].'14:'.$prueba[$i].'17)');
 
-                        $event->sheet->setCellValue($prueba[$i].'26', '=SUM('.$prueba[$i].'20:'.$prueba[$i].'25)');
+                        $event->sheet->setCellValue($prueba[$i].'26', '=('.$prueba[$i].'19+'.$prueba[$i].'21+'.$prueba[$i].'22+'.$prueba[$i].'23+'.$prueba[$i].'24+'.$prueba[$i].'25)');
 
                         $event->sheet->setCellValue($prueba[$i].'27', '=('.$prueba[$i].'18-'.$prueba[$i].'26)');
 
