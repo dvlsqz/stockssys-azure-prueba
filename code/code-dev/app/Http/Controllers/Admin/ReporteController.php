@@ -1109,7 +1109,7 @@ class ReporteController extends Controller
         $saldos = DB::table('bodegas_egresos as be')
         ->select(
             'be_det.id_insumo as insumo',
-            'SUM(be_det.no_unidades as despachado)'
+            'SUM(be_det.no_unidades) as despachado'
         )
         ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
         ->whereMonth('be.fecha',$mes)
