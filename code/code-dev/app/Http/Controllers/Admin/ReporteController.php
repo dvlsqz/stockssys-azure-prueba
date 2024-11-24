@@ -1106,7 +1106,7 @@ class ReporteController extends Controller
     }
 
     public function prueba($mes){
-        $saldos = DB::table('bodegas_egresos as be')
+        $saldos_escolares = DB::table('bodegas_egresos as be')
         ->select(
             DB::RAW('be_det.id_insumo as insumo'),
             DB::RAW('SUM(be_det.no_unidades) as despachado')

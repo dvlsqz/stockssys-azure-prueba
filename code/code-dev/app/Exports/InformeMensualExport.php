@@ -312,23 +312,38 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                 // consultas saldos
 
-                /*$maiz_bio = DB::table('bodegas as b')
-                ->select(
-                    DB::RAW('b.saldo')
-                )            
-                ->where('b.id', 27)
-                ->get();
-
-                $maiz_bio = DB::table('bodegas_ingresos as bi')
+                $saldos_escolares = DB::table('bodegas_egresos as be')
                     ->select(
-                        DB::RAW('bi_det.no_unidades') 
-                    )            
-                    ->join('bodegas_ingresos_detalles as bi_det', 'bi_det.id_ingreso', 'bi.id')
-                     
-                    ->whereMonth('bi.fecha',$this->mes)
-                    ->where('bi_det.id_insumo', 27)
-                    ->groupBy('bi_det.pl')
-                    ->get();*/
+                        DB::RAW('be_det.id_insumo as insumo'),
+                        DB::RAW('SUM(be_det.no_unidades) as despachado')
+                    )
+                    ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
+                    ->whereMonth('be.fecha',$mes)
+                    ->whereIn('be.tipo_racion',[1,3,6,9,10,11,12,13])
+                    ->groupBy('be_det.id_insumo')
+                    ->get();
+
+                $saldos_lideres = DB::table('bodegas_egresos as be')
+                    ->select(
+                        DB::RAW('be_det.id_insumo as insumo'),
+                        DB::RAW('SUM(be_det.no_unidades) as despachado')
+                    )
+                    ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
+                    ->whereMonth('be.fecha',$mes)
+                    ->whereIn('be.tipo_racion',[5,8,15])
+                    ->groupBy('be_det.id_insumo')
+                    ->get();
+                
+                $saldos_voluntarios = DB::table('bodegas_egresos as be')
+                    ->select(
+                        DB::RAW('be_det.id_insumo as insumo'),
+                        DB::RAW('SUM(be_det.no_unidades) as despachado')
+                    )
+                    ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
+                    ->whereMonth('be.fecha',$mes)
+                    ->whereIn('be.tipo_racion',[4,7,14])
+                    ->groupBy('be_det.id_insumo')
+                    ->get();
 
                 $pl = DB::table('bodegas_ingresos as bi')
                     ->select(
@@ -359,6 +374,24 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         foreach($pl as $p){
                             if($alimentos[$d]->id == $p->insumo){
                                 $event->sheet->setCellValue($prueba[$i].'13', $p->pl_alimento);
+                            }
+                        }
+
+                        foreach($saldos_escolares as $se){
+                            if($alimentos[$d]->id == $se->insumo){
+                                $event->sheet->setCellValue($prueba[$i].'20', $se->despachado);
+                            }
+                        }
+
+                        foreach($saldos_voluntarios as $sv){
+                            if($alimentos[$d]->id == $sv->insumo){
+                                $event->sheet->setCellValue($prueba[$i].'21', $sv->despachado);
+                            }
+                        }
+
+                        foreach($saldos_lideres as $sl){
+                            if($alimentos[$d]->id == $sl->insumo){
+                                $event->sheet->setCellValue($prueba[$i].'22', $sl->despachado);
                             }
                         }
 
