@@ -1113,6 +1113,7 @@ class ReporteController extends Controller
         )
         ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
         ->whereMonth('be.fecha',$mes)
+        ->whereIn('be.tipo_racion',[1,3,6,9,10,11,12,13])
         ->groupBy('be_det.id_insumo')
         ->get();
         
