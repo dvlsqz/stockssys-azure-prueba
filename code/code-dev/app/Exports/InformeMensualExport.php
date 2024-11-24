@@ -450,6 +450,11 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->mergeCells('C42:F42');  
                 $event->sheet->getStyle('C42:F42')->getAlignment()->setHorizontal('center');  
 
+                $event->sheet->getParent()->getActiveSheet()
+                            ->getStyle('C40:F42')
+                            ->getProtection()
+                            ->setLocked(Protection::PROTECTION_UNPROTECTED);
+
                 $event->sheet->setCellValue('J40', 'F.');
                 $event->sheet->getStyle('J40')->getFont()->setBold(true); 
                 $event->sheet->getStyle('J40')->getAlignment()->setHorizontal('right');  
@@ -463,6 +468,10 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->mergeCells('K42:N42');  
                 $event->sheet->getStyle('K42:N42')->getAlignment()->setHorizontal('center');
                 
+                $event->sheet->getParent()->getActiveSheet()
+                            ->getStyle('J40:N42')
+                            ->getProtection()
+                            ->setLocked(Protection::PROTECTION_UNPROTECTED);
 
                 $event->sheet->setCellValue('D44', 'Fecha');
                 $event->sheet->getStyle('D44')->getFont()->setBold(true);
