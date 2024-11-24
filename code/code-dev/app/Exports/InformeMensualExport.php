@@ -149,19 +149,22 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $event->sheet->setCellValue('A18', 'E.');
                 $event->sheet->mergeCells('B18:F18');
                 $event->sheet->setCellValue('B18', 'TOTAL DISPONIBLE ( = A.+D. )');
-                $event->sheet->mergeCells('D19:F19');
-                $event->sheet->setCellValue('D19', 'TONELADAS METRICAS RACION ESCOLAR');
+                
         
-                $event->sheet->getStyle('A20:F26')->getBorders()->getInside()->setBorderStyle(Border::BORDER_THIN);
+                $event->sheet->getStyle('A19:F26')->getBorders()->getInside()->setBorderStyle(Border::BORDER_THIN);
                 $event->sheet->mergeCells('A21:A26');
                 $event->sheet->setCellValue('A21', 'EGRESOS:');
                 $event->sheet->getStyle('A21')->getFont()->setSize(8);
                 $event->sheet->getStyle('A21')->getAlignment()->setTextRotation(90);
                 $event->sheet->getStyle('A21:A26')->getAlignment()->setVertical('center');
-                $event->sheet->setCellValue('C20', 'F1.');
-                $event->sheet->getStyle('C20')->getFont()->setBold(true); 
+                $event->sheet->setCellValue('C19', 'F1.');
+                $event->sheet->getStyle('C19')->getFont()->setBold(true); 
+                $event->sheet->mergeCells('D19:F19');
+                $event->sheet->setCellValue('D19', 'Distribuido RACION ESCOLAR');
+                $event->sheet->setCellValue('C20', 'F1a.');
+                $event->sheet->getStyle('C20')->getFont()->setBold(true);
                 $event->sheet->mergeCells('D20:F20');
-                $event->sheet->setCellValue('D20', 'Distribuido RACION ESCOLAR');
+                $event->sheet->setCellValue('D20', 'TONELADAS METRICAS RACION ESCOLAR');
                 $event->sheet->setCellValue('C21', 'F2.');
                 $event->sheet->getStyle('C21')->getFont()->setBold(true); 
                 $event->sheet->mergeCells('D21:F21');
@@ -379,7 +382,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                         foreach($saldos_escolares as $se){
                             if($alimentos[$d]->id == $se->insumo){
-                                $event->sheet->setCellValue($prueba[$i].'20', $se->despachado);
+                                $event->sheet->setCellValue($prueba[$i].'19', $se->despachado);
                             }
                         }
 
@@ -393,6 +396,14 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                             if($alimentos[$d]->id == $sl->insumo){
                                 $event->sheet->setCellValue($prueba[$i].'22', $sl->despachado);
                             }
+                        }
+
+                        if($alimentos[$d]->nombre == 'Aceite'){
+                            $event->sheet->setCellValue($prueba[$i].'20', (($p->pl_alimento*18.4615)/1000));
+                        }elseif($alimentos[$d]->nombre == 'Maíz BIO'){
+                            $event->sheet->setCellValue($prueba[$i].'20', (($p->pl_alimento*45.3592)/1000));
+                        }else{
+                            $event->sheet->setCellValue($prueba[$i].'20', (($p->pl_alimento*50)/1000));
                         }
 
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
