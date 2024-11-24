@@ -318,7 +318,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         DB::RAW('SUM(be_det.no_unidades) as despachado')
                     )
                     ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
-                    ->whereMonth('be.fecha',$mes)
+                    ->whereMonth('be.fecha',$this->mes)
                     ->whereIn('be.tipo_racion',[1,3,6,9,10,11,12,13])
                     ->groupBy('be_det.id_insumo')
                     ->get();
@@ -329,7 +329,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         DB::RAW('SUM(be_det.no_unidades) as despachado')
                     )
                     ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
-                    ->whereMonth('be.fecha',$mes)
+                    ->whereMonth('be.fecha',$this->mes)
                     ->whereIn('be.tipo_racion',[5,8,15])
                     ->groupBy('be_det.id_insumo')
                     ->get();
@@ -340,7 +340,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         DB::RAW('SUM(be_det.no_unidades) as despachado')
                     )
                     ->join('bodegas_egresos_detalles as  be_det','be_det.id_egreso','be.id')
-                    ->whereMonth('be.fecha',$mes)
+                    ->whereMonth('be.fecha',$this->mes)
                     ->whereIn('be.tipo_racion',[4,7,14])
                     ->groupBy('be_det.id_insumo')
                     ->get();
