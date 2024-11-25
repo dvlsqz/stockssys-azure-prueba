@@ -424,7 +424,7 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
 
                         $event->sheet->getParent()->getActiveSheet()
                             ->getStyle($prueba[$i].'30:'.$prueba[$i].'32')
-                            ->getProtection()
+                            ->getProtection() 
                             ->setLocked(Protection::PROTECTION_UNPROTECTED);
 
                         $event->sheet->setCellValue($prueba[$i].'33', '=SUM('.$prueba[$i].'30:'.$prueba[$i].'32)');
@@ -435,6 +435,15 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                     $d++;
                 }
 
+                $solicitud = Solicitud::with(['entrega', 'usuario','detalles'])->whereMonth('created_at', $this->mes)->first();
+                $total_estudiantes = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_estudiantes');
+                $total_raciones_estudiantes = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_raciones_de_estudiantes');
+                $total_docentes_voluntarios = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_docentes_y_voluntarios');
+                $total_raciones_docentes_voluntarios = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_raciones_de_docentes_y_voluntarios');
+                $total_personas = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_personas');
+                $total_raciones = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_raciones');
+
+                $event->sheet->setCellValue('T19', $total_estudiantes);
                 
 
                 $event->sheet->setCellValue('B40', 'F.');
