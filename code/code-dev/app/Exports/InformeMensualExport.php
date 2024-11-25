@@ -15,6 +15,7 @@ use PhpOffice\PhpSpreadsheet\Style\Protection;
 use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 
+use App\Models\Solicitud;
 use App\Models\Bodega;
 use Illuminate\Support\Facades\Http;
 use DB, Carbon\Carbon,  Auth;
