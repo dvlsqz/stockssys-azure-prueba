@@ -399,11 +399,11 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                         }
 
                         if($alimentos[$d]->nombre == 'Aceite'){
-                            $event->sheet->setCellValue($prueba[$i].'20', '=('.$prueba[$i].'19*18.4615)/1000')->setFormatCode('0.00');
+                            $event->sheet->setCellValue($prueba[$i].'20', '=ROUND(('.$prueba[$i].'19*18.4615)/1000,2)');
                         }elseif($alimentos[$d]->nombre == 'Maíz BIO'){
-                            $event->sheet->setCellValue($prueba[$i].'20', '=('.$prueba[$i].'19*45.3592)/1000')->setFormatCode('0.00');
+                            $event->sheet->setCellValue($prueba[$i].'20', '=ROUND(('.$prueba[$i].'19*45.3592)/1000,2)');
                         }else{
-                            $event->sheet->setCellValue($prueba[$i].'20', '=('.$prueba[$i].'19*50)/1000')->setFormatCode('0.00');
+                            $event->sheet->setCellValue($prueba[$i].'20', '=ROUND(('.$prueba[$i].'19*50)/1000,2)');
                         }
 
                         $event->sheet->setCellValue($prueba[$i].'9', $alimentos[$d]->nombre);
