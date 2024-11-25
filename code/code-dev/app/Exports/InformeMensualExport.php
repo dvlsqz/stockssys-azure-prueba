@@ -445,7 +445,47 @@ class InformeMensualExport implements FromView, WithEvents, WithDrawings, WithTi
                 $total_raciones = SolicitudDetalles::where('id_solicitud', $solicitud->id)->sum('total_de_raciones');
 
                 $event->sheet->setCellValue('T19', $total_estudiantes);
+                $event->sheet->setCellValue('T21', $total_docentes_voluntarios);
+                $event->sheet->setCellValue('T22', $total_personas);
+
+                $particiapantes_escolares = DB::table('bodegas_egresos as be')
+                    ->select(
+                    
+                        DB::RAW('be.participantes as despachado')
+                    )
+                    ->whereMonth('be.fecha',$this->mes)
+                    ->whereIn('be.tipo_racion',[1,3,6,9,10,11,12,13])
+                    ->get();
+
+                $particiapantes_lideres = DB::table('bodegas_egresos as be')
+                    ->select(
+                        
+                        DB::RAW('be.participantes as despachado')
+                    )
+                    ->whereMonth('be.fecha',$this->mes)
+                    ->whereIn('be.tipo_racion',[5,8,15])
+                    ->get();
                 
+                $particiapantes_voluntarios = DB::table('bodegas_egresos as be')
+                    ->select(
+                        DB::RAW('be.participantes as despachado')
+                    )
+                    ->whereMonth('be.fecha',$this->mes)
+                    ->whereIn('be.tipo_racion',[4,7,14])
+                    ->get();
+                
+                foreach($particiapantes_escolares as $pe){
+                    $event->sheet->setCellValue('U19', $pe->despachado);
+                }
+
+                foreach($particiapantes_voluntarios as $pv){
+                    $event->sheet->setCellValue('U21', $pv->despachado);
+                }
+
+                foreach($particiapantes_lideres as $pl){
+                    $event->sheet->setCellValue('U22', $pl->despachado);
+                }
+
 
                 $event->sheet->setCellValue('B40', 'F.');
                 $event->sheet->getStyle('B40')->getFont()->setBold(true);
