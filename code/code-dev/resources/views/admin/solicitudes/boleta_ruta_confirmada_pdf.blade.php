@@ -269,7 +269,7 @@
         </table>
     </div>
 
-    <div style="display: flex;">
+    <div style="position: absolute;">
         <div style="text-align: left; width: 50%; display: inline-block; float:left;">
             <b>Entregado conforme<br>
             <b>Bodega PSC Salcaja<br>
