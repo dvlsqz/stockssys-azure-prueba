@@ -269,7 +269,7 @@
         </table>
     </div>
 
-    <div style="page-break-before:auto; display: inline-block; top: 1000px;">
+    <div style="page-break-before:auto; display: flex;">
         <div style="text-align: left; width: 50%; display: inline-block; float:left;">
             <b>Entregado conforme<br>
             <b>Bodega PSC Salcaja<br>
