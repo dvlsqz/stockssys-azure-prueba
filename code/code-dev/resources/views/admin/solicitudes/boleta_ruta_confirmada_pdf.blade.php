@@ -269,7 +269,11 @@
         </table>
     </div>
 
-    <div style=" display: flex; ">
+    <br>
+    <br>
+    <br><br>
+
+    <div style=" display: flex;">
         <div style="text-align: left; width: 50%; display: inline-block; float:left;">
             <b>Entregado conforme<br>
             <b>Bodega PSC Salcaja<br>
@@ -285,9 +289,7 @@
         </div>
     </div>
 
-    <br>
-    <br>
-    <br><br>
+    
 
     <div id="footer">
         <span class="page-number">Pagina <script type="text/php">echo $PAGE_NUM</script></span>
