@@ -79,6 +79,7 @@
     <br>
 
     <p style="text-align: justify;">
+        <br>
         <small  ><b><h6>NOTA: El encargado del transporte se responsabiliza por daños o diferencias en las unidades o cantidades que no sean entregadas
             en la bodega de destino, por diferencia de esta guía.</h6>
         </b></small>
@@ -266,6 +267,22 @@
 
             </tbody>
         </table>
+    </div>
+
+    <div style="display: flex;">
+        <div style="text-align: left; width: 50%; display: inline-block; float:left;">
+            <b>Entregado conforme<br>
+            <b>Bodega PSC Salcaja<br>
+            <b>f. ____________________________ <br>
+            <b> {{ $ruta->no_licencia }} <br>    
+        </div>
+
+        <div style="text-align: left; width: 50%; display: inline-block; float:right;">
+            <b>Recibido conforme<br>
+            <b>Transportista<br>
+            <b>f. ____________________________ <br>
+            <b>{{ $ruta->nombre_piloto }}<br>      
+        </div>
     </div>
 
     <div id="footer">
