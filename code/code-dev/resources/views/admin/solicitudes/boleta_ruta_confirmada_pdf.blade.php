@@ -269,18 +269,18 @@
         </table>
     </div>
 
-    <div style="page-break-before:auto;">
+    <div style="page-break-before:auto; display: inline-block;">
         <div style="text-align: left; width: 50%; display: inline-block; float:left;">
             <b>Entregado conforme<br>
             <b>Bodega PSC Salcaja<br>
-            <b>f. ____________________________ <br>
+            <b>F. ____________________________ <br>
             <b> {{ $ruta->no_licencia }} <br>    
         </div>
 
         <div style="text-align: left; width: 50%; display: inline-block; float:right;">
             <b>Recibido conforme<br>
             <b>Transportista<br>
-            <b>f. ____________________________ <br>
+            <b>F. ____________________________ <br>
             <b>{{ $ruta->nombre_piloto }}<br>      
         </div>
     </div>
