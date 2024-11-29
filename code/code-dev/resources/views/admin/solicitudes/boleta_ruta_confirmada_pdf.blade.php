@@ -285,6 +285,10 @@
         </div>
     </div>
 
+    <br>
+    <br>
+    <br><br>
+
     <div id="footer">
         <span class="page-number">Pagina <script type="text/php">echo $PAGE_NUM</script></span>
     </div>
