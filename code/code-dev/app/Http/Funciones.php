@@ -5,6 +5,7 @@
             '1' => 'Administrador',
             '2' => 'Encargado (Socio)',
             '3' => 'Bodega (Socio)', 
+            '4' => 'Encargado Bodega(Socio)',
         ];
 
         if(!is_null($modo)):

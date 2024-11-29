@@ -279,7 +279,7 @@
             <b>Entregado conforme<br>
             <b>Bodega PSC Salcaja<br>
             <b>F. ____________________________ <br>
-            <b> {{ $ruta->no_licencia }} <br>    
+            <b> @foreach($encargado as $e) {{ $e->nombres.' '.$e->apellidos}} @endforeach <br>    
         </div>
 
         <div style="text-align: left; width: 50%; display: inline-block; float:right;">

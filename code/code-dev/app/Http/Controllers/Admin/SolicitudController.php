@@ -1423,6 +1423,7 @@ class SolicitudController extends Controller
         endif;
         
         $solicitud = Solicitud::with(['entrega', 'usuario'])->where('id', $idSolicitud)->first();
+        $encargo = Usuario::where('rol',4)->where('id_institucion', Auth::user()->id_institucion)->get();
         
         
         $datos = [
@@ -1432,7 +1433,8 @@ class SolicitudController extends Controller
             'detalles' => $detalles,
             'alimentos' => $alimentos,
             'totales_alimentos' => $totales_alimentos, 
-            'solicitud' => $solicitud
+            'solicitud' => $solicitud,
+            'encargado' => $encargado
         ];
 
         $pdf = Pdf::loadView('admin.solicitudes.boleta_ruta_confirmada_pdf', $datos)->setPaper('letter');
