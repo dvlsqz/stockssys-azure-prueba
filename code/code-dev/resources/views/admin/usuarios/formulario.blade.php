@@ -11,7 +11,7 @@
         </div>
 
         <div class="col-md-3">
-            <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Segundo Nombre: </strong></label>
+            <label for="name"> <strong> Segundo Nombre: </strong></label>
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
                 {!! Form::text('s_nombre', $usuario->nombres, ['class'=>'form-control', 'id' =>'s_nombre']) !!}
@@ -27,7 +27,7 @@
         </div>
 
         <div class="col-md-3">
-            <label for="name"> <strong><sup ><i class="fa-solid fa-triangle-exclamation"></i></sup> Segundo Apellido: </strong></label>
+            <label for="name"> <strong> Segundo Apellido: </strong></label>
             <div class="input-group">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-keyboard"></i></span>
                 {!! Form::text('s_apellido', $usuario->apellidos, ['class'=>'form-control', 'id' =>'s_apellido']) !!}

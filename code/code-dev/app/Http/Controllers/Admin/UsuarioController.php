@@ -54,17 +54,13 @@ class UsuarioController extends Controller
     public function postUsuarioRegistrar(Request $request){
         $reglas = [
             'p_nombre' => 'required',
-            's_nombre' => 'required',
             'p_apellido' => 'required',
-            's_apellido' => 'required',
             'id_institucion' => 'required',
             'usuario' => 'required'
         ];
         $mensajes = [
             'p_nombre.required' => 'Se requiere ingrese el 1er nombre de la persona.',
-            's_nombre.required' => 'Se requiere ingrese el 2do nombre de la persona.',
             'p_apellido.required' => 'Se requiere ingrese el 1er apellido de la persona.',
-            's_apellido.required' => 'Se requiere ingrese el 2do apellido de la persona.',
             'id_institucion.required' => 'Se requiere seleccione la institución donde labora la persona.',
             'usuario.required' => 'Se requiere genere el usuario de la persona.'
         ];
