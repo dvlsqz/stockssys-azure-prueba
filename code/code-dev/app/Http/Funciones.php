@@ -102,7 +102,8 @@
             '5' => 'Tonelada Metrica Kg.',
             '6' => 'Unidades por TM',
             '7' => 'Barril',
-            '8' => 'Cilindro'
+            '8' => 'Cilindro',
+            '9' => 'Unidad'
 
         ];
 
