@@ -1,5 +1,5 @@
 @extends('admin.plantilla.master')
-@section('title','Registar Institución')
+@section('title','Registar Usuario')
 
 @section('breadcrumb')
     <li class="breadcrumb-item"><a href="{{ url('/admin/usuarios') }}"><i class="fa-solid fa-users"></i> Usuarios</a></li>
