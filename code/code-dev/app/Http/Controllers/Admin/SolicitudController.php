@@ -1423,7 +1423,7 @@ class SolicitudController extends Controller
         endif;
         
         $solicitud = Solicitud::with(['entrega', 'usuario'])->where('id', $idSolicitud)->first();
-        $encargo = Usuario::where('rol',4)->where('id_institucion', Auth::user()->id_institucion)->get();
+        $encargado = Usuario::where('rol',4)->where('id_institucion', Auth::user()->id_institucion)->get();
         
         
         $datos = [
